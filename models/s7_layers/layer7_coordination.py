@@ -338,17 +338,33 @@ class MultiAgentCoordination:
         # Assign to agents
         assignments = await self.assign_subtasks(subtasks)
         
-        # Execute subtasks (simulated execution)
+        # Execute subtasks with REAL agent execution
         results = []
         for subtask in subtasks:
             if subtask.assigned_agent:
-                # In production, would actually execute on agent
-                # For now, simulate execution
-                await asyncio.sleep(0.1)  # Simulate work
-                
-                subtask.status = "completed"
-                subtask.result = f"Result for {subtask.description[:50]}"
-                results.append(subtask.result)
+                # REAL agent execution using reasoning engine
+                try:
+                    from layer2_reasoning import AdvancedReasoningEngine, ReasoningStrategy
+                    reasoning_engine = AdvancedReasoningEngine()
+                    
+                    # Execute subtask with agent's reasoning
+                    reasoning_result = await reasoning_engine.reason(
+                        prompt=subtask.description,
+                        strategy=ReasoningStrategy.CHAIN_OF_THOUGHT
+                    )
+                    
+                    subtask.status = "completed"
+                    subtask.result = reasoning_result['final_answer']
+                    results.append(subtask.result)
+                    
+                    # Update agent success rate
+                    agent = self.agents[subtask.assigned_agent]
+                    agent.success_rate = (agent.success_rate * agent.completed_tasks + 1.0) / (agent.completed_tasks + 1)
+                    
+                except Exception as e:
+                    subtask.status = "failed"
+                    subtask.result = f"Error: {str(e)}"
+                    results.append(subtask.result)
                 
                 # Update agent
                 agent = self.agents[subtask.assigned_agent]
@@ -451,12 +467,28 @@ class MultiAgentCoordination:
                 method=method
             )
         
-        # Collect votes (simulated - in production, would query actual agents)
+        # Collect votes using REAL agent reasoning
         votes = {}
         for agent in agents:
-            # Simulate agent vote (in production, would execute agent reasoning)
-            vote = f"vote_{agent.agent_id[:8]}"
-            votes[agent.agent_id] = vote
+            # REAL agent voting using reasoning engine
+            try:
+                from layer2_reasoning import AdvancedReasoningEngine, ReasoningStrategy
+                reasoning_engine = AdvancedReasoningEngine()
+                
+                # Agent reasons about the question
+                vote_prompt = f"As an expert in {', '.join(agent.expertise)}, answer this question with a clear position: {question}"
+                reasoning_result = await reasoning_engine.reason(
+                    prompt=vote_prompt,
+                    strategy=ReasoningStrategy.CHAIN_OF_THOUGHT
+                )
+                
+                vote = reasoning_result['final_answer'][:100]  # Truncate for voting
+                votes[agent.agent_id] = vote
+                
+            except Exception as e:
+                # Fallback vote based on agent expertise
+                vote = f"vote_based_on_{agent.expertise[0] if agent.expertise else 'general'}"
+                votes[agent.agent_id] = vote
         
         # Apply consensus method
         if method == ConsensusMethod.MAJORITY_VOTE:
