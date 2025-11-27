@@ -217,8 +217,25 @@ Context: {context}
 Response (include global assessment, optimization recommendations, priority adjustments, safety checks):
 """)
         
-        # Create agent executors (tools will be added later)
-        tools = []  # Placeholder for tools
+        # Create agent executors with real tools
+        from langchain.tools import Tool
+        from langchain_community.tools import DuckDuckGoSearchRun
+        from langchain.agents import load_tools
+        
+        # Initialize real tools
+        search = DuckDuckGoSearchRun()
+        tools = [
+            Tool(
+                name="Search",
+                func=search.run,
+                description="Useful for searching the internet for current information"
+            ),
+            Tool(
+                name="Calculator",
+                func=lambda x: str(eval(x)),
+                description="Useful for mathematical calculations. Input should be a valid Python expression."
+            )
+        ]
         
         self.agents["agent_1"] = create_react_agent(self.llm, tools, agent_1_prompt)
         self.agents["agent_2"] = create_react_agent(self.llm, tools, agent_2_prompt)

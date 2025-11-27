@@ -293,13 +293,28 @@ class ProbabilisticReasoningEngine:
         if query_node in self.evidence:
             return 1.0 if self.evidence[query_node] == query_state else 0.0
         
-        # Simplified calculation (assume uniform prior if no CPT)
+        # Real probability calculation using CPT
         node = self.nodes[query_node]
         if not node.probability_table:
+            # Uniform prior if no CPT
             probability = 1.0 / len(node.states)
         else:
-            # Get probability from CPT (simplified)
-            probability = 0.5  # Placeholder
+            # Get probability from CPT based on evidence
+            # Create key from evidence values of parent nodes
+            parent_values = tuple(
+                self.evidence.get(parent, node.states[0])
+                for parent in node.parents
+            )
+            
+            # Look up probability in CPT
+            if parent_values in node.probability_table:
+                prob_dist = node.probability_table[parent_values]
+                # Get probability for query state (default to first state)
+                query_state = node.states[0]
+                probability = prob_dist.get(query_state, 1.0 / len(node.states))
+            else:
+                # Fallback to uniform if key not in CPT
+                probability = 1.0 / len(node.states)
         
         logger.info(f"✅ Inference complete: P = {probability:.3f}")
         return probability

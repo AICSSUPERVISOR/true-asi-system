@@ -19,8 +19,60 @@ class AgentBase:
         self.learning_rate = 0.01
     
     async def execute(self, task: Dict[str, Any]) -> Dict[str, Any]:
-        """Execute a task - to be implemented by subclasses"""
-        raise NotImplementedError("Subclasses must implement execute()")
+        """Execute a task - default implementation with LLM"""
+        try:
+            import openai
+            import os
+            
+            # Get task details
+            task_type = task.get('type', 'general')
+            task_description = task.get('description', '')
+            task_input = task.get('input', {})
+            
+            # Use OpenAI to execute task
+            api_key = os.getenv('OPENAI_API_KEY')
+            if not api_key:
+                return {
+                    'success': False,
+                    'error': 'No OpenAI API key configured',
+                    'agent_id': self.agent_id
+                }
+            
+            client = openai.OpenAI(api_key=api_key)
+            
+            # Create prompt based on task
+            prompt = f"""Task Type: {task_type}
+Description: {task_description}
+Input: {task_input}
+
+Please execute this task and provide a detailed result."""
+            
+            # Execute with LLM
+            response = client.chat.completions.create(
+                model="gpt-4",
+                messages=[{"role": "user", "content": prompt}]
+            )
+            
+            result = response.choices[0].message.content
+            
+            # Update agent stats
+            self.tasks_completed += 1
+            self.status = "completed"
+            
+            return {
+                'success': True,
+                'result': result,
+                'agent_id': self.agent_id,
+                'task_type': task_type
+            }
+            
+        except Exception as e:
+            self.status = "error"
+            return {
+                'success': False,
+                'error': str(e),
+                'agent_id': self.agent_id
+            }
     
     async def learn(self, feedback: Dict[str, Any]):
         """Learn from feedback"""

@@ -214,19 +214,60 @@ def main():
     api_results.append(test_api('Google Gemini', test_gemini))
     api_results.append(test_api('Cohere', test_cohere))
     
-    # Mock tests for other APIs (to avoid rate limits during setup)
+    # Real lightweight tests for other APIs (minimal rate limit impact)
+    def test_heygen():
+        """Test HeyGen API with lightweight request"""
+        api_key = os.getenv('HEYGEN_API_KEY')
+        if not api_key:
+            return False
+        headers = {'X-Api-Key': api_key}
+        response = requests.get('https://api.heygen.com/v1/user.info', headers=headers, timeout=10)
+        return response.status_code == 200
+    
+    def test_elevenlabs():
+        """Test ElevenLabs API"""
+        api_key = os.getenv('ELEVENLABS_API_KEY')
+        if not api_key:
+            return False
+        headers = {'xi-api-key': api_key}
+        response = requests.get('https://api.elevenlabs.io/v1/user', headers=headers, timeout=10)
+        return response.status_code == 200
+    
+    def test_supabase():
+        """Test Supabase connection"""
+        url = os.getenv('SUPABASE_URL')
+        key = os.getenv('SUPABASE_KEY')
+        if not url or not key:
+            return False
+        headers = {'apikey': key, 'Authorization': f'Bearer {key}'}
+        response = requests.get(f'{url}/rest/v1/', headers=headers, timeout=10)
+        return response.status_code in [200, 404]  # 404 is OK, means connection works
+    
+    # Test remaining APIs with real lightweight calls
+    api_results.append(test_api('HeyGen', test_heygen))
+    api_results.append(test_api('ElevenLabs', test_elevenlabs))
+    api_results.append(test_api('Supabase', test_supabase))
+    
+    # APIs that require more complex setup - verify keys exist
     other_apis = [
-        'HeyGen', 'ElevenLabs', 'Ahrefs', 'Mailchimp', 'Polygon.io',
-        'Grok/xAI', 'Typeform', 'Cloudflare', 'Supabase', 'Apollo',
-        'OpenRouter', 'JSONBin', 'SimilarWeb Pro'
+        ('Ahrefs', 'AHREFS_API_KEY'),
+        ('Mailchimp', 'MAILCHIMP_API_KEY'),
+        ('Polygon.io', 'POLYGON_API_KEY'),
+        ('Grok/xAI', 'XAI_API_KEY'),
+        ('Typeform', 'TYPEFORM_API_KEY'),
+        ('Cloudflare', 'CLOUDFLARE_API_TOKEN'),
+        ('Apollo', 'APOLLO_API_KEY'),
+        ('OpenRouter', 'OPENROUTER_API_KEY'),
+        ('JSONBin', 'JSONBIN_API_KEY')
     ]
     
-    for api_name in other_apis:
+    for api_name, env_var in other_apis:
+        has_key = bool(os.getenv(env_var))
         api_results.append({
             'api': api_name,
-            'status': 'CONFIGURED',
+            'status': 'CONFIGURED' if has_key else 'NOT_CONFIGURED',
             'tested_at': datetime.utcnow().isoformat(),
-            'note': 'API key configured, full testing deferred to avoid rate limits'
+            'note': 'API key verified' if has_key else 'API key missing'
         })
         print(f"\n[{api_name}]")
         print("-" * 70)

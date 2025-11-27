@@ -31,18 +31,32 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-# Mock classes for demonstration
-class MockLLMClient:
-    """Mock LLM client for demonstration"""
-    async def generate(self, prompt, model=None):
-        return "Generated algorithm using advanced optimization techniques..."
+# Real production classes
+class RealLLMClient:
+    """Real LLM client using OpenAI"""
+    def __init__(self):
+        import openai
+        self.client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+    
+    async def generate(self, prompt, model="gpt-4"):
+        try:
+            response = self.client.chat.completions.create(
+                model=model,
+                messages=[{"role": "user", "content": prompt}]
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            logger.error(f"LLM generation error: {e}")
+            return f"Error generating response: {str(e)}"
 
 
-class MockAWSIntegration:
-    """Mock AWS integration for demonstration"""
+class RealAWSIntegration:
+    """Real AWS integration for production"""
     def __init__(self):
         import boto3
-        self.s3 = boto3.client('s3')
+        self.s3 = boto3.client('s3', region_name='us-east-1')
+        self.dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+        self.sqs = boto3.client('sqs', region_name='us-east-1')
         self.bucket = os.getenv('S3_BUCKET', 'asi-knowledge-base-898982995956')
 
 

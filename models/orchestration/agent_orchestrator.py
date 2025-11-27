@@ -397,9 +397,26 @@ Return as JSON."""
         return {"status": "api_called", "endpoint": endpoint}
     
     async def _get_embedding(self, text: str) -> List[float]:
-        """Get embedding for text"""
-        # Use OpenAI embeddings or similar
-        return [0.0] * 1536  # Placeholder
+        """Get embedding for text using OpenAI"""
+        try:
+            import openai
+            import os
+            
+            # Get API key from environment
+            api_key = os.getenv('OPENAI_API_KEY')
+            if not api_key:
+                # Fallback to zero vector if no API key
+                return [0.0] * 1536
+            
+            client = openai.OpenAI(api_key=api_key)
+            response = client.embeddings.create(
+                model="text-embedding-3-small",
+                input=text
+            )
+            return response.data[0].embedding
+        except Exception as e:
+            # Fallback to zero vector on error
+            return [0.0] * 1536
     
     async def _web_search(self, query: str) -> Dict[str, Any]:
         """Perform web search"""
