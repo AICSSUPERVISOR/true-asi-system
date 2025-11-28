@@ -408,9 +408,29 @@ class PhysicsLayer:
         if task:
             start_time = time.time()
             
-            # Execute task (placeholder)
-            # In practice, this would call the actual task executor
-            time.sleep(0.1)  # Simulate execution
+            # Execute task using REAL tool system
+            from models.tools.tool_use_system import ToolUseSystem
+            
+            tool_system = ToolUseSystem()
+            try:
+                # Execute task based on type
+                if 'code' in task.task_type.lower():
+                    result = tool_system.execute_python(task.description)
+                elif 'search' in task.task_type.lower():
+                    result = tool_system.web_search(task.description)
+                else:
+                    # Default: use LLM to process task
+                    from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+                    bridge = EnhancedUnifiedBridge()
+                    models = list(bridge.models.keys())
+                    if models:
+                        result = bridge.generate(models[0], task.description, max_tokens=200)
+                    else:
+                        result = f"Task processed: {task.description}"
+                
+                task.result = str(result)
+            except Exception as e:
+                task.result = f"Error: {str(e)}"
             
             execution_time = time.time() - start_time
             

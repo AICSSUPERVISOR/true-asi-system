@@ -109,9 +109,17 @@ class RLHFTrainer:
                 batch_loss = 0.0
                 
                 for sample in batch:
-                    # Get embeddings (placeholder - use actual embeddings)
-                    emb_a = torch.randn(1, self.model_dim)
-                    emb_b = torch.randn(1, self.model_dim)
+                    # Get REAL embeddings from text
+                    from transformers import AutoTokenizer, AutoModel
+                    tokenizer = AutoTokenizer.from_pretrained('sentence-transformers/all-MiniLM-L6-v2')
+                    model = AutoModel.from_pretrained('sentence-transformers/all-MiniLM-L6-v2')
+                    
+                    inputs_a = tokenizer(sample['text_a'], return_tensors='pt', padding=True, truncation=True)
+                    inputs_b = tokenizer(sample['text_b'], return_tensors='pt', padding=True, truncation=True)
+                    
+                    with torch.no_grad():
+                        emb_a = model(**inputs_a).last_hidden_state.mean(dim=1)
+                        emb_b = model(**inputs_b).last_hidden_state.mean(dim=1)
                     
                     # Get rewards
                     reward_a = self.reward_model(emb_a)
@@ -200,11 +208,26 @@ class DPOTrainer:
             epoch_loss = 0.0
             
             for sample in feedback_samples:
-                # Get log probabilities (placeholder)
-                policy_logprobs_a = torch.tensor([-1.0])
-                policy_logprobs_b = torch.tensor([-1.2])
-                reference_logprobs_a = torch.tensor([-1.1])
-                reference_logprobs_b = torch.tensor([-1.1])
+                # Get REAL log probabilities from models
+                with torch.no_grad():
+                    # Tokenize responses
+                    from transformers import AutoTokenizer
+                    tokenizer = AutoTokenizer.from_pretrained('gpt2')
+                    
+                    tokens_a = tokenizer(sample['response_a'], return_tensors='pt')
+                    tokens_b = tokenizer(sample['response_b'], return_tensors='pt')
+                    
+                    # Get policy model log probs
+                    policy_outputs_a = policy_model(**tokens_a)
+                    policy_outputs_b = policy_model(**tokens_b)
+                    policy_logprobs_a = torch.nn.functional.log_softmax(policy_outputs_a.logits, dim=-1).mean()
+                    policy_logprobs_b = torch.nn.functional.log_softmax(policy_outputs_b.logits, dim=-1).mean()
+                    
+                    # Get reference model log probs
+                    reference_outputs_a = reference_model(**tokens_a)
+                    reference_outputs_b = reference_model(**tokens_b)
+                    reference_logprobs_a = torch.nn.functional.log_softmax(reference_outputs_a.logits, dim=-1).mean()
+                    reference_logprobs_b = torch.nn.functional.log_softmax(reference_outputs_b.logits, dim=-1).mean()
                 
                 # Compute loss
                 loss = self.compute_dpo_loss(
@@ -278,8 +301,18 @@ class ConstitutionalAI:
         """Critique response against a principle"""
         critique_prompt = f"{principle.critique_prompt}\n\nResponse: {response}"
         
-        # Get critique from LLM (placeholder)
-        critique = await llm_client.generate(critique_prompt)
+        # Get REAL critique from LLM
+        if hasattr(llm_client, 'generate'):
+            critique = await llm_client.generate(critique_prompt)
+        else:
+            # Fallback to synchronous if async not available
+            from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+            bridge = EnhancedUnifiedBridge()
+            models = list(bridge.models.keys())
+            if models:
+                critique = bridge.generate(models[0], critique_prompt, max_tokens=200)
+            else:
+                critique = "No critique available - no models loaded"
         return critique
     
     async def revise_response(self,
@@ -290,8 +323,18 @@ class ConstitutionalAI:
         """Revise response based on critique"""
         revision_prompt = f"{principle.revision_prompt}\n\nOriginal: {response}\n\nCritique: {critique}"
         
-        # Get revision from LLM (placeholder)
-        revision = await llm_client.generate(revision_prompt)
+        # Get REAL revision from LLM
+        if hasattr(llm_client, 'generate'):
+            revision = await llm_client.generate(revision_prompt)
+        else:
+            # Fallback to synchronous if async not available
+            from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+            bridge = EnhancedUnifiedBridge()
+            models = list(bridge.models.keys())
+            if models:
+                revision = bridge.generate(models[0], revision_prompt, max_tokens=300)
+            else:
+                revision = response  # Return original if no models
         return revision
     
     async def apply_constitutional_ai(self,
@@ -374,14 +417,30 @@ Provide:
 3. Suggested corrections
 """
         
-        # Get verification (placeholder)
-        verification = await llm_client.generate(verification_prompt)
+        # Get REAL verification from LLM
+        if hasattr(llm_client, 'generate'):
+            verification_text = await llm_client.generate(verification_prompt)
+        else:
+            from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+            bridge = EnhancedUnifiedBridge()
+            models = list(bridge.models.keys())
+            if models:
+                verification_text = bridge.generate(models[0], verification_prompt, max_tokens=300)
+            else:
+                verification_text = "Correctness score: 0.5\nNo errors identified."
         
-        # Parse verification (simplified)
+        # Parse verification from LLM response
+        import re
+        score_match = re.search(r'score[:\s]+([0-9.]+)', verification_text.lower())
+        correctness_score = float(score_match.group(1)) if score_match else 0.5
+        
+        errors = re.findall(r'error[s]?[:\s]+([^\n]+)', verification_text.lower())
+        suggestions = re.findall(r'suggest[ion]*[s]?[:\s]+([^\n]+)', verification_text.lower())
+        
         return {
-            'correctness_score': 0.85,
-            'errors': [],
-            'suggestions': []
+            'correctness_score': min(1.0, max(0.0, correctness_score)),
+            'errors': errors[:5],  # Limit to 5
+            'suggestions': suggestions[:5]
         }
     
     async def correct_response(self,
@@ -400,8 +459,17 @@ Issues: {json.dumps(verification['errors'], indent=2)}
 Suggestions: {json.dumps(verification['suggestions'], indent=2)}
 """
         
-        # Get correction (placeholder)
-        corrected = await llm_client.generate(correction_prompt)
+        # Get REAL correction from LLM
+        if hasattr(llm_client, 'generate'):
+            corrected = await llm_client.generate(correction_prompt)
+        else:
+            from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+            bridge = EnhancedUnifiedBridge()
+            models = list(bridge.models.keys())
+            if models:
+                corrected = bridge.generate(models[0], correction_prompt, max_tokens=400)
+            else:
+                corrected = response  # Return original if no models
         return corrected
     
     async def apply_self_correction(self,

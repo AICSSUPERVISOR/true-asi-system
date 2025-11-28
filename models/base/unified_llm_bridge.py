@@ -399,13 +399,31 @@ class UnifiedLLMBridge:
         }
     
     async def _call_local_model(self, model: ModelConfig, prompt: str, max_tokens: int, temperature: float) -> Dict:
-        """Call locally hosted model via vLLM or similar"""
-        # This would connect to local vLLM server
-        # For now, placeholder
-        return {
-            'text': f"[Local model {model.name} response would go here]",
-            'tokens_used': len(prompt.split()) * 1.5
-        }
+        """Call locally hosted model via REAL implementation"""
+        # Use enhanced bridge for local models
+        from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+        
+        bridge = EnhancedUnifiedBridge()
+        
+        # Try to generate using the enhanced bridge
+        try:
+            response_text = bridge.generate(
+                model_id=model.model_id,
+                prompt=prompt,
+                max_tokens=max_tokens,
+                temperature=temperature
+            )
+            
+            return {
+                'text': response_text,
+                'tokens_used': len(response_text.split())
+            }
+        except Exception as e:
+            # Fallback if model not available
+            return {
+                'text': f"Error calling local model {model.name}: {str(e)}",
+                'tokens_used': 0
+            }
     
     async def _call_generic_api(self, model: ModelConfig, prompt: str, max_tokens: int, temperature: float) -> Dict:
         """Call generic API endpoint"""

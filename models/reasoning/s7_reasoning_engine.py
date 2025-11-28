@@ -679,8 +679,22 @@ Find relevant analogies and apply them to reach a conclusion."""
         """Execute an action and return observation"""
         
         if action == "query_knowledge":
-            # Query knowledge base (placeholder)
-            return f"Knowledge query result for: {params.get('query', 'N/A')}"
+            # Query knowledge base using REAL memory system
+            from models.memory.memory_system import MemorySystem
+            
+            memory = MemorySystem()
+            query = params.get('query', '')
+            
+            try:
+                # Search semantic memory
+                results = memory.semantic_memory.search(query, top_k=3)
+                
+                if results:
+                    return f"Knowledge results for '{query}': {', '.join([r['content'][:100] for r in results])}"
+                else:
+                    return f"No knowledge found for: {query}"
+            except Exception as e:
+                return f"Knowledge query error: {str(e)}"
         
         elif action == "calculate":
             # Perform calculation

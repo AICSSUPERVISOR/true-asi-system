@@ -164,8 +164,27 @@ class KnowledgeAcquisitionEngine:
             print(f"Error crawling {base_url}: {crawl_job['error']}")
             return []
         
-        # In production, would poll for crawl completion and process results
-        # For now, create a placeholder knowledge item
+        # REAL web scraping implementation
+        import requests
+        from bs4 import BeautifulSoup
+        
+        try:
+            # Fetch the actual webpage
+            response = requests.get(base_url, timeout=10)
+            soup = BeautifulSoup(response.content, 'html.parser')
+            
+            # Extract title and content
+            title = soup.find('title').text if soup.find('title') else f"Documentation from {base_url}"
+            
+            # Extract text content
+            paragraphs = soup.find_all('p')
+            content = '\n\n'.join([p.text.strip() for p in paragraphs[:10]])  # First 10 paragraphs
+            
+            if not content:
+                content = soup.get_text()[:1000]  # Fallback to first 1000 chars
+        except Exception as e:
+            title = f"Documentation from {base_url}"
+            content = f"Failed to crawl: {str(e)}"
         item_id = hashlib.sha256(
             f"{base_url}{datetime.utcnow().isoformat()}".encode()
         ).hexdigest()[:16]
@@ -175,8 +194,8 @@ class KnowledgeAcquisitionEngine:
             timestamp=datetime.utcnow().isoformat(),
             source_type=KnowledgeSource.DOCUMENTATION,
             source_url=base_url,
-            title=f"Documentation from {base_url}",
-            content="Crawl job initiated",
+            title=title,
+            content=content,
             concepts=[],
             code_snippets=[],
             quality_score=1.0
