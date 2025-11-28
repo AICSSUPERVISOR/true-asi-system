@@ -1,0 +1,16 @@
+{
+  "downloaded": [
+    "Llama 4 70B",
+    "Llama 4 405B",
+    "Llama 3.1 8B",
+    "Llama 3.1 70B",
+    "Llama 3 8B",
+    "Llama 3 70B",
+    "Llama 2 13B",
+    "Llama 2 70B",
+    "Llama 2 7B",
+    "Llama 3.1 405B"
+  ],
+  "failed": [],
+  "in_progress": []
+}
