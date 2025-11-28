@@ -24,7 +24,13 @@ except ImportError:
     TRANSFORMERS_AVAILABLE = False
     print("⚠️ transformers not available")
 
-from s3_model_registry import S3ModelRegistry, ModelInfo
+# Import from models directory
+import sys
+from pathlib import Path
+if str(Path(__file__).parent.parent) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from models.s3_model_registry import S3ModelRegistry, ModelInfo
 
 
 class S3ModelLoader:
