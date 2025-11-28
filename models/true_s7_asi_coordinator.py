@@ -72,7 +72,7 @@ class TrueS7ASICoordinator:
         
         # Layer 1: Base Model (512+ LLMs)
         try:
-            from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+            from state_of_the_art_bridge import StateOfTheArtBridge as EnhancedUnifiedBridge
             self.layers['layer1_base'] = EnhancedUnifiedBridge()
             print("✅ Layer 1: Base Model (512+ LLMs) - Initialized")
         except Exception as e:

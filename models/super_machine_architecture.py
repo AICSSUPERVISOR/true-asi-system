@@ -28,7 +28,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import numpy as np
 
 # Import real model loading
-from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge, EnhancedModelSpec, ModelCategory
+from state_of_the_art_bridge import StateOfTheArtBridge as EnhancedUnifiedBridge, ModelInfo as EnhancedModelSpec, ModelCapability as ModelCategory
 
 class TaskComplexity(Enum):
     """Task complexity levels"""

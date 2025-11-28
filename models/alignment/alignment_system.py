@@ -306,7 +306,7 @@ class ConstitutionalAI:
             critique = await llm_client.generate(critique_prompt)
         else:
             # Fallback to synchronous if async not available
-            from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+            from state_of_the_art_bridge import StateOfTheArtBridge as EnhancedUnifiedBridge
             bridge = EnhancedUnifiedBridge()
             models = list(bridge.models.keys())
             if models:
@@ -328,7 +328,7 @@ class ConstitutionalAI:
             revision = await llm_client.generate(revision_prompt)
         else:
             # Fallback to synchronous if async not available
-            from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+            from state_of_the_art_bridge import StateOfTheArtBridge as EnhancedUnifiedBridge
             bridge = EnhancedUnifiedBridge()
             models = list(bridge.models.keys())
             if models:
@@ -421,7 +421,7 @@ Provide:
         if hasattr(llm_client, 'generate'):
             verification_text = await llm_client.generate(verification_prompt)
         else:
-            from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+            from state_of_the_art_bridge import StateOfTheArtBridge as EnhancedUnifiedBridge
             bridge = EnhancedUnifiedBridge()
             models = list(bridge.models.keys())
             if models:
@@ -463,7 +463,7 @@ Suggestions: {json.dumps(verification['suggestions'], indent=2)}
         if hasattr(llm_client, 'generate'):
             corrected = await llm_client.generate(correction_prompt)
         else:
-            from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+            from state_of_the_art_bridge import StateOfTheArtBridge as EnhancedUnifiedBridge
             bridge = EnhancedUnifiedBridge()
             models = list(bridge.models.keys())
             if models:

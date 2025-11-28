@@ -129,7 +129,7 @@ class UltimatePowerSuperbridge:
         
         # Enhanced Unified Bridge (512+ models)
         try:
-            from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+            from state_of_the_art_bridge import StateOfTheArtBridge as EnhancedUnifiedBridge
             self.bridges['unified'] = EnhancedUnifiedBridge()
             print("✅ Enhanced Unified Bridge loaded (512+ models)")
         except Exception as e:

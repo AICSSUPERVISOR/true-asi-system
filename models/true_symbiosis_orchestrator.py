@@ -59,7 +59,7 @@ class TrueSymbiosisOrchestrator:
         self.load_model_catalog()
         
         # Import bridge systems
-        from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+        from state_of_the_art_bridge import StateOfTheArtBridge as EnhancedUnifiedBridge
         from super_machine_architecture import SuperMachineArchitecture
         
         self.bridge = EnhancedUnifiedBridge()

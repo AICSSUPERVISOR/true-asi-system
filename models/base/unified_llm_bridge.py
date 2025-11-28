@@ -401,7 +401,7 @@ class UnifiedLLMBridge:
     async def _call_local_model(self, model: ModelConfig, prompt: str, max_tokens: int, temperature: float) -> Dict:
         """Call locally hosted model via REAL implementation"""
         # Use enhanced bridge for local models
-        from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+        from state_of_the_art_bridge import StateOfTheArtBridge as EnhancedUnifiedBridge
         
         bridge = EnhancedUnifiedBridge()
         

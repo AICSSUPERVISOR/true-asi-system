@@ -420,7 +420,7 @@ class PhysicsLayer:
                     result = tool_system.web_search(task.description)
                 else:
                     # Default: use LLM to process task
-                    from enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+                    from state_of_the_art_bridge import StateOfTheArtBridge as EnhancedUnifiedBridge
                     bridge = EnhancedUnifiedBridge()
                     models = list(bridge.models.keys())
                     if models:
