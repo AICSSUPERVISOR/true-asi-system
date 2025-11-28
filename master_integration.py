@@ -23,7 +23,7 @@ sys.path.insert(0, str(project_root))
 
 # Import ALL system components
 from models.s3_model_loader import S3ModelLoader
-from models.enhanced_unified_bridge_v2 import EnhancedUnifiedBridge
+from state_of_the_art_bridge import StateOfTheArtBridge as EnhancedUnifiedBridge
 from models.super_machine_architecture import SuperMachineArchitecture
 from models.true_symbiosis_orchestrator import TrueSymbiosisOrchestrator
 from models.multi_model_collaboration import MultiModelCollaboration
