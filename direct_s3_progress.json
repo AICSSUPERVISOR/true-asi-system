@@ -9,8 +9,15 @@
     "Llama 2 13B",
     "Llama 2 70B",
     "Llama 2 7B",
-    "Llama 3.1 405B"
+    "Llama 3.1 405B",
+    "Qwen 2.5 32B",
+    "Qwen 2.5 14B",
+    "Qwen 2.5 7B",
+    "Qwen 2.5 1.5B",
+    "Qwen 2.5 0.5B"
   ],
-  "failed": [],
+  "failed": [
+    "Qwen 2.5 3B"
+  ],
   "in_progress": []
 }

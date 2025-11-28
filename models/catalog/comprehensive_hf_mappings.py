@@ -9,6 +9,8 @@ Date: 2025-11-28
 Quality: 100/100 - ZERO Placeholders
 """
 
+from typing import Dict, List
+
 # Comprehensive HuggingFace model mappings
 # Format: "Model Name": "huggingface-org/model-id"
 
@@ -528,9 +530,15 @@ def get_models_by_category(category):
     ]
 
 
+def get_all_mappings() -> Dict[str, str]:
+    """Get all HuggingFace mappings."""
+    return COMPREHENSIVE_HF_MAPPINGS
+
+
 __all__ = [
     'COMPREHENSIVE_HF_MAPPINGS',
     'get_all_models',
+    'get_all_mappings',
     'get_hf_id',
     'get_models_by_category'
 ]
