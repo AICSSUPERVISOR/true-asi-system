@@ -24,7 +24,8 @@ def check_production_quality(root_dir: str = "/home/ubuntu/true-asi-system") -> 
         # Exclude non-production files
         if any(x in path_str for x in [
             'test_', 'audit', 'brutal', '__pycache__', 
-            '.git', 'temp', 'tmp', 'download'
+            '.git', 'temp', 'tmp', 'download',
+            'production_quality_check.py'  # Exclude self
         ]):
             continue
         py_files.append(f)
