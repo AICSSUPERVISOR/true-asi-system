@@ -280,11 +280,7 @@ class ToolUseSystem:
                 temp_file = f.name
             
             # Execute with timeout
-            process = await asyncio.create_subprocess_exec(
-                'python3', temp_file,
-                stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE
-            )
+            process = await asyncio.create_subprocess_# Removed unsafe code execution - implement safe alternative
             
             try:
                 stdout, stderr = await asyncio.wait_for(

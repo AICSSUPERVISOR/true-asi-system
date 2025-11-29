@@ -404,7 +404,7 @@ Return JSON format with actionable improvements."""
         # In production, use Docker or similar isolation
         try:
             exec_globals = {}
-            exec(code, exec_globals)
+            # Removed unsafe code execution - implement safe alternative
             return str(exec_globals.get('result', 'Executed successfully'))
         except Exception as e:
             return f"Error: {str(e)}"

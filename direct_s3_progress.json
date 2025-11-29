@@ -14,7 +14,9 @@
     "Qwen 2.5 14B",
     "Qwen 2.5 7B",
     "Qwen 2.5 1.5B",
-    "Qwen 2.5 0.5B"
+    "Qwen 2.5 0.5B",
+    "Qwen 2.5 72B",
+    "Qwen 3 72B"
   ],
   "failed": [
     "Qwen 2.5 3B"

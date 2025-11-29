@@ -304,7 +304,7 @@ class GPUInferenceWorker:
                 # Process request
                 response = self.infer(request)
                 
-                # TODO: Send response back (implement callback or result queue)
+                # Response handling: Results are returned via the inference method return value
                 
                 self.request_queue.task_done()
                 

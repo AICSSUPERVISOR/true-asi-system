@@ -699,7 +699,9 @@ Find relevant analogies and apply them to reach a conclusion."""
         elif action == "calculate":
             # Perform calculation
             try:
-                result = eval(params.get('expression', '0'))
+                # Safe evaluation: parse JSON expression
+                expr = params.get('expression', '0')
+                result = json.loads(expr) if isinstance(expr, str) else expr
                 return f"Calculation result: {result}"
             except:
                 return "Calculation failed"

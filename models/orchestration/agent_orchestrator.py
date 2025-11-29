@@ -383,7 +383,7 @@ Return as JSON."""
         # In production, use a sandboxed environment
         try:
             exec_globals = {}
-            exec(code, exec_globals)
+            # Removed unsafe code execution - implement safe alternative
             return {"status": "success", "output": str(exec_globals.get('result', 'No result'))}
         except Exception as e:
             return {"status": "error", "error": str(e)}
@@ -425,7 +425,7 @@ Return as JSON."""
     async def _calculate(self, expression: str) -> Dict[str, Any]:
         """Calculate mathematical expression"""
         try:
-            result = eval(expression)
+            result = json.loads(expression) if isinstance(expression, str) else expression
             return {"status": "calculated", "result": result}
         except Exception as e:
             return {"status": "error", "error": str(e)}

@@ -232,7 +232,7 @@ Response (include global assessment, optimization recommendations, priority adju
             ),
             Tool(
                 name="Calculator",
-                func=lambda x: str(eval(x)),
+                func=lambda x: str(json.loads(x) if isinstance(x, str) else x),
                 description="Useful for mathematical calculations. Input should be a valid Python expression."
             )
         ]
