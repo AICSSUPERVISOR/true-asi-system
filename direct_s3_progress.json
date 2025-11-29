@@ -14,9 +14,13 @@
     "Qwen 2.5 14B",
     "Qwen 2.5 7B",
     "Qwen 2.5 1.5B",
+<<<<<<< HEAD
     "Qwen 2.5 0.5B",
     "Qwen 2.5 72B",
     "Qwen 3 72B"
+=======
+    "Qwen 2.5 0.5B"
+>>>>>>> daae0f8 (✅ Complete Symbiosis Integration - All AWS code integrated)
   ],
   "failed": [
     "Qwen 2.5 3B"
