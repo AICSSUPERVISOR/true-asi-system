@@ -1,7 +1,7 @@
 # TRUE ASI System Dependencies
 
 # Core
-python>=3.11
+
 
 # AI/ML
 openai>=1.0.0
@@ -28,3 +28,7 @@ pytest-cov>=4.1.0
 # Utilities
 python-dotenv>=1.0.0
 pyyaml>=6.0
+
+torch>=2.0.0
+transformers>=4.30.0
+huggingface_hub>=0.17.0

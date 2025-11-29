@@ -29,7 +29,7 @@ project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
 # Import all S-7 layers
-from state_of_the_art_bridge import get_bridge, StateOfTheArtBridge
+from unified_bridge import get_bridge, StateOfTheArtBridge
 from models.s7_layers.layer1_base_model import BaseModelLayer
 from models.s7_layers.layer2_reasoning import ReasoningLayer
 from models.s7_layers.layer3_memory import MemoryLayer

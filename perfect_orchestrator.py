@@ -31,7 +31,7 @@ from enum import Enum
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Import unified entity layer
-from unified_entity_layer import (
+from unified_bridge import (
     UnifiedEntityLayer,
     TaskType,
     ConsensusMethod,

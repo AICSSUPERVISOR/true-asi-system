@@ -20,7 +20,7 @@ import json
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
-from state_of_the_art_bridge import get_bridge, ModelCapability
+from unified_bridge import get_bridge, ModelCapability
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

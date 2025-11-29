@@ -26,8 +26,8 @@ from INTERNALIZED_APIS_IMPLEMENTATION import InternalizedAPIManager
 from SELF_CONTAINED_VERIFICATION import SelfContainedValidator
 
 # Import our bridge components
-from state_of_the_art_bridge import StateOfTheArtBridge, TaskType
-from unified_entity_layer import UnifiedEntityLayer
+from unified_bridge import StateOfTheArtBridge, TaskType, UnifiedEntityLayer
+
 from s7_super_cluster import S7SuperCluster
 # from models.catalog.comprehensive_hf_mappings import get_all_mappings  # Not needed
 
