@@ -3,7 +3,7 @@ AIMLAPI Integration Module for TRUE ASI System
 Provides access to 400+ AI models via single API
 100% Functional - Zero Mocks - Production Ready
 
-API Key: 43609610bbe74de4b3bbda3c5e55221e
+API Key: 88c051938edc47028fde5778aae408ae
 Base URL: https://api.aimlapi.com/v1
 """
 
@@ -25,7 +25,7 @@ class AIMLAPIIntegration:
     Provides unified interface for all model types
     """
     
-    def __init__(self, api_key: str = "43609610bbe74de4b3bbda3c5e55221e"):
+    def __init__(self, api_key: str = "88c051938edc47028fde5778aae408ae"):
         """Initialize AIMLAPI client"""
         self.client = OpenAI(
             base_url="https://api.aimlapi.com/v1",
@@ -85,36 +85,38 @@ class AIMLAPIIntegration:
         logger.info("AIMLAPI Integration initialized with 400+ models")
     
     def infer(self, 
-              prompt: str, 
+              prompt: str,
               task_type: str = "general",
               temperature: float = 0.7,
               max_tokens: int = 2000,
-              **kwargs) -> str:
+              system_prompt: Optional[str] = None) -> str:
         """
-        Run inference via AIMLAPI
+        Generate text completion using best model for task
         
         Args:
             prompt: Input prompt
-            task_type: Type of task (determines model selection)
+            task_type: Type of task (general, reasoning, code, etc.)
             temperature: Sampling temperature
             max_tokens: Maximum tokens to generate
-            **kwargs: Additional parameters
+            system_prompt: Optional system prompt
             
         Returns:
             Generated text response
         """
         model = self.model_map.get(task_type, "gpt-5.1-chat-latest")
         
+        # Build messages with system prompt if provided
+        messages = []
+        if system_prompt:
+            messages.append({"role": "system", "content": system_prompt})
+        messages.append({"role": "user", "content": prompt})
+        
         try:
             response = self.client.chat.completions.create(
                 model=model,
-                messages=[
-                    {"role": "system", "content": "You are an advanced AI assistant with expert knowledge across all domains."},
-                    {"role": "user", "content": prompt}
-                ],
+                messages=messages,
                 temperature=temperature,
-                max_tokens=max_tokens,
-                **kwargs
+                max_tokens=max_tokens
             )
             
             result = response.choices[0].message.content

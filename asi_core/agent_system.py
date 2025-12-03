@@ -49,10 +49,12 @@ class AgentSystem:
     
     def load_agents(self):
         """Load all agent templates from directory"""
+        # Always create default agents first
+        self._create_default_agents()
+        
         if not os.path.exists(self.agents_dir):
             logger.warning(f"Agents directory not found: {self.agents_dir}")
-            # Create default agents
-            self._create_default_agents()
+            logger.info(f"Using {len(self.agents)} default agents")
             return
         
         # Load agent templates from JSON files
