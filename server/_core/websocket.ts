@@ -122,3 +122,33 @@ export function broadcastFineTuningProgress(jobId: string, progress: any) {
   if (!io) return;
   io.emit("fine-tuning-progress", { jobId, ...progress });
 }
+
+// Real-time collaboration for S-7 tests
+export function broadcastS7SessionUpdate(sessionId: string, update: any) {
+  if (!io) return;
+  io.to(`s7-session-${sessionId}`).emit("s7-session-update", update);
+}
+
+// Real-time leaderboard updates
+export function broadcastLeaderboardUpdate(update: any) {
+  if (!io) return;
+  io.emit("leaderboard-update", update);
+}
+
+// User presence tracking
+export function broadcastUserPresence(userId: number, status: "online" | "offline") {
+  if (!io) return;
+  io.emit("user-presence", { userId, status, timestamp: new Date().toISOString() });
+}
+
+// Collaborative agent orchestration
+export function broadcastAgentPoolUpdate(poolId: string, update: any) {
+  if (!io) return;
+  io.to(`agent-pool-${poolId}`).emit("agent-pool-update", update);
+}
+
+// Real-time notifications
+export function broadcastNotification(userId: number, notification: any) {
+  if (!io) return;
+  io.emit(`notification-${userId}`, notification);
+}
