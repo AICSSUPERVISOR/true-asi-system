@@ -25,6 +25,8 @@ const AgentAnalytics = lazy(() => import("./pages/AgentAnalytics"));
 const S7StudyPath = lazy(() => import("./pages/S7StudyPath"));
 const UnifiedAnalytics = lazy(() => import("./pages/UnifiedAnalytics"));
 const Login = lazy(() => import("./pages/Login"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Privacy = lazy(() => import("./pages/Privacy"));
 
 function LoadingFallback() {
   return (
@@ -56,7 +58,9 @@ function Router() {
       <Route path={"/s7-comparison"} component={S7Comparison} />
       <Route path={"/agent-analytics"} component={AgentAnalytics} />
       <Route path={"/s7-study-path"} component={S7StudyPath} />
-      <Route path={"/unified-analytics"} component={UnifiedAnalytics} />
+        <Route path="/unified-analytics" component={UnifiedAnalytics} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/privacy" component={Privacy} />
       <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>
