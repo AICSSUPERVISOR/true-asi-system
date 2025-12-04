@@ -27,6 +27,7 @@ const UnifiedAnalytics = lazy(() => import("./pages/UnifiedAnalytics"));
 const Login = lazy(() => import("./pages/Login"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Privacy = lazy(() => import("./pages/Privacy"));
+const GetStarted = lazy(() => import("./pages/GetStarted"));
 
 function LoadingFallback() {
   return (
@@ -45,6 +46,7 @@ function Router() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/" component={Home} />
+        <Route path="/get-started" component={GetStarted} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/agents" component={Agents} />
         <Route path="/chat" component={Chat} />

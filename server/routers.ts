@@ -619,6 +619,49 @@ Provide specific recommendations for closing these gaps.`,
         const { getBusinessProfilesByIndustry } = await import("./business_db");
         return await getBusinessProfilesByIndustry(input.industry);
       }),
+
+    // Analyze website
+    analyzeWebsite: publicProcedure
+      .input(z.object({ 
+        url: z.string().url(),
+        businessId: z.number().int().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { analyzeWebsite } = await import("./_core/website_analysis");
+        const { saveWebsiteAnalysis } = await import("./website_analysis_db");
+        
+        const analysis = await analyzeWebsite(input.url);
+        
+        if (input.businessId) {
+          await saveWebsiteAnalysis(input.businessId, analysis);
+        }
+        
+        return analysis;
+      }),
+
+    // Get website analysis by ID
+    getWebsiteAnalysis: publicProcedure
+      .input(z.object({ id: z.number().int() }))
+      .query(async ({ input }) => {
+        const { getWebsiteAnalysisById } = await import("./website_analysis_db");
+        return await getWebsiteAnalysisById(input.id);
+      }),
+
+    // Get website analyses by business ID
+    getWebsiteAnalysesByBusiness: publicProcedure
+      .input(z.object({ businessId: z.number().int() }))
+      .query(async ({ input }) => {
+        const { getWebsiteAnalysesByBusinessId } = await import("./website_analysis_db");
+        return await getWebsiteAnalysesByBusinessId(input.businessId);
+      }),
+
+    // Get latest website analysis for URL
+    getLatestWebsiteAnalysis: publicProcedure
+      .input(z.object({ url: z.string().url() }))
+      .query(async ({ input }) => {
+        const { getLatestWebsiteAnalysis } = await import("./website_analysis_db");
+        return await getLatestWebsiteAnalysis(input.url);
+      }),
   }),
 
 });
