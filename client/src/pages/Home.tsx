@@ -32,18 +32,24 @@ export default function Home() {
               <Brain className="w-8 h-8 text-primary" />
               <span className="text-2xl font-bold text-gradient">TRUE ASI</span>
             </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="/dashboard" className="text-foreground/80 hover:text-foreground transition-colors">
+            <div className="hidden md:flex items-center space-x-6">
+              <a href="/dashboard" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
                 Dashboard
               </a>
-              <a href="/agents" className="text-foreground/80 hover:text-foreground transition-colors">
+              <a href="/agents" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
                 Agents
               </a>
-              <a href="/chat" className="text-foreground/80 hover:text-foreground transition-colors">
+              <a href="/chat" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
                 Chat
               </a>
-              <a href="#features" className="text-foreground/80 hover:text-foreground transition-colors">
-                Features
+              <a href="/knowledge-graph" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
+                Knowledge
+              </a>
+              <a href="/analytics" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
+                Analytics
+              </a>
+              <a href="/documentation" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
+                Docs
               </a>
             </div>
             <div className="flex items-center space-x-4">

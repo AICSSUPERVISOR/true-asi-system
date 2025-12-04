@@ -4,21 +4,44 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
-import Agents from "./pages/Agents";
-import Chat from "./pages/Chat";
+import { lazy, Suspense } from "react";
+import { Activity } from "lucide-react";
+
+// Lazy load pages for better performance
+const Home = lazy(() => import("./pages/Home"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Agents = lazy(() => import("./pages/Agents"));
+const Chat = lazy(() => import("./pages/Chat"));
+const KnowledgeGraph = lazy(() => import("./pages/KnowledgeGraph"));
+const Analytics = lazy(() => import("./pages/Analytics"));
+const Documentation = lazy(() => import("./pages/Documentation"));
+
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="text-center">
+        <Activity className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
+        <p className="text-muted-foreground">Loading...</p>
+      </div>
+    </div>
+  );
+}
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/agents" component={Agents} />
-      <Route path="/chat" component={Chat} />
-      <Route path="/404" component={NotFound} />
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense fallback={<LoadingFallback />}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/agents" component={Agents} />
+        <Route path="/chat" component={Chat} />
+        <Route path="/knowledge-graph" component={KnowledgeGraph} />
+        <Route path="/analytics" component={Analytics} />
+        <Route path="/documentation" component={Documentation} />
+        <Route path="/404" component={NotFound} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 
