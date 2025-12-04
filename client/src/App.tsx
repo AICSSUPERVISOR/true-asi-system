@@ -16,6 +16,7 @@ const KnowledgeGraph = lazy(() => import("./pages/KnowledgeGraph"));
 const Analytics = lazy(() => import("./pages/Analytics"));
 const Documentation = lazy(() => import("./pages/Documentation"));
 const S7Test = lazy(() => import("./pages/S7Test"));
+const S7Extended = lazy(() => import("./pages/S7Extended"));
 
 function LoadingFallback() {
   return (
@@ -40,6 +41,7 @@ function Router() {
         <Route path="/analytics" component={Analytics} />
       <Route path={"/documentation"} component={Documentation} />
       <Route path={"/s7-test"} component={S7Test} />
+      <Route path={"/s7-extended"} component={S7Extended} />
       <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>

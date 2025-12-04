@@ -330,7 +330,12 @@ export default function S7Test() {
           {/* Questions Tab */}
           <TabsContent value="questions" className="space-y-8">
             <Card className="card-elevated p-6 bg-primary/5 border-primary/20">
-              <h3 className="text-xl font-bold mb-3">About S-7 Questions</h3>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-xl font-bold">About S-7 Questions</h3>
+                <a href="/s7-extended" className="text-primary hover:underline text-sm font-medium">
+                  View Extended 40-Question Test →
+                </a>
+              </div>
               <p className="text-muted-foreground mb-4">
                 These questions require cross-domain synthesis, novel reasoning, true
                 hypothesis formation, recursive abstraction, self-generated ontologies,
