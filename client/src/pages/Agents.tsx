@@ -5,10 +5,19 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Brain, Search, Filter, Activity, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
+import AgentModal from "@/components/AgentModal";
 
 export default function Agents() {
   const { data: agents, isLoading } = trpc.asi.agents.useQuery();
   const [searchTerm, setSearchTerm] = useState("");
+  type Agent = NonNullable<typeof agents>[number];
+  const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAgentClick = (agent: Agent) => {
+    setSelectedAgent(agent);
+    setIsModalOpen(true);
+  };
 
   const filteredAgents = agents?.filter((agent) =>
     agent.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -104,6 +113,7 @@ export default function Agents() {
               <Button
                 className="w-full mt-4 btn-primary"
                 size="sm"
+                onClick={() => handleAgentClick(agent)}
               >
                 Interact
               </Button>
@@ -118,6 +128,13 @@ export default function Agents() {
           </div>
         )}
       </div>
+
+      {/* Agent Modal */}
+      <AgentModal
+        agent={selectedAgent as any}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }

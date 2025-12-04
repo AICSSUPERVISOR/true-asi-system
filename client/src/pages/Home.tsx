@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Hero3D from "@/components/Hero3D";
+import MobileMenu from "@/components/MobileMenu";
 import { getLoginUrl } from "@/const";
 import {
   Brain,
@@ -53,20 +54,23 @@ export default function Home() {
               </a>
             </div>
             <div className="flex items-center space-x-4">
-              {isAuthenticated ? (
-                <>
-                  <span className="text-sm text-muted-foreground">
-                    Welcome, {user?.name || user?.email}
-                  </span>
-                  <Button variant="outline" onClick={logout}>
-                    Logout
+              <div className="hidden md:flex items-center space-x-4">
+                {isAuthenticated ? (
+                  <>
+                    <span className="text-sm text-muted-foreground">
+                      Welcome, {user?.name || user?.email}
+                    </span>
+                    <Button variant="outline" onClick={logout}>
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <Button asChild>
+                    <a href={getLoginUrl()}>Get Started</a>
                   </Button>
-                </>
-              ) : (
-                <Button asChild>
-                  <a href={getLoginUrl()}>Get Started</a>
-                </Button>
-              )}
+                )}
+              </div>
+              <MobileMenu onLogout={logout} />
             </div>
           </div>
         </div>
