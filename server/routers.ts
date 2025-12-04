@@ -4,7 +4,8 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import axios from "axios";
-import { getEnhancedAnswer, getAllEnhancedQuestions } from "./enhanced_s7_answers";
+import { getEnhancedAnswer, getAllEnhancedQuestions, enhancedS7Answers } from "./enhanced_s7_answers";
+import { getCachedS7Answer, setCachedS7Answer, warmUpCache, getCacheStats } from "./_core/cache";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -190,17 +191,40 @@ export const appRouter = router({
   s7Enhanced: router({
     getAnswer: publicProcedure
       .input(z.object({ questionNumber: z.number().min(1).max(40) }))
-      .query(({ input }) => {
+      .query(async ({ input }) => {
+        const startTime = Date.now();
+        
+        // Try cache first
+        const cached = await getCachedS7Answer(input.questionNumber);
+        if (cached) {
+          const responseTime = Date.now() - startTime;
+          return {
+            enhanced: true,
+            ...cached,
+            cached: true,
+            responseTime: `${responseTime}ms`
+          };
+        }
+        
+        // Get from source
         const answer = getEnhancedAnswer(input.questionNumber);
         if (!answer) {
           return {
             enhanced: false,
-            message: `Question ${input.questionNumber} does not have an enhanced S-7 grade answer yet.`
+            message: `Question ${input.questionNumber} does not have an enhanced S-7 grade answer yet.`,
+            cached: false
           };
         }
+        
+        // Cache for next time
+        await setCachedS7Answer(input.questionNumber, answer);
+        
+        const responseTime = Date.now() - startTime;
         return {
           enhanced: true,
-          ...answer
+          ...answer,
+          cached: false,
+          responseTime: `${responseTime}ms`
         };
       }),
     
@@ -210,6 +234,15 @@ export const appRouter = router({
         total: getAllEnhancedQuestions().length,
         remaining: 40 - getAllEnhancedQuestions().length
       };
+    }),
+    
+    cacheStats: publicProcedure.query(async () => {
+      return await getCacheStats();
+    }),
+    
+    warmCache: publicProcedure.mutation(async () => {
+      await warmUpCache(enhancedS7Answers);
+      return { success: true, message: "Cache warmed up successfully" };
     })
   }),
 });
