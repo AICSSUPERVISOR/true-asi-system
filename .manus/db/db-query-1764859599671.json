@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS s7_submissions (\n  id VARCHAR(128) PRIMARY KEY,\n  userId INT NOT NULL,\n  questionNumber INT NOT NULL,\n  answer TEXT NOT NULL,\n  scoreNovelty INT,\n  scoreCoherence INT,\n  scoreRigor INT,\n  scoreSynthesis INT,\n  scoreFormalization INT,\n  scoreDepth INT,\n  totalScore INT,\n  averageScore INT,\n  meetsThreshold INT DEFAULT 0,\n  evaluationModel VARCHAR(100),\n  evaluationTime INT,\n  submittedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  evaluatedAt TIMESTAMP NULL,\n  INDEX idx_userId (userId),\n  INDEX idx_questionNumber (questionNumber)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Kbp5zTLhkwYq6S.fc90773ccd92 --database UKEMaqQ27z6bQYJkt3g4ve --execute CREATE TABLE IF NOT EXISTS s7_submissions (\n  id VARCHAR(128) PRIMARY KEY,\n  userId INT NOT NULL,\n  questionNumber INT NOT NULL,\n  answer TEXT NOT NULL,\n  scoreNovelty INT,\n  scoreCoherence INT,\n  scoreRigor INT,\n  scoreSynthesis INT,\n  scoreFormalization INT,\n  scoreDepth INT,\n  totalScore INT,\n  averageScore INT,\n  meetsThreshold INT DEFAULT 0,\n  evaluationModel VARCHAR(100),\n  evaluationTime INT,\n  submittedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  evaluatedAt TIMESTAMP NULL,\n  INDEX idx_userId (userId),\n  INDEX idx_questionNumber (questionNumber)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 212
+}

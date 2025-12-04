@@ -17,6 +17,8 @@ const Analytics = lazy(() => import("./pages/Analytics"));
 const Documentation = lazy(() => import("./pages/Documentation"));
 const S7Test = lazy(() => import("./pages/S7Test"));
 const S7Extended = lazy(() => import("./pages/S7Extended"));
+const S7Leaderboard = lazy(() => import("./pages/S7Leaderboard"));
+const AgentOrchestrator = lazy(() => import("./pages/AgentOrchestrator"));
 
 function LoadingFallback() {
   return (
@@ -42,6 +44,8 @@ function Router() {
       <Route path={"/documentation"} component={Documentation} />
       <Route path={"/s7-test"} component={S7Test} />
       <Route path={"/s7-extended"} component={S7Extended} />
+      <Route path={"/s7-leaderboard"} component={S7Leaderboard} />
+      <Route path={"/agent-orchestrator"} component={AgentOrchestrator} />
       <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>

@@ -1,0 +1,41 @@
+CREATE TABLE `s7_rankings` (
+	`id` varchar(128) NOT NULL,
+	`userId` int NOT NULL,
+	`totalSubmissions` int NOT NULL DEFAULT 0,
+	`questionsCompleted` int NOT NULL DEFAULT 0,
+	`averageScore` int,
+	`bestScore` int,
+	`avgNovelty` int,
+	`avgCoherence` int,
+	`avgRigor` int,
+	`avgSynthesis` int,
+	`avgFormalization` int,
+	`avgDepth` int,
+	`questionsAboveThreshold` int NOT NULL DEFAULT 0,
+	`s7Certified` int NOT NULL DEFAULT 0,
+	`globalRank` int,
+	`lastUpdated` timestamp NOT NULL DEFAULT (now()),
+	CONSTRAINT `s7_rankings_id` PRIMARY KEY(`id`),
+	CONSTRAINT `s7_rankings_userId_unique` UNIQUE(`userId`)
+);
+--> statement-breakpoint
+CREATE TABLE `s7_submissions` (
+	`id` varchar(128) NOT NULL,
+	`userId` int NOT NULL,
+	`questionNumber` int NOT NULL,
+	`answer` text NOT NULL,
+	`scoreNovelty` int,
+	`scoreCoherence` int,
+	`scoreRigor` int,
+	`scoreSynthesis` int,
+	`scoreFormalization` int,
+	`scoreDepth` int,
+	`totalScore` int,
+	`averageScore` int,
+	`meetsThreshold` int,
+	`evaluationModel` varchar(100),
+	`evaluationTime` int,
+	`submittedAt` timestamp NOT NULL DEFAULT (now()),
+	`evaluatedAt` timestamp,
+	CONSTRAINT `s7_submissions_id` PRIMARY KEY(`id`)
+);

@@ -6,6 +6,7 @@ import { z } from "zod";
 import axios from "axios";
 import { getEnhancedAnswer, getAllEnhancedQuestions, enhancedS7Answers } from "./enhanced_s7_answers";
 import { getCachedS7Answer, setCachedS7Answer, warmUpCache, getCacheStats } from "./_core/cache";
+import { getDb } from "./db";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -244,6 +245,153 @@ export const appRouter = router({
       await warmUpCache(enhancedS7Answers);
       return { success: true, message: "Cache warmed up successfully" };
     })
+  }),
+
+  // S-7 Leaderboard & Scoring System
+  s7: router({
+    // Submit an S-7 answer
+    submitAnswer: protectedProcedure
+      .input(
+        z.object({
+          questionNumber: z.number().min(1).max(40),
+          answer: z.string().min(100),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const { submitS7Answer, updateS7Scores, updateUserRanking } = await import("./s7_db");
+        
+        if (!ctx.user?.id) {
+          throw new Error("User not authenticated");
+        }
+
+        // Submit answer
+        const submissionId = await submitS7Answer({
+          userId: ctx.user.id,
+          questionNumber: input.questionNumber,
+          answer: input.answer,
+        });
+
+        // Evaluate answer using ASI1.AI
+        const startTime = Date.now();
+        try {
+          const response = await axios.post(
+            "https://api.asi1.ai/v1/chat/completions",
+            {
+              model: "gpt-4",
+              messages: [
+                {
+                  role: "system",
+                  content: `You are an expert S-7 test evaluator. Evaluate the following answer using these 6 categories (score 0-10 each):
+1. Novelty & Originality
+2. Logical Coherence
+3. Mathematical Rigor
+4. Cross-Domain Synthesis
+5. Formalization Quality
+6. Depth of Insight
+
+Return ONLY a JSON object with these exact keys: novelty, coherence, rigor, synthesis, formalization, depth. Each value must be a number between 0 and 10.`,
+                },
+                {
+                  role: "user",
+                  content: `Question ${input.questionNumber}\n\nAnswer:\n${input.answer}`,
+                },
+              ],
+              response_format: { type: "json_object" },
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${API_KEYS.ASI1_AI}`,
+                "Content-Type": "application/json",
+              },
+              timeout: 30000,
+            }
+          );
+
+          const evaluationTime = Date.now() - startTime;
+          const scores = JSON.parse(response.data.choices[0].message.content);
+
+          // Update scores
+          const result = await updateS7Scores({
+            submissionId,
+            scores,
+            evaluationModel: "gpt-4",
+            evaluationTime,
+          });
+
+          // Update user ranking
+          await updateUserRanking(ctx.user.id);
+
+          return {
+            success: true,
+            submissionId,
+            scores,
+            ...result,
+          };
+        } catch (error) {
+          console.error("S-7 evaluation error:", error);
+          return {
+            success: false,
+            submissionId,
+            error: "Evaluation failed",
+          };
+        }
+      }),
+
+    // Get user's submission history
+    getMySubmissions: protectedProcedure.query(async ({ ctx }) => {
+      const { getUserSubmissions } = await import("./s7_db");
+      if (!ctx.user?.id) return [];
+      return await getUserSubmissions(ctx.user.id);
+    }),
+
+    // Get user's ranking
+    getMyRanking: protectedProcedure.query(async ({ ctx }) => {
+      const { getUserRanking } = await import("./s7_db");
+      if (!ctx.user?.id) return null;
+      return await getUserRanking(ctx.user.id);
+    }),
+
+    // Get global leaderboard
+    getLeaderboard: publicProcedure
+      .input(
+        z.object({
+          limit: z.number().optional().default(100),
+          category: z.string().optional(),
+        })
+      )
+      .query(async ({ input }) => {
+        const { getLeaderboard, getLeaderboardByCategory } = await import("./s7_db");
+        
+        if (input.category) {
+          return await getLeaderboardByCategory(input.category, input.limit);
+        }
+        return await getLeaderboard(input.limit);
+      }),
+
+    // Get question statistics
+    getQuestionStats: publicProcedure
+      .input(z.object({ questionNumber: z.number().min(1).max(40) }))
+      .query(async ({ input }) => {
+        const db = await getDb();
+        if (!db) return null;
+
+        const { s7Submissions } = await import("../drizzle/schema");
+        const { eq, avg, count } = await import("drizzle-orm");
+
+        const submissions = await db
+          .select()
+          .from(s7Submissions)
+          .where(eq(s7Submissions.questionNumber, input.questionNumber));
+
+        const evaluated = submissions.filter((s: any) => s.averageScore !== null);
+        if (evaluated.length === 0) return null;
+
+        return {
+          totalSubmissions: submissions.length,
+          averageScore: evaluated.reduce((sum: number, s: any) => sum + (s.averageScore || 0), 0) / evaluated.length / 10,
+          passRate: (evaluated.filter((s: any) => s.meetsThreshold === 1).length / evaluated.length) * 100,
+        };
+      }),
   }),
 });
 

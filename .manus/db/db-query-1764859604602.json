@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS s7_rankings (\n  id VARCHAR(128) PRIMARY KEY,\n  userId INT NOT NULL UNIQUE,\n  totalSubmissions INT NOT NULL DEFAULT 0,\n  questionsCompleted INT NOT NULL DEFAULT 0,\n  averageScore INT,\n  bestScore INT,\n  avgNovelty INT,\n  avgCoherence INT,\n  avgRigor INT,\n  avgSynthesis INT,\n  avgFormalization INT,\n  avgDepth INT,\n  questionsAboveThreshold INT NOT NULL DEFAULT 0,\n  s7Certified INT NOT NULL DEFAULT 0,\n  globalRank INT,\n  lastUpdated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  INDEX idx_globalRank (globalRank),\n  INDEX idx_s7Certified (s7Certified)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Kbp5zTLhkwYq6S.fc90773ccd92 --database UKEMaqQ27z6bQYJkt3g4ve --execute CREATE TABLE IF NOT EXISTS s7_rankings (\n  id VARCHAR(128) PRIMARY KEY,\n  userId INT NOT NULL UNIQUE,\n  totalSubmissions INT NOT NULL DEFAULT 0,\n  questionsCompleted INT NOT NULL DEFAULT 0,\n  averageScore INT,\n  bestScore INT,\n  avgNovelty INT,\n  avgCoherence INT,\n  avgRigor INT,\n  avgSynthesis INT,\n  avgFormalization INT,\n  avgDepth INT,\n  questionsAboveThreshold INT NOT NULL DEFAULT 0,\n  s7Certified INT NOT NULL DEFAULT 0,\n  globalRank INT,\n  lastUpdated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  INDEX idx_globalRank (globalRank),\n  INDEX idx_s7Certified (s7Certified)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 277
+}
