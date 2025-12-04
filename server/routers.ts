@@ -4,6 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import axios from "axios";
+import { getEnhancedAnswer, getAllEnhancedQuestions } from "./enhanced_s7_answers";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -183,6 +184,33 @@ export const appRouter = router({
         },
       };
     }),
+  }),
+
+  // S-7 Enhanced Answers Router
+  s7Enhanced: router({
+    getAnswer: publicProcedure
+      .input(z.object({ questionNumber: z.number().min(1).max(40) }))
+      .query(({ input }) => {
+        const answer = getEnhancedAnswer(input.questionNumber);
+        if (!answer) {
+          return {
+            enhanced: false,
+            message: `Question ${input.questionNumber} does not have an enhanced S-7 grade answer yet.`
+          };
+        }
+        return {
+          enhanced: true,
+          ...answer
+        };
+      }),
+    
+    listEnhanced: publicProcedure.query(() => {
+      return {
+        enhancedQuestions: getAllEnhancedQuestions(),
+        total: getAllEnhancedQuestions().length,
+        remaining: 40 - getAllEnhancedQuestions().length
+      };
+    })
   }),
 });
 

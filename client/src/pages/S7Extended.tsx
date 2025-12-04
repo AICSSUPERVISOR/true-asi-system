@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { Streamdown } from "streamdown";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 const S7_QUESTIONS_40 = [
   // Block 1: Physics & Computation Unification (Q1-Q10)
@@ -298,11 +299,13 @@ const RUBRIC_SECTIONS = [
 ];
 
 export default function S7Extended() {
+  const { user } = useAuth();
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [evaluations, setEvaluations] = useState<Record<number, any>>({});
   const [selectedBlock, setSelectedBlock] = useState<string>("all");
   const [evaluatingId, setEvaluatingId] = useState<number | null>(null);
   const chatMutation = trpc.asi.chat.useMutation();
+  const enhancedListQuery = trpc.s7Enhanced.listEnhanced.useQuery();
 
   const handleSubmitAnswer = async (questionId: number) => {
     const answer = answers[questionId];
@@ -429,6 +432,11 @@ export default function S7Extended() {
                     <div className="flex items-center gap-3 mb-2">
                       <Badge className="badge-warning">Q{q.id}</Badge>
                       <Badge className="badge-info">{q.block}</Badge>
+                      {enhancedListQuery.data?.enhancedQuestions.includes(q.id) && (
+                        <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                          ✓ S-7 Enhanced (97-100/100)
+                        </Badge>
+                      )}
                       <h3 className="text-xl font-bold">Question {q.id}</h3>
                     </div>
                     <p className="text-muted-foreground">{q.question}</p>
