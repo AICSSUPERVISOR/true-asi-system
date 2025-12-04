@@ -1,3 +1,11 @@
+export function getEnv(key: keyof typeof ENV): string | boolean {
+  const value = ENV[key];
+  if (value === undefined || value === null || value === "") {
+    throw new Error(`Environment variable ${key} is not set`);
+  }
+  return value;
+}
+
 export const ENV = {
   appId: process.env.VITE_APP_ID ?? "",
   cookieSecret: process.env.JWT_SECRET ?? "",
@@ -7,4 +15,7 @@ export const ENV = {
   isProduction: process.env.NODE_ENV === "production",
   forgeApiUrl: process.env.BUILT_IN_FORGE_API_URL ?? "",
   forgeApiKey: process.env.BUILT_IN_FORGE_API_KEY ?? "",
+  stripeSecretKey: process.env.STRIPE_SECRET_KEY ?? "",
+  stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY ?? "",
+  stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET ?? "",
 };

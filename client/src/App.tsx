@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import Footer from "./components/Footer";
 import { lazy, Suspense } from "react";
 import { Activity } from "lucide-react";
 
@@ -23,6 +24,7 @@ const S7Comparison = lazy(() => import("./pages/S7Comparison"));
 const AgentAnalytics = lazy(() => import("./pages/AgentAnalytics"));
 const S7StudyPath = lazy(() => import("./pages/S7StudyPath"));
 const UnifiedAnalytics = lazy(() => import("./pages/UnifiedAnalytics"));
+const Login = lazy(() => import("./pages/Login"));
 
 function LoadingFallback() {
   return (
@@ -39,6 +41,7 @@ function Router() {
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Switch>
+        <Route path="/login" component={Login} />
         <Route path="/" component={Home} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/agents" component={Agents} />
@@ -66,8 +69,11 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
-          <Toaster />
-          <Router />
+          <div className="flex flex-col min-h-screen">
+            <Toaster />
+            <Router />
+            <Footer />
+          </div>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

@@ -1,7 +1,7 @@
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
+import { publicProcedure, protectedProcedure, router, TRPCError } from "./_core/trpc";
 import { z } from "zod";
 import axios from "axios";
 import { getEnhancedAnswer, getAllEnhancedQuestions, enhancedS7Answers } from "./enhanced_s7_answers";
@@ -550,6 +550,9 @@ Provide specific recommendations for closing these gaps.`,
         return await getComparisonById(input.comparisonId);
       }),
   }),
+
+
+
 });
 
 export type AppRouter = typeof appRouter;
