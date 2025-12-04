@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "mysql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1764808669797,
+      "tag": "0000_fair_nebula",
+      "breakpoints": true
+    }
+  ]
 }
