@@ -551,6 +551,75 @@ Provide specific recommendations for closing these gaps.`,
       }),
   }),
 
+  // Business Enhancement System
+  business: router({
+    // Lookup company by organization number
+    lookupCompany: publicProcedure
+      .input(z.object({ orgNumber: z.string().regex(/^\d{9}$/, "Must be 9 digits") }))
+      .query(async ({ input }) => {
+        const { getCompanyByOrgNumber, extractBusinessInfo } = await import("./_core/brreg");
+        const { saveBusinessProfile } = await import("./business_db");
+        
+        const company = await getCompanyByOrgNumber(input.orgNumber);
+        if (!company) {
+          throw new TRPCError({
+            code: "NOT_FOUND",
+            message: "Company not found in Norwegian Business Registry",
+          });
+        }
+
+        // Save to database
+        await saveBusinessProfile(company);
+
+        return {
+          company,
+          businessInfo: extractBusinessInfo(company),
+        };
+      }),
+
+    // Search companies by name
+    searchCompanies: publicProcedure
+      .input(z.object({ 
+        name: z.string().min(2),
+        page: z.number().int().min(0).default(0),
+        size: z.number().int().min(1).max(100).default(20),
+      }))
+      .query(async ({ input }) => {
+        const { searchCompaniesByName } = await import("./_core/brreg");
+        return await searchCompaniesByName(input.name, input.page, input.size);
+      }),
+
+    // Get saved business profile
+    getProfile: publicProcedure
+      .input(z.object({ orgNumber: z.string() }))
+      .query(async ({ input }) => {
+        const { getBusinessProfile } = await import("./business_db");
+        return await getBusinessProfile(input.orgNumber);
+      }),
+
+    // Get all saved profiles
+    getAllProfiles: publicProcedure
+      .query(async () => {
+        const { getAllBusinessProfiles } = await import("./business_db");
+        return await getAllBusinessProfiles();
+      }),
+
+    // Search saved profiles
+    searchProfiles: publicProcedure
+      .input(z.object({ query: z.string().min(1) }))
+      .query(async ({ input }) => {
+        const { searchBusinessProfiles } = await import("./business_db");
+        return await searchBusinessProfiles(input.query);
+      }),
+
+    // Get profiles by industry
+    getByIndustry: publicProcedure
+      .input(z.object({ industry: z.string() }))
+      .query(async ({ input }) => {
+        const { getBusinessProfilesByIndustry } = await import("./business_db");
+        return await getBusinessProfilesByIndustry(input.industry);
+      }),
+  }),
 
 });
 
