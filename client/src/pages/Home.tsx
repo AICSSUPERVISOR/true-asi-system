@@ -52,6 +52,9 @@ export default function Home() {
               <a href="/documentation" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
                 Docs
               </a>
+              <a href="/s7-test" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
+                S-7 Test
+              </a>
             </div>
             <div className="flex items-center space-x-4">
               <div className="hidden md:flex items-center space-x-4">

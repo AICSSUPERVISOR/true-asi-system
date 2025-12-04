@@ -21,6 +21,7 @@ export default function MobileMenu({ onLogout }: MobileMenuProps) {
     { href: "/knowledge-graph", label: "Knowledge" },
     { href: "/analytics", label: "Analytics" },
     { href: "/documentation", label: "Docs" },
+    { href: "/s7-test", label: "S-7 Test" },
   ];
 
   return (

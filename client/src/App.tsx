@@ -15,6 +15,7 @@ const Chat = lazy(() => import("./pages/Chat"));
 const KnowledgeGraph = lazy(() => import("./pages/KnowledgeGraph"));
 const Analytics = lazy(() => import("./pages/Analytics"));
 const Documentation = lazy(() => import("./pages/Documentation"));
+const S7Test = lazy(() => import("./pages/S7Test"));
 
 function LoadingFallback() {
   return (
@@ -37,8 +38,9 @@ function Router() {
         <Route path="/chat" component={Chat} />
         <Route path="/knowledge-graph" component={KnowledgeGraph} />
         <Route path="/analytics" component={Analytics} />
-        <Route path="/documentation" component={Documentation} />
-        <Route path="/404" component={NotFound} />
+      <Route path={"/documentation"} component={Documentation} />
+      <Route path={"/s7-test"} component={S7Test} />
+      <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>
     </Suspense>
