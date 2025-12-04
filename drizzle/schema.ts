@@ -53,6 +53,40 @@ export type InsertS7Submission = typeof s7Submissions.$inferInsert;
  * S-7 Leaderboard Rankings
  * Aggregated user performance across all questions
  */
+/**
+ * S-7 Answer Comparisons
+ * Stores AI-powered gap analysis between user answers and top performers
+ */
+export const answerComparisons = mysqlTable("answer_comparisons", {
+  id: varchar("id", { length: 128 }).primaryKey(),
+  userId: int("userId").notNull(),
+  questionNumber: int("questionNumber").notNull(),
+  userSubmissionId: varchar("userSubmissionId", { length: 128 }).notNull(),
+  comparedWithSubmissionId: varchar("comparedWithSubmissionId", { length: 128 }),
+  
+  // Gap analysis results (stored as decimal * 10 for precision)
+  noveltyGap: int("noveltyGap"),
+  coherenceGap: int("coherenceGap"),
+  rigorGap: int("rigorGap"),
+  synthesisGap: int("synthesisGap"),
+  formalizationGap: int("formalizationGap"),
+  depthGap: int("depthGap"),
+  
+  // AI-generated insights
+  overallAnalysis: text("overallAnalysis"),
+  noveltyRecommendations: text("noveltyRecommendations"),
+  coherenceRecommendations: text("coherenceRecommendations"),
+  rigorRecommendations: text("rigorRecommendations"),
+  synthesisRecommendations: text("synthesisRecommendations"),
+  formalizationRecommendations: text("formalizationRecommendations"),
+  depthRecommendations: text("depthRecommendations"),
+  
+  // Metadata
+  comparisonModel: varchar("comparisonModel", { length: 50 }),
+  comparisonTime: int("comparisonTime"),
+  createdAt: timestamp("createdAt").defaultNow(),
+});
+
 export const s7Rankings = mysqlTable("s7_rankings", {
   id: varchar("id", { length: 128 }).primaryKey(),
   userId: int("userId").notNull().unique(), // References users.id

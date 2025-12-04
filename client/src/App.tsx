@@ -19,6 +19,9 @@ const S7Test = lazy(() => import("./pages/S7Test"));
 const S7Extended = lazy(() => import("./pages/S7Extended"));
 const S7Leaderboard = lazy(() => import("./pages/S7Leaderboard"));
 const AgentOrchestrator = lazy(() => import("./pages/AgentOrchestrator"));
+const S7Comparison = lazy(() => import("./pages/S7Comparison"));
+const AgentAnalytics = lazy(() => import("./pages/AgentAnalytics"));
+const S7StudyPath = lazy(() => import("./pages/S7StudyPath"));
 
 function LoadingFallback() {
   return (
@@ -46,6 +49,9 @@ function Router() {
       <Route path={"/s7-extended"} component={S7Extended} />
       <Route path={"/s7-leaderboard"} component={S7Leaderboard} />
       <Route path={"/agent-orchestrator"} component={AgentOrchestrator} />
+      <Route path={"/s7-comparison"} component={S7Comparison} />
+      <Route path={"/agent-analytics"} component={AgentAnalytics} />
+      <Route path={"/s7-study-path"} component={S7StudyPath} />
       <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>

@@ -393,6 +393,163 @@ Return ONLY a JSON object with these exact keys: novelty, coherence, rigor, synt
         };
       }),
   }),
+
+  // S-7 Answer Comparison Tool
+  s7Comparison: router({
+    // Generate AI-powered gap analysis
+    analyzeGap: protectedProcedure
+      .input(
+        z.object({
+          questionNumber: z.number().min(1).max(40),
+          submissionId: z.string(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const { 
+          getUserSubmission, 
+          getTopRankedAnswer, 
+          createAnswerComparison 
+        } = await import("./s7_comparison_db");
+        
+        if (!ctx.user?.id) {
+          throw new Error("User not authenticated");
+        }
+
+        // Get user's submission
+        const userSubmission = await getUserSubmission(ctx.user.id, input.questionNumber);
+        if (!userSubmission) {
+          throw new Error("Submission not found");
+        }
+
+        // Get top-ranked answer for comparison
+        const topAnswer = await getTopRankedAnswer(input.questionNumber);
+        if (!topAnswer) {
+          throw new Error("No top-ranked answer available for comparison");
+        }
+
+        // Calculate gaps
+        const gaps = {
+          novelty: ((topAnswer.scoreNovelty || 0) - (userSubmission.scoreNovelty || 0)) / 10,
+          coherence: ((topAnswer.scoreCoherence || 0) - (userSubmission.scoreCoherence || 0)) / 10,
+          rigor: ((topAnswer.scoreRigor || 0) - (userSubmission.scoreRigor || 0)) / 10,
+          synthesis: ((topAnswer.scoreSynthesis || 0) - (userSubmission.scoreSynthesis || 0)) / 10,
+          formalization: ((topAnswer.scoreFormalization || 0) - (userSubmission.scoreFormalization || 0)) / 10,
+          depth: ((topAnswer.scoreDepth || 0) - (userSubmission.scoreDepth || 0)) / 10,
+        };
+
+        // Generate AI recommendations using ASI1.AI
+        const startTime = Date.now();
+        try {
+          const response = await axios.post(
+            "https://api.asi1.ai/v1/chat/completions",
+            {
+              model: "gpt-4",
+              messages: [
+                {
+                  role: "system",
+                  content: `You are an expert S-7 test coach. Analyze the gap between a user's answer and the top-ranked answer, then provide specific, actionable recommendations for improvement.
+
+Return a JSON object with these keys:
+- overall: Overall analysis (2-3 sentences)
+- novelty: Specific recommendations for improving novelty & originality
+- coherence: Specific recommendations for improving logical coherence
+- rigor: Specific recommendations for improving mathematical rigor
+- synthesis: Specific recommendations for improving cross-domain synthesis
+- formalization: Specific recommendations for improving formalization quality
+- depth: Specific recommendations for improving depth of insight
+
+Each recommendation should be 2-3 sentences with concrete examples.`,
+                },
+                {
+                  role: "user",
+                  content: `Question ${input.questionNumber}
+
+User's Answer:
+${userSubmission.answer}
+
+User's Scores:
+- Novelty: ${(userSubmission.scoreNovelty || 0) / 10}
+- Coherence: ${(userSubmission.scoreCoherence || 0) / 10}
+- Rigor: ${(userSubmission.scoreRigor || 0) / 10}
+- Synthesis: ${(userSubmission.scoreSynthesis || 0) / 10}
+- Formalization: ${(userSubmission.scoreFormalization || 0) / 10}
+- Depth: ${(userSubmission.scoreDepth || 0) / 10}
+
+Top-Ranked Answer:
+${topAnswer.answer}
+
+Top-Ranked Scores:
+- Novelty: ${(topAnswer.scoreNovelty || 0) / 10}
+- Coherence: ${(topAnswer.scoreCoherence || 0) / 10}
+- Rigor: ${(topAnswer.scoreRigor || 0) / 10}
+- Synthesis: ${(topAnswer.scoreSynthesis || 0) / 10}
+- Formalization: ${(topAnswer.scoreFormalization || 0) / 10}
+- Depth: ${(topAnswer.scoreDepth || 0) / 10}
+
+Provide specific recommendations for closing these gaps.`,
+                },
+              ],
+              response_format: { type: "json_object" },
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${API_KEYS.ASI1_AI}`,
+                "Content-Type": "application/json",
+              },
+              timeout: 60000,
+            }
+          );
+
+          const comparisonTime = Date.now() - startTime;
+          const recommendations = JSON.parse(response.data.choices[0].message.content);
+
+          // Save comparison
+          const comparisonId = await createAnswerComparison({
+            userId: ctx.user.id,
+            questionNumber: input.questionNumber,
+            userSubmissionId: userSubmission.id,
+            comparedWithSubmissionId: topAnswer.id,
+            gaps,
+            recommendations,
+            comparisonModel: "gpt-4",
+            comparisonTime,
+          });
+
+          return {
+            success: true,
+            comparisonId,
+            gaps,
+            recommendations,
+            userScore: (userSubmission.averageScore || 0) / 10,
+            topScore: (topAnswer.averageScore || 0) / 10,
+          };
+        } catch (error) {
+          console.error("Gap analysis error:", error);
+          throw new Error("Failed to generate gap analysis");
+        }
+      }),
+
+    // Get user's comparison history
+    getMyComparisons: protectedProcedure
+      .input(
+        z.object({
+          questionNumber: z.number().min(1).max(40).optional(),
+        })
+      )
+      .query(async ({ input, ctx }) => {
+        const { getUserComparisons } = await import("./s7_comparison_db");
+        if (!ctx.user?.id) return [];
+        return await getUserComparisons(ctx.user.id, input.questionNumber);
+      }),
+
+    // Get specific comparison details
+    getComparison: protectedProcedure
+      .input(z.object({ comparisonId: z.string() }))
+      .query(async ({ input }) => {
+        const { getComparisonById } = await import("./s7_comparison_db");
+        return await getComparisonById(input.comparisonId);
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
