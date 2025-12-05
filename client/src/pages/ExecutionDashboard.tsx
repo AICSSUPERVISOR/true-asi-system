@@ -9,6 +9,8 @@ import {
   Loader2, CheckCircle2, AlertCircle, Clock, 
   TrendingUp, Users, DollarSign, Pause, Play, X
 } from 'lucide-react';
+import { ConnectionStatus } from '@/components/ConnectionStatus';
+import { useRealtimeExecution } from '@/contexts/WebSocketProvider';
 
 export default function ExecutionDashboard() {
   const params = useParams();
@@ -23,6 +25,12 @@ export default function ExecutionDashboard() {
       refetchInterval: 2000 // Poll every 2 seconds
     }
   );
+
+  // Real-time execution updates
+  const realtimeProgress = useRealtimeExecution(workflowId);
+  
+  // Use real-time progress if available, otherwise use fetched data
+  const displayStatus = realtimeProgress || status;
 
   if (isLoading) {
     return (
@@ -68,9 +76,14 @@ export default function ExecutionDashboard() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-start justify-between">
-            <div>
-              <h1 className="text-5xl font-black text-white mb-2 tracking-tight">Automation Execution</h1>
-              <p className="text-slate-400">Workflow ID: {workflowId}</p>
+            <div className="flex-1">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h1 className="text-5xl font-black text-white mb-2 tracking-tight">Automation Execution</h1>
+                  <p className="text-slate-400">Workflow ID: {workflowId}</p>
+                </div>
+                <ConnectionStatus />
+              </div>
               <div className="flex gap-2 mt-2">
                 <Badge 
                   variant={isCompleted ? 'default' : isFailed ? 'destructive' : 'secondary'}

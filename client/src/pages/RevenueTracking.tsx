@@ -26,6 +26,8 @@ import {
 import { TrendingUp, Users, Globe, Linkedin, Share2, DollarSign, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { LoadingSkeleton } from "@/components/LoadingSkeleton";
+import { ConnectionStatus } from "@/components/ConnectionStatus";
+import { useRealtimeMetrics } from "@/contexts/WebSocketProvider";
 
 type TimeRange = "7d" | "30d" | "90d" | "1y";
 type MetricType = "revenue" | "customers" | "traffic" | "linkedin" | "social" | "all";
@@ -106,6 +108,12 @@ export default function RevenueTracking() {
     analysisId,
   });
 
+  // Real-time metric updates
+  const realtimeMetrics = useRealtimeMetrics(analysisId);
+  
+  // Use real-time metrics if available, otherwise use fetched data
+  const displayMetrics = realtimeMetrics || latestMetrics;
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-12 px-4">
@@ -137,8 +145,13 @@ export default function RevenueTracking() {
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-5xl font-black text-white mb-2 tracking-tight">Revenue Tracking Dashboard</h1>
-          <p className="text-slate-300">Monitor your business growth and ROI over time</p>
+          <div className="flex items-start justify-between">
+            <div>
+              <h1 className="text-5xl font-black text-white mb-2 tracking-tight">Revenue Tracking Dashboard</h1>
+              <p className="text-slate-300 tracking-wider">Monitor your business growth and ROI over time</p>
+            </div>
+            <ConnectionStatus />
+          </div>
         </div>
 
         {/* Controls */}

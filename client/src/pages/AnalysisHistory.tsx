@@ -31,6 +31,7 @@ import {
 import { Search, Download, Trash2, TrendingUp, Filter, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { LoadingSkeleton } from "@/components/LoadingSkeleton";
+import { ConnectionStatus } from "@/components/ConnectionStatus";
 
 type SortField = "date" | "company" | "industry" | "score";
 type SortOrder = "asc" | "desc";
@@ -172,8 +173,13 @@ export default function AnalysisHistory() {
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-5xl font-black text-white mb-2 tracking-tight">Analysis History</h1>
-          <p className="text-slate-300">View and manage all your business assessments</p>
+          <div className="flex items-start justify-between">
+            <div>
+              <h1 className="text-5xl font-black text-white mb-2 tracking-tight">Analysis History</h1>
+              <p className="text-slate-300 tracking-wider">View and manage all your business assessments</p>
+            </div>
+            <ConnectionStatus />
+          </div>
         </div>
 
         {/* Stats Cards */}
