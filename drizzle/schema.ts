@@ -257,3 +257,99 @@ export const revenueTracking = mysqlTable("revenue_tracking", {
 
 export type RevenueTracking = typeof revenueTracking.$inferSelect;
 export type InsertRevenueTracking = typeof revenueTracking.$inferInsert;
+
+
+/**
+ * Notifications
+ * Stores user notifications for real-time alerts and notification center
+ */
+export const notifications = mysqlTable("notifications", {
+  id: varchar("id", { length: 128 }).primaryKey(),
+  userId: int("userId").notNull(), // References users.id
+  
+  // Notification content
+  title: varchar("title", { length: 255 }).notNull(),
+  message: text("message").notNull(),
+  type: mysqlEnum("type", ["info", "success", "warning", "error", "analysis_complete", "execution_complete"]).notNull().default("info"),
+  
+  // Related entities
+  analysisId: varchar("analysisId", { length: 128 }), // Optional reference to analysis
+  workflowId: varchar("workflowId", { length: 128 }), // Optional reference to workflow
+  link: varchar("link", { length: 512 }), // Optional link to related page
+  
+  // Status
+  isRead: int("isRead").notNull().default(0), // Boolean: 0 = unread, 1 = read
+  readAt: timestamp("readAt"),
+  
+  // Metadata
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+});
+
+export type Notification = typeof notifications.$inferSelect;
+export type InsertNotification = typeof notifications.$inferInsert;
+
+/**
+ * Scheduled Exports
+ * Stores scheduled CSV export configurations for automated report delivery
+ */
+export const scheduledExports = mysqlTable("scheduled_exports", {
+  id: varchar("id", { length: 128 }).primaryKey(),
+  userId: int("userId").notNull(), // References users.id
+  
+  // Export configuration
+  name: varchar("name", { length: 255 }).notNull(),
+  exportType: mysqlEnum("exportType", ["revenue_tracking", "analysis_history", "execution_history"]).notNull(),
+  analysisId: varchar("analysisId", { length: 128 }), // Optional: specific analysis to export
+  
+  // Schedule configuration
+  frequency: mysqlEnum("frequency", ["daily", "weekly", "monthly"]).notNull(),
+  dayOfWeek: int("dayOfWeek"), // 0-6 for weekly (0 = Sunday)
+  dayOfMonth: int("dayOfMonth"), // 1-31 for monthly
+  timeOfDay: varchar("timeOfDay", { length: 5 }).notNull(), // HH:MM format (e.g., "09:00")
+  timezone: varchar("timezone", { length: 64 }).notNull().default("UTC"),
+  
+  // Delivery configuration
+  emailRecipients: text("emailRecipients").notNull(), // Comma-separated email addresses
+  includeCharts: int("includeCharts").notNull().default(0), // Boolean: include chart images
+  
+  // Status
+  isActive: int("isActive").notNull().default(1), // Boolean: 0 = paused, 1 = active
+  lastRunAt: timestamp("lastRunAt"),
+  nextRunAt: timestamp("nextRunAt"),
+  
+  // Metadata
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+  updatedAt: timestamp("updatedAt").notNull().defaultNow().onUpdateNow(),
+});
+
+export type ScheduledExport = typeof scheduledExports.$inferSelect;
+export type InsertScheduledExport = typeof scheduledExports.$inferInsert;
+
+/**
+ * Export History
+ * Tracks all executed exports (manual and scheduled)
+ */
+export const exportHistory = mysqlTable("export_history", {
+  id: varchar("id", { length: 128 }).primaryKey(),
+  userId: int("userId").notNull(), // References users.id
+  scheduledExportId: varchar("scheduledExportId", { length: 128 }), // Optional: if from scheduled export
+  
+  // Export details
+  exportType: varchar("exportType", { length: 100 }).notNull(),
+  fileName: varchar("fileName", { length: 255 }).notNull(),
+  fileSize: int("fileSize"), // File size in bytes
+  fileUrl: varchar("fileUrl", { length: 512 }), // S3 URL or storage path
+  
+  // Delivery status
+  status: mysqlEnum("status", ["pending", "completed", "failed"]).notNull().default("pending"),
+  emailSent: int("emailSent").notNull().default(0), // Boolean: 0 = not sent, 1 = sent
+  emailRecipients: text("emailRecipients"),
+  errorMessage: text("errorMessage"),
+  
+  // Metadata
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+  completedAt: timestamp("completedAt"),
+});
+
+export type ExportHistory = typeof exportHistory.$inferSelect;
+export type InsertExportHistory = typeof exportHistory.$inferInsert;

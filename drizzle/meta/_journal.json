@@ -29,6 +29,13 @@
       "when": 1764917435330,
       "tag": "0003_wandering_power_man",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1764946017710,
+      "tag": "0004_lonely_arclight",
+      "breakpoints": true
     }
   ]
 }

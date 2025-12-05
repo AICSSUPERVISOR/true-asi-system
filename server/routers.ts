@@ -10,6 +10,7 @@ import { getDb } from "./db";
 import { businessRouter } from "./routers/business_simple";
 import { analysisHistoryRouter } from "./routers/analysis_history";
 import { revenueTrackingRouter } from "./routers/revenue_tracking";
+import { notificationsRouter } from "./routers/notifications";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -23,6 +24,7 @@ export const appRouter = router({
   business: businessRouter,
   analysisHistory: analysisHistoryRouter,
   revenueTracking: revenueTrackingRouter,
+  notifications: notificationsRouter,
   
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),

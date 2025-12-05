@@ -10,6 +10,7 @@ import {
   TrendingUp, Users, DollarSign, Pause, Play, X
 } from 'lucide-react';
 import { ConnectionStatus } from '@/components/ConnectionStatus';
+import { NotificationCenter } from '@/components/NotificationCenter';
 import { useRealtimeExecution } from '@/contexts/WebSocketProvider';
 
 export default function ExecutionDashboard() {
@@ -82,7 +83,10 @@ export default function ExecutionDashboard() {
                   <h1 className="text-5xl font-black text-white mb-2 tracking-tight">Automation Execution</h1>
                   <p className="text-slate-400">Workflow ID: {workflowId}</p>
                 </div>
-                <ConnectionStatus />
+                <div className="flex items-center gap-2">
+                  <NotificationCenter />
+                  <ConnectionStatus />
+                </div>
               </div>
               <div className="flex gap-2 mt-2">
                 <Badge 

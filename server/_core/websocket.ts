@@ -36,6 +36,30 @@ export function initializeWebSocket(httpServer: HTTPServer) {
       console.log(`[WebSocket] ${socket.id} joined s7-workspace-${workspaceId}`);
     });
 
+    // Join analysis room for real-time metric updates
+    socket.on("subscribe:analysis", (analysisId: string) => {
+      socket.join(`analysis:${analysisId}`);
+      console.log(`[WebSocket] ${socket.id} subscribed to analysis:${analysisId}`);
+    });
+
+    // Join workflow room for real-time execution progress
+    socket.on("subscribe:workflow", (workflowId: string) => {
+      socket.join(`workflow:${workflowId}`);
+      console.log(`[WebSocket] ${socket.id} subscribed to workflow:${workflowId}`);
+    });
+
+    // Unsubscribe from analysis
+    socket.on("unsubscribe:analysis", (analysisId: string) => {
+      socket.leave(`analysis:${analysisId}`);
+      console.log(`[WebSocket] ${socket.id} unsubscribed from analysis:${analysisId}`);
+    });
+
+    // Unsubscribe from workflow
+    socket.on("unsubscribe:workflow", (workflowId: string) => {
+      socket.leave(`workflow:${workflowId}`);
+      console.log(`[WebSocket] ${socket.id} unsubscribed from workflow:${workflowId}`);
+    });
+
     socket.on("disconnect", () => {
       console.log(`[WebSocket] Client disconnected: ${socket.id}`);
     });
@@ -151,4 +175,83 @@ export function broadcastAgentPoolUpdate(poolId: string, update: any) {
 export function broadcastNotification(userId: number, notification: any) {
   if (!io) return;
   io.emit(`notification-${userId}`, notification);
+}
+
+// ============================================================================
+// TRUE ASI SYSTEM - REAL-TIME EVENTS
+// ============================================================================
+
+/**
+ * Emit metric update event for revenue tracking
+ */
+export function emitMetricUpdate(analysisId: string, metrics: any) {
+  if (!io) return;
+  
+  io.to(`analysis:${analysisId}`).emit('metric:update', {
+    analysisId,
+    metrics,
+    timestamp: Date.now(),
+  });
+  
+  console.log('[WebSocket] Emitted metric:update for analysis:', analysisId);
+}
+
+/**
+ * Emit execution progress event for automation workflows
+ */
+export function emitExecutionProgress(workflowId: string, progress: any) {
+  if (!io) return;
+  
+  io.to(`workflow:${workflowId}`).emit('execution:progress', {
+    workflowId,
+    ...progress,
+    timestamp: Date.now(),
+  });
+  
+  console.log('[WebSocket] Emitted execution:progress for workflow:', workflowId);
+}
+
+/**
+ * Emit analysis complete event (broadcast to all)
+ */
+export function emitAnalysisComplete(analysisId: string, companyName: string, result: any) {
+  if (!io) return;
+  
+  // Broadcast to all connected clients
+  io.emit('analysis:complete', {
+    analysisId,
+    companyName,
+    result,
+    timestamp: Date.now(),
+  });
+  
+  console.log('[WebSocket] Emitted analysis:complete for:', companyName);
+}
+
+/**
+ * Emit user-specific notification
+ */
+export function emitUserNotification(userId: string, notification: any) {
+  if (!io) return;
+  
+  io.to(`user:${userId}`).emit('notification:new', {
+    ...notification,
+    timestamp: Date.now(),
+  });
+  
+  console.log('[WebSocket] Emitted notification:new for user:', userId);
+}
+
+/**
+ * Broadcast system-wide notification to all users
+ */
+export function broadcastSystemNotification(notification: any) {
+  if (!io) return;
+  
+  io.emit('notification:broadcast', {
+    ...notification,
+    timestamp: Date.now(),
+  });
+  
+  console.log('[WebSocket] Broadcasted system notification');
 }

@@ -26,7 +26,8 @@ import {
 import { TrendingUp, Users, Globe, Linkedin, Share2, DollarSign, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { LoadingSkeleton } from "@/components/LoadingSkeleton";
-import { ConnectionStatus } from "@/components/ConnectionStatus";
+import { ConnectionStatus } from '@/components/ConnectionStatus';
+import { NotificationCenter } from '@/components/NotificationCenter';
 import { useRealtimeMetrics } from "@/contexts/WebSocketProvider";
 
 type TimeRange = "7d" | "30d" | "90d" | "1y";
@@ -150,7 +151,10 @@ export default function RevenueTracking() {
               <h1 className="text-5xl font-black text-white mb-2 tracking-tight">Revenue Tracking Dashboard</h1>
               <p className="text-slate-300 tracking-wider">Monitor your business growth and ROI over time</p>
             </div>
-            <ConnectionStatus />
+            <div className="flex items-center gap-2">
+              <NotificationCenter />
+              <ConnectionStatus />
+            </div>
           </div>
         </div>
 
