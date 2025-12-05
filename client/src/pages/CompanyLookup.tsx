@@ -92,8 +92,11 @@ export default function CompanyLookup() {
 
       toast.success("Company saved! Starting AI analysis...");
 
-      // Navigate to business analysis with company data
-      setLocation(`/analysis?companyId=${saveResult.companyId}&orgnr=${orgnr}`);
+      // Navigate to AI recommendations page with real analysis
+      setLocation(`/recommendations-ai/${saveResult.companyId}?orgnr=${orgnr}`);
+      
+      // TODO: Call businessOrchestrator.runCompleteAnalysis in RecommendationsPage
+      // This will trigger the 5-step analysis: Brreg → Proff → Website → LinkedIn → AI
     } catch (error) {
       console.error("Error saving company:", error);
       toast.error("Failed to save company");

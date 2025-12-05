@@ -13,6 +13,7 @@ import { revenueTrackingRouter } from "./routers/revenue_tracking";
 import { notificationsRouter } from "./routers/notifications";
 import { brregRouter } from "./routers/brreg";
 import { businessOrchestratorRouter } from "./routers/business_orchestrator";
+import { executionTrackingRouter } from "./routers/execution_tracking";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -29,6 +30,7 @@ export const appRouter = router({
   notifications: notificationsRouter,
   brreg: brregRouter,
   businessOrchestrator: businessOrchestratorRouter,
+  executionTracking: executionTrackingRouter,
   
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
