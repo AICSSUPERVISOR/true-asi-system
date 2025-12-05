@@ -4,7 +4,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
-import { Loader2, Building2, Users, MapPin, Calendar, TrendingUp, AlertCircle } from "lucide-react";
+import { Loader2, Building2, Users, MapPin, Calendar, TrendingUp, AlertCircle, Shield, ExternalLink, DollarSign, Activity } from "lucide-react";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
 
@@ -13,7 +13,14 @@ export default function CompanyLookup() {
   const [isSearching, setIsSearching] = useState(false);
   const [companyData, setCompanyData] = useState<any>(null);
   const [rolesData, setRolesData] = useState<any>(null);
+  const [forvaltData, setForvaltData] = useState<any>(null);
+  const [isFetchingForvalt, setIsFetchingForvalt] = useState(false);
   const [, setLocation] = useLocation();
+
+  const forvaltQuery = trpc.forvalt.getCreditRating.useQuery(
+    { orgNumber: orgnr },
+    { enabled: false } // Manual trigger
+  );
 
   const saveCompanyMutation = trpc.brreg.saveCompany.useMutation();
   const saveRolesMutation = trpc.brreg.saveCompanyRoles.useMutation();
@@ -49,6 +56,21 @@ export default function CompanyLookup() {
 
       const data = await response.json();
       setCompanyData(data);
+
+      // Fetch Forvalt.no credit rating in background
+      setIsFetchingForvalt(true);
+      try {
+        const forvaltResult = await forvaltQuery.refetch();
+        if (forvaltResult.data?.success) {
+          setForvaltData(forvaltResult.data);
+          toast.success("Credit rating loaded from Forvalt.no");
+        }
+      } catch (error) {
+        console.error("Error fetching Forvalt data:", error);
+        // Don't show error toast, just log it
+      } finally {
+        setIsFetchingForvalt(false);
+      }
 
       // Fetch company roles
       const rolesResponse = await fetch(
@@ -185,15 +207,118 @@ export default function CompanyLookup() {
                       )}
                     </div>
                   </div>
-                  <Button
-                    onClick={handleSaveAndAnalyze}
-                    className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
-                  >
-                    Save & Analyze with AI
-                  </Button>
+                  <div className="flex gap-3">
+                    {forvaltData && forvaltData.creditRating && (
+                      <a
+                        href={`https://forvalt.no/ForetaksIndex/Firma/FirmaSide/${orgnr}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-1"
+                      >
+                        View Full Forvalt Report
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
+                    <Button
+                      onClick={handleSaveAndAnalyze}
+                      className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+                    >
+                      Save & Analyze with AI
+                    </Button>
+                  </div>
                 </div>
               </CardHeader>
-              <CardContent className="grid md:grid-cols-2 gap-6">
+              <CardContent className="space-y-6">
+                {/* Forvalt Credit Rating Section */}
+                {isFetchingForvalt && (
+                  <div className="p-6 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-xl border border-blue-500/20">
+                    <div className="flex items-center gap-3">
+                      <Loader2 className="w-5 h-5 text-blue-400 animate-spin" />
+                      <span className="text-white font-medium">Loading credit rating from Forvalt.no...</span>
+                    </div>
+                  </div>
+                )}
+
+                {forvaltData && forvaltData.creditRating && (
+                  <div className="p-6 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-xl border border-blue-500/20 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <Shield className="w-6 h-6 text-blue-400" />
+                        <h3 className="text-xl font-bold text-white">Credit Rating & Financial Health</h3>
+                      </div>
+                      <Badge
+                        className={
+                          forvaltData.riskLevel === 'very_low'
+                            ? 'bg-green-500/20 text-green-300 border-green-500/30 text-lg px-4 py-1'
+                            : forvaltData.riskLevel === 'low'
+                            ? 'bg-blue-500/20 text-blue-300 border-blue-500/30 text-lg px-4 py-1'
+                            : forvaltData.riskLevel === 'moderate'
+                            ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30 text-lg px-4 py-1'
+                            : forvaltData.riskLevel === 'high'
+                            ? 'bg-orange-500/20 text-orange-300 border-orange-500/30 text-lg px-4 py-1'
+                            : 'bg-red-500/20 text-red-300 border-red-500/30 text-lg px-4 py-1'
+                        }
+                      >
+                        {forvaltData.creditRating}
+                      </Badge>
+                    </div>
+
+                    <div className="grid md:grid-cols-4 gap-4">
+                      {/* Credit Score */}
+                      <div className="p-4 bg-white/5 backdrop-blur-xl rounded-lg border border-white/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Activity className="w-4 h-4 text-green-400" />
+                          <span className="text-sm text-slate-400">Credit Score</span>
+                        </div>
+                        <div className="text-3xl font-black text-white">
+                          {forvaltData.creditScore || 'N/A'}
+                          <span className="text-lg text-slate-400">/100</span>
+                        </div>
+                      </div>
+
+                      {/* Bankruptcy Probability */}
+                      <div className="p-4 bg-white/5 backdrop-blur-xl rounded-lg border border-white/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <AlertCircle className="w-4 h-4 text-yellow-400" />
+                          <span className="text-sm text-slate-400">Bankruptcy Risk</span>
+                        </div>
+                        <div className="text-3xl font-black text-white">
+                          {forvaltData.bankruptcyProbability !== null
+                            ? `${forvaltData.bankruptcyProbability.toFixed(2)}%`
+                            : 'N/A'}
+                        </div>
+                      </div>
+
+                      {/* Credit Limit */}
+                      <div className="p-4 bg-white/5 backdrop-blur-xl rounded-lg border border-white/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <DollarSign className="w-4 h-4 text-cyan-400" />
+                          <span className="text-sm text-slate-400">Credit Limit</span>
+                        </div>
+                        <div className="text-2xl font-black text-white">
+                          {forvaltData.creditLimit
+                            ? `${(forvaltData.creditLimit / 1000000).toFixed(1)}M`
+                            : 'N/A'}
+                          <span className="text-sm text-slate-400"> NOK</span>
+                        </div>
+                      </div>
+
+                      {/* Risk Level */}
+                      <div className="p-4 bg-white/5 backdrop-blur-xl rounded-lg border border-white/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Shield className="w-4 h-4 text-purple-400" />
+                          <span className="text-sm text-slate-400">Risk Level</span>
+                        </div>
+                        <div className="text-lg font-bold text-white capitalize">
+                          {forvaltData.riskDescription || forvaltData.riskLevel?.replace('_', ' ') || 'N/A'}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Company Details Grid */}
+                <div className="grid md:grid-cols-2 gap-6">
                 {/* Industry */}
                 <div className="flex items-start gap-3">
                   <Building2 className="w-5 h-5 text-blue-400 mt-1" />
@@ -254,6 +379,7 @@ export default function CompanyLookup() {
                       {companyData.registrertIMvaregisteret ? "Yes" : "No"}
                     </div>
                   </div>
+                </div>
                 </div>
               </CardContent>
             </Card>

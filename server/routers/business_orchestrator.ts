@@ -8,6 +8,7 @@ import { invokeLLM } from "../_core/llm";
 import axios from "axios";
 import { emitAnalysisProgress, emitAnalysisComplete } from "../_core/websocket";
 import { selectModelsForTask, ensembleVote, trackModelPerformance, type TaskType } from "../helpers/ai_model_router";
+import { scrapeForvaltData } from "../helpers/forvalt_scraper";
 
 /**
  * Business Orchestrator
@@ -153,25 +154,64 @@ export const businessOrchestratorRouter = router({
 });
 
 /**
- * Fetch financial data from Proff.no API
+ * Fetch financial data from Forvalt.no Premium + Proff.no
  */
 async function fetchFinancialData(orgnr: string): Promise<any> {
   try {
-    // TODO: Integrate real Proff.no API
-    // For now, return mock data
+    // Fetch real data from Forvalt.no premium platform
+    const forvaltData = await scrapeForvaltData(orgnr);
+    
+    // Return comprehensive financial data
     return {
-      year: 2024,
-      revenue: 15000000, // 15M NOK
-      profit: 2500000, // 2.5M NOK
-      assets: 8000000,
-      liabilities: 3000000,
-      equity: 5000000,
-      creditRating: "AA",
-      creditScore: 85,
-      riskLevel: "Low",
+      // Credit Rating
+      creditRating: forvaltData.creditRating,
+      creditScore: forvaltData.creditScore,
+      bankruptcyProbability: forvaltData.bankruptcyProbability,
+      creditLimit: forvaltData.creditLimit,
+      riskLevel: forvaltData.riskLevel,
+      riskDescription: forvaltData.riskDescription,
+      
+      // Rating Components
+      leadershipScore: forvaltData.leadershipScore,
+      economyScore: forvaltData.economyScore,
+      paymentHistoryScore: forvaltData.paymentHistoryScore,
+      generalScore: forvaltData.generalScore,
+      
+      // Financial Metrics
+      revenue: forvaltData.revenue,
+      ebitda: forvaltData.ebitda,
+      operatingResult: forvaltData.operatingResult,
+      totalAssets: forvaltData.totalAssets,
+      profitability: forvaltData.profitability,
+      liquidity: forvaltData.liquidity,
+      solidity: forvaltData.solidity,
+      ebitdaMargin: forvaltData.ebitdaMargin,
+      currency: forvaltData.currency,
+      
+      // Payment Remarks
+      voluntaryLiens: forvaltData.voluntaryLiens,
+      factoringAgreements: forvaltData.factoringAgreements,
+      forcedLiens: forvaltData.forcedLiens,
+      hasPaymentRemarks: forvaltData.hasPaymentRemarks,
+      
+      // Company Info
+      companyName: forvaltData.companyName,
+      employees: forvaltData.employees,
+      website: forvaltData.website,
+      phone: forvaltData.phone,
+      
+      // Leadership
+      ceo: forvaltData.ceo,
+      boardChairman: forvaltData.boardChairman,
+      auditor: forvaltData.auditor,
+      
+      // Metadata
+      lastUpdated: forvaltData.lastUpdated,
+      forvaltUrl: forvaltData.forvaltUrl,
     };
   } catch (error) {
-    console.error("[Proff] Error fetching financial data:", error);
+    console.error("[Forvalt] Error fetching financial data:", error);
+    // Return null on error, orchestrator will handle gracefully
     return null;
   }
 }
