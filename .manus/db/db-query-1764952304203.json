@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS companies (\n  id VARCHAR(128) PRIMARY KEY,\n  userId INT NOT NULL,\n  orgnr VARCHAR(9) NOT NULL UNIQUE,\n  name TEXT NOT NULL,\n  organizationForm VARCHAR(50),\n  organizationFormDescription TEXT,\n  registrationDate VARCHAR(10),\n  industryCode VARCHAR(10),\n  industryDescription TEXT,\n  employees INT,\n  businessAddress TEXT,\n  postalAddress TEXT,\n  municipality VARCHAR(100),\n  municipalityNumber VARCHAR(4),\n  vatRegistered INT,\n  registeredInBusinessRegistry INT,\n  bankrupt INT,\n  underLiquidation INT,\n  rawData TEXT,\n  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Kbp5zTLhkwYq6S.fc90773ccd92 --database UKEMaqQ27z6bQYJkt3g4ve --execute CREATE TABLE IF NOT EXISTS companies (\n  id VARCHAR(128) PRIMARY KEY,\n  userId INT NOT NULL,\n  orgnr VARCHAR(9) NOT NULL UNIQUE,\n  name TEXT NOT NULL,\n  organizationForm VARCHAR(50),\n  organizationFormDescription TEXT,\n  registrationDate VARCHAR(10),\n  industryCode VARCHAR(10),\n  industryDescription TEXT,\n  employees INT,\n  businessAddress TEXT,\n  postalAddress TEXT,\n  municipality VARCHAR(100),\n  municipalityNumber VARCHAR(4),\n  vatRegistered INT,\n  registeredInBusinessRegistry INT,\n  bankrupt INT,\n  underLiquidation INT,\n  rawData TEXT,\n  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 237
+}

@@ -353,3 +353,101 @@ export const exportHistory = mysqlTable("export_history", {
 
 export type ExportHistory = typeof exportHistory.$inferSelect;
 export type InsertExportHistory = typeof exportHistory.$inferInsert;
+
+
+/**
+ * Companies (from Brreg.no)
+ * Stores Norwegian company data fetched from Brønnøysundregistrene API
+ */
+export const companies = mysqlTable("companies", {
+  id: varchar("id", { length: 128 }).primaryKey(),
+  userId: int("userId").notNull(), // User who added this company
+  orgnr: varchar("orgnr", { length: 9 }).notNull().unique(), // Organization number
+  name: text("name").notNull(),
+  organizationForm: varchar("organizationForm", { length: 50 }), // AS, ASA, ENK, etc.
+  organizationFormDescription: text("organizationFormDescription"),
+  registrationDate: varchar("registrationDate", { length: 10 }), // YYYY-MM-DD
+  industryCode: varchar("industryCode", { length: 10 }), // Næringskode
+  industryDescription: text("industryDescription"),
+  employees: int("employees"),
+  businessAddress: text("businessAddress"),
+  postalAddress: text("postalAddress"),
+  municipality: varchar("municipality", { length: 100 }),
+  municipalityNumber: varchar("municipalityNumber", { length: 4 }),
+  vatRegistered: int("vatRegistered"), // boolean as int (0 or 1)
+  registeredInBusinessRegistry: int("registeredInBusinessRegistry"), // boolean
+  bankrupt: int("bankrupt"), // boolean
+  underLiquidation: int("underLiquidation"), // boolean
+  rawData: text("rawData"), // Store full JSON response from Brreg.no
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+  updatedAt: timestamp("updatedAt").notNull().defaultNow().onUpdateNow(),
+});
+
+export type Company = typeof companies.$inferSelect;
+export type InsertCompany = typeof companies.$inferInsert;
+
+/**
+ * Company Roles (from Brreg.no)
+ * Stores board members, CEO, auditor, etc. for companies
+ */
+export const companyRoles = mysqlTable("company_roles", {
+  id: varchar("id", { length: 128 }).primaryKey(),
+  companyId: varchar("companyId", { length: 128 }).notNull(), // References companies.id
+  roleType: varchar("roleType", { length: 10 }).notNull(), // DAGL, LEDE, MEDL, etc.
+  roleTypeDescription: text("roleTypeDescription"), // "Daglig leder", "Styrets leder", etc.
+  personName: text("personName"),
+  personBirthDate: varchar("personBirthDate", { length: 10 }), // YYYY-MM-DD
+  organizationNumber: varchar("organizationNumber", { length: 9 }), // If role is an organization
+  organizationName: text("organizationName"),
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+});
+
+export type CompanyRole = typeof companyRoles.$inferSelect;
+export type InsertCompanyRole = typeof companyRoles.$inferInsert;
+
+/**
+ * Company Financial Data (from Proff.no)
+ * Stores financial statements and credit ratings
+ */
+export const companyFinancials = mysqlTable("company_financials", {
+  id: varchar("id", { length: 128 }).primaryKey(),
+  companyId: varchar("companyId", { length: 128 }).notNull(), // References companies.id
+  year: int("year").notNull(), // Financial year
+  revenue: int("revenue"), // Revenue in NOK (stored as int, divide by 1000 for thousands)
+  profit: int("profit"), // Profit/loss in NOK
+  assets: int("assets"), // Total assets in NOK
+  liabilities: int("liabilities"), // Total liabilities in NOK
+  equity: int("equity"), // Equity in NOK
+  creditRating: varchar("creditRating", { length: 10 }), // AAA, AA, A, BBB, etc.
+  creditScore: int("creditScore"), // Numerical credit score
+  riskLevel: varchar("riskLevel", { length: 20 }), // Low, Medium, High
+  rawData: text("rawData"), // Store full JSON response from Proff.no
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+  updatedAt: timestamp("updatedAt").notNull().defaultNow().onUpdateNow(),
+});
+
+export type CompanyFinancial = typeof companyFinancials.$inferSelect;
+export type InsertCompanyFinancial = typeof companyFinancials.$inferInsert;
+
+/**
+ * Company LinkedIn Data
+ * Stores social media and employee data from LinkedIn
+ */
+export const companyLinkedIn = mysqlTable("company_linkedin", {
+  id: varchar("id", { length: 128 }).primaryKey(),
+  companyId: varchar("companyId", { length: 128 }).notNull(), // References companies.id
+  linkedinUrl: text("linkedinUrl"),
+  followerCount: int("followerCount"),
+  employeeCount: int("employeeCount"),
+  description: text("description"),
+  specialties: text("specialties"), // Comma-separated
+  website: text("website"),
+  industry: varchar("industry", { length: 100 }),
+  companySize: varchar("companySize", { length: 50 }), // "1-10", "11-50", etc.
+  rawData: text("rawData"), // Store full JSON response from LinkedIn API
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+  updatedAt: timestamp("updatedAt").notNull().defaultNow().onUpdateNow(),
+});
+
+export type CompanyLinkedIn = typeof companyLinkedIn.$inferSelect;
+export type InsertCompanyLinkedIn = typeof companyLinkedIn.$inferInsert;
