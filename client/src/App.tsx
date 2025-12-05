@@ -36,6 +36,7 @@ const AnalysisHistory = lazy(() => import("./pages/AnalysisHistory"));
 const CompanyLookup = lazy(() => import("./pages/CompanyLookup"));
 const RecommendationsPage = lazy(() => import("./pages/RecommendationsPage"));
 const ExecutionROIDashboard = lazy(() => import("./pages/ExecutionROIDashboard"));
+const AutomationDashboard = lazy(() => import("./pages/AutomationDashboard"));
 
 function LoadingFallback() {
   return (
@@ -57,7 +58,8 @@ function Router() {
         <Route path="/get-started" component={GetStarted} />
         <Route path="/analysis/:orgNumber" component={AnalysisResults} />
         <Route path="/recommendations/:orgNumber" component={Recommendations} />
-        <Route path="/execution-dashboard" component={ExecutionDashboard} />
+        <Route path="/execution-roi" component={ExecutionROIDashboard} />
+        <Route path="/automation" component={AutomationDashboard} />
         <Route path="/revenue-tracking" component={RevenueTracking} />
         <Route path="/analysis-history" component={AnalysisHistory} />
       <Route path="/company-lookup" component={CompanyLookup} />
