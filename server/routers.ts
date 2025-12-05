@@ -14,6 +14,7 @@ import { notificationsRouter } from "./routers/notifications";
 import { brregRouter } from "./routers/brreg";
 import { businessOrchestratorRouter } from "./routers/business_orchestrator";
 import { executionTrackingRouter } from "./routers/execution_tracking";
+import { forvaltRouter } from "./routers/forvalt";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -31,6 +32,7 @@ export const appRouter = router({
   brreg: brregRouter,
   businessOrchestrator: businessOrchestratorRouter,
   executionTracking: executionTrackingRouter,
+  forvalt: forvaltRouter,
   
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),

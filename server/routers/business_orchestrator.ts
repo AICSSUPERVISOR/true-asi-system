@@ -7,6 +7,7 @@ import { eq } from "drizzle-orm";
 import { invokeLLM } from "../_core/llm";
 import axios from "axios";
 import { emitAnalysisProgress, emitAnalysisComplete } from "../_core/websocket";
+import { selectModelsForTask, ensembleVote, trackModelPerformance, type TaskType } from "../helpers/ai_model_router";
 
 /**
  * Business Orchestrator
@@ -19,14 +20,8 @@ const API_KEYS = {
   AIMLAPI: process.env.AIMLAPI_KEY || "147620aa16e04b96bb2f12b79527593f",
 };
 
-// AI Model Configuration for Multi-Model Consensus
-const AI_MODELS = [
-  { name: "GPT-4", provider: "aimlapi", model: "gpt-4o", weight: 1.0 },
-  { name: "Claude-3.5", provider: "aimlapi", model: "claude-3-5-sonnet-20241022", weight: 1.0 },
-  { name: "Gemini-Pro", provider: "aimlapi", model: "gemini-2.0-flash-exp", weight: 0.9 },
-  { name: "Llama-3.3", provider: "aimlapi", model: "meta-llama/Llama-3.3-70B-Instruct-Turbo", weight: 0.8 },
-  { name: "ASI1-AI", provider: "asi1", model: "gpt-4o-mini", weight: 1.2 }, // Highest weight for ASI1
-];
+// Dynamic AI Model Selection using AI Router
+// Models are selected based on task type for optimal performance
 
 interface EnrichmentData {
   company: any;
@@ -292,6 +287,11 @@ async function identifyCompetitors(company: any): Promise<any[]> {
  * Run multi-model AI analysis with consensus algorithm
  */
 async function runMultiModelAnalysis(data: EnrichmentData): Promise<AIAnalysisResult[]> {
+  // Determine task type based on analysis needs
+  const taskType: TaskType = "strategy"; // Business strategy analysis
+  
+  // Select optimal models for this task
+  const selectedModels = selectModelsForTask(taskType, 5);
   const prompt = `Analyze this Norwegian company and provide comprehensive business recommendations:
 
 **Company Data:**
@@ -336,12 +336,19 @@ Format as JSON with this structure:
 
   const results: AIAnalysisResult[] = [];
 
-  // Run all AI models in parallel
-  const promises = AI_MODELS.map(async (modelConfig) => {
+  // Run all selected AI models in parallel
+  const promises = selectedModels.map(async (aiModel) => {
+    const startTime = Date.now();
+    const modelConfig = {
+      name: aiModel.name,
+      provider: aiModel.provider,
+      model: aiModel.id,
+      weight: aiModel.weight / 100, // Convert 0-100 to 0-1
+    };
     try {
       let response;
 
-      if (modelConfig.provider === "aimlapi") {
+      if (modelConfig.provider === "aiml") {
         // Use AIML API
         response = await axios.post(
           "https://api.aimlapi.com/chat/completions",
