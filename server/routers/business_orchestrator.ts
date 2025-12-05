@@ -82,18 +82,36 @@ export const businessOrchestratorRouter = router({
 
         const company = companyData[0];
 
+        // Emit progress: Step 1 - Brreg data fetched
+        emitAnalysisProgress(input.companyId, 1, "Fetched company data from Brreg.no");
+
         // Step 2: Enrich with all data sources
+        const financial = await fetchFinancialData(input.orgnr);
+        emitAnalysisProgress(input.companyId, 2, "Fetched financial data from Proff.no");
+
+        const website = await analyzeWebsite(company);
+        emitAnalysisProgress(input.companyId, 3, "Analyzed company website");
+
+        const linkedin = await fetchLinkedInData(input.orgnr);
+        emitAnalysisProgress(input.companyId, 4, "Fetched LinkedIn company data");
+
+        const industry = await fetchIndustryBenchmarks(company.industryCode || "");
+        const competitors = await identifyCompetitors(company);
+
         const enrichmentData: EnrichmentData = {
           company,
-          financial: await fetchFinancialData(input.orgnr),
-          website: await analyzeWebsite(company),
-          linkedin: await fetchLinkedInData(input.orgnr),
-          industry: await fetchIndustryBenchmarks(company.industryCode || ""),
-          competitors: await identifyCompetitors(company),
+          financial,
+          website,
+          linkedin,
+          industry,
+          competitors,
         };
 
         // Step 3: Run multi-model AI analysis
         const aiAnalysisResults = await runMultiModelAnalysis(enrichmentData);
+
+        // Emit progress: Step 5 - AI analysis complete
+        emitAnalysisProgress(input.companyId, 5, "Completed multi-model AI analysis");
 
         // Step 4: Generate consensus recommendations
         const consensusRecommendations = generateConsensusRecommendations(aiAnalysisResults);
