@@ -69,11 +69,11 @@ export default function AnalysisResults() {
 
   // Prepare chart data
   const scoreData = [
-    { name: 'Website', score: analysis.website.seoScore, color: '#3b82f6' },
+    { name: 'Website', score: analysis.website?.seoScore || 0, color: '#3b82f6' },
     { name: 'LinkedIn', score: Math.round(analysis.linkedin.engagement * 20), color: '#0077b5' },
     { name: 'Social Media', score: Math.round((analysis.socialMedia.facebook.engagement + analysis.socialMedia.instagram.engagement + analysis.socialMedia.twitter.engagement) / 3 * 10), color: '#8b5cf6' },
     { name: 'Reviews', score: Math.round((analysis.reviews.google.rating + analysis.reviews.trustpilot.rating) / 2 * 20), color: '#10b981' },
-    { name: 'SEO', score: analysis.website.seoScore, color: '#f59e0b' }
+    { name: 'SEO', score: analysis.website?.seoScore || 0, color: '#f59e0b' }
   ];
 
   const competitorData = analysis.competitors.map((comp: any, index: number) => ({
@@ -210,22 +210,22 @@ export default function AnalysisResults() {
             <CardContent className="space-y-3">
               <div className="flex justify-between">
                 <span className="text-slate-400">SEO Score</span>
-                <span className="text-white font-semibold">{analysis.website.seoScore}/100</span>
+                <span className="text-white font-semibold">{analysis.website?.seoScore || 0}/100</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-400">Performance</span>
-                <span className="text-white font-semibold">{analysis.website.performance}/100</span>
+                <span className="text-white font-semibold">{analysis.website?.performance || 0}/100</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-400">Mobile Optimized</span>
                 <span className="text-white font-semibold">
-                  {analysis.website.mobileOptimized ? 'Yes' : 'No'}
+                  {analysis.website?.mobileOptimized ? 'Yes' : 'No'}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-400">Technologies</span>
                 <span className="text-white font-semibold text-right">
-                  {analysis.website.technologies.slice(0, 2).join(', ')}
+                  {analysis.website?.technologies?.slice(0, 2).join(', ') || 'N/A'}
                 </span>
               </div>
             </CardContent>

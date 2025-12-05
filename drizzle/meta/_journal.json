@@ -22,6 +22,13 @@
       "when": 1764861483982,
       "tag": "0002_mute_rattler",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1764917435330,
+      "tag": "0003_wandering_power_man",
+      "breakpoints": true
     }
   ]
 }

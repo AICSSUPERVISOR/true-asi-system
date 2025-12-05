@@ -116,3 +116,144 @@ export const s7Rankings = mysqlTable("s7_rankings", {
 
 export type S7Ranking = typeof s7Rankings.$inferSelect;
 export type InsertS7Ranking = typeof s7Rankings.$inferInsert;
+
+/**
+ * Business Analyses
+ * Stores complete business intelligence analyses for Norwegian companies
+ */
+export const analyses = mysqlTable("analyses", {
+  id: varchar("id", { length: 128 }).primaryKey(),
+  userId: int("userId").notNull(), // References users.id
+  organizationNumber: varchar("organizationNumber", { length: 9 }).notNull(),
+  companyName: varchar("companyName", { length: 255 }).notNull(),
+  
+  // Analysis scores
+  digitalMaturityScore: int("digitalMaturityScore").notNull(), // 0-100
+  dataCompleteness: int("dataCompleteness").notNull(), // 0-100
+  competitivePosition: mysqlEnum("competitivePosition", ["leader", "challenger", "follower", "niche"]).notNull(),
+  
+  // Industry information
+  industryCode: varchar("industryCode", { length: 10 }),
+  industryName: varchar("industryName", { length: 255 }),
+  industryCategory: varchar("industryCategory", { length: 50 }),
+  
+  // Complete analysis data (JSON)
+  analysisData: text("analysisData").notNull(), // Full JSON of analysis results
+  
+  // Metadata
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+  updatedAt: timestamp("updatedAt").notNull().defaultNow().onUpdateNow(),
+});
+
+export type Analysis = typeof analyses.$inferSelect;
+export type InsertAnalysis = typeof analyses.$inferInsert;
+
+/**
+ * Recommendations
+ * Stores AI-generated recommendations for business improvements
+ */
+export const recommendations = mysqlTable("recommendations", {
+  id: varchar("id", { length: 128 }).primaryKey(),
+  analysisId: varchar("analysisId", { length: 128 }).notNull(), // References analyses.id
+  
+  // Recommendation details
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description").notNull(),
+  category: mysqlEnum("category", ["acquisition", "optimization", "retention"]).notNull(),
+  priority: mysqlEnum("priority", ["high", "medium", "low"]).notNull(),
+  
+  // Cost and ROI estimates
+  estimatedCost: int("estimatedCost"), // In NOK
+  estimatedROI: int("estimatedROI"), // Percentage * 10 for precision
+  estimatedTime: int("estimatedTime"), // In days
+  confidenceScore: int("confidenceScore"), // 0-100
+  
+  // Implementation details (JSON)
+  implementationSteps: text("implementationSteps"), // JSON array of steps
+  platforms: text("platforms"), // JSON array of platform names
+  expectedImpact: text("expectedImpact"), // JSON object with metrics
+  
+  // Status tracking
+  status: mysqlEnum("status", ["pending", "approved", "executing", "completed", "failed"]).notNull().default("pending"),
+  approvedAt: timestamp("approvedAt"),
+  completedAt: timestamp("completedAt"),
+  
+  // Metadata
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+  updatedAt: timestamp("updatedAt").notNull().defaultNow().onUpdateNow(),
+});
+
+export type Recommendation = typeof recommendations.$inferSelect;
+export type InsertRecommendation = typeof recommendations.$inferInsert;
+
+/**
+ * Executions
+ * Tracks automation workflow executions
+ */
+export const executions = mysqlTable("executions", {
+  id: varchar("id", { length: 128 }).primaryKey(),
+  analysisId: varchar("analysisId", { length: 128 }).notNull(), // References analyses.id
+  workflowId: varchar("workflowId", { length: 128 }).notNull(),
+  
+  // Execution details
+  status: mysqlEnum("status", ["pending", "running", "completed", "failed", "cancelled"]).notNull().default("pending"),
+  progress: int("progress").notNull().default(0), // 0-100
+  
+  // Selected recommendations (JSON)
+  recommendationIds: text("recommendationIds").notNull(), // JSON array of recommendation IDs
+  
+  // Results and metrics (JSON)
+  results: text("results"), // JSON object with execution results
+  metrics: text("metrics"), // JSON object with performance metrics
+  errors: text("errors"), // JSON array of error messages
+  
+  // Timestamps
+  startedAt: timestamp("startedAt"),
+  completedAt: timestamp("completedAt"),
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+  updatedAt: timestamp("updatedAt").notNull().defaultNow().onUpdateNow(),
+});
+
+export type Execution = typeof executions.$inferSelect;
+export type InsertExecution = typeof executions.$inferInsert;
+
+/**
+ * Revenue Tracking
+ * Tracks actual revenue and customer metrics over time
+ */
+export const revenueTracking = mysqlTable("revenue_tracking", {
+  id: varchar("id", { length: 128 }).primaryKey(),
+  analysisId: varchar("analysisId", { length: 128 }).notNull(), // References analyses.id
+  executionId: varchar("executionId", { length: 128 }), // References executions.id (optional)
+  
+  // Revenue metrics
+  revenue: int("revenue"), // In NOK
+  customers: int("customers"), // Total customer count
+  newCustomers: int("newCustomers"), // New customers this period
+  
+  // Website metrics
+  websiteTraffic: int("websiteTraffic"), // Total visits
+  websiteConversionRate: int("websiteConversionRate"), // Percentage * 10
+  
+  // LinkedIn metrics
+  linkedinFollowers: int("linkedinFollowers"),
+  linkedinEngagement: int("linkedinEngagement"), // Percentage * 10
+  
+  // Social media metrics
+  socialMediaFollowers: int("socialMediaFollowers"),
+  socialMediaEngagement: int("socialMediaEngagement"), // Percentage * 10
+  
+  // Review metrics
+  averageRating: int("averageRating"), // Rating * 10 (e.g., 4.5 = 45)
+  totalReviews: int("totalReviews"),
+  
+  // Period information
+  periodStart: timestamp("periodStart").notNull(),
+  periodEnd: timestamp("periodEnd").notNull(),
+  
+  // Metadata
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+});
+
+export type RevenueTracking = typeof revenueTracking.$inferSelect;
+export type InsertRevenueTracking = typeof revenueTracking.$inferInsert;

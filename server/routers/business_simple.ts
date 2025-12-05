@@ -8,6 +8,9 @@
 import { z } from 'zod';
 import { publicProcedure, protectedProcedure, router } from '../_core/trpc';
 import { TRPCError } from '@trpc/server';
+import { searchCompanyByOrgNumber, formatCompanyData, getParentOrganization, getSubsidiaries } from '../helpers/brreg_api';
+import { getProffFinancialData, getProffDeeplink, assessFinancialHealth } from '../helpers/proff_api';
+import { getLinkedInCompanyData, calculateEngagementScore, getAllLinkedInDeeplinks } from '../helpers/linkedin_api';
 
 // ============================================================================
 // INPUT SCHEMAS
@@ -89,52 +92,161 @@ export const businessRouter = router({
     }),
 
   /**
-   * Gather complete business intelligence (MOCK DATA)
+   * Gather complete business intelligence (REAL DATA)
    */
   analyzeCompany: protectedProcedure
     .input(organizationNumberSchema)
     .mutation(async ({ input }) => {
       console.log(`[Business Router] Analyzing company: ${input.organizationNumber}`);
       
-      // Simulate analysis time
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Return mock intelligence data
-      return {
-        organizationNumber: input.organizationNumber,
-        name: 'Example Company AS',
-        industryCode: '62.010',
-        industryName: 'Computer programming activities',
-        digitalMaturityScore: 65,
-        dataCompleteness: 85,
-        competitivePosition: 'challenger' as const,
-        website: {
-          url: 'https://example.com',
-          seoScore: 70,
-          performance: 65,
-          mobileOptimized: true,
-          technologies: ['WordPress', 'WooCommerce', 'Google Analytics']
-        },
-        linkedin: {
-          followers: 1250,
-          employees: 15,
-          engagement: 3.5
-        },
-        socialMedia: {
-          facebook: { followers: 2500, engagement: 4.2 },
-          instagram: { followers: 1800, engagement: 5.1 },
-          twitter: { followers: 850, engagement: 2.8 }
-        },
-        reviews: {
-          google: { rating: 4.3, count: 47 },
-          trustpilot: { rating: 4.1, count: 23 }
-        },
-        competitors: [
-          { name: 'Competitor A', marketShare: 25, strengths: ['Brand recognition', 'Large team'] },
-          { name: 'Competitor B', marketShare: 18, strengths: ['Lower prices', 'Fast delivery'] },
-          { name: 'Competitor C', marketShare: 15, strengths: ['Premium quality', 'Customer service'] }
-        ]
-      };
+      try {
+        // Fetch data from all sources in parallel
+        const [brregData, proffData, linkedinData] = await Promise.allSettled([
+          searchCompanyByOrgNumber(input.organizationNumber),
+          getProffFinancialData(input.organizationNumber),
+          // LinkedIn data requires company name, so we'll fetch it after Brønnøysund
+          Promise.resolve(null)
+        ]);
+        
+        // Extract Brønnøysund data
+        if (brregData.status === 'rejected' || !brregData.value) {
+          throw new TRPCError({
+            code: 'NOT_FOUND',
+            message: 'Company not found in Brønnøysund Register'
+          });
+        }
+        
+        const company = formatCompanyData(brregData.value);
+        
+        // Fetch LinkedIn data with company name
+        const linkedinResult = await getLinkedInCompanyData(company.name);
+        const linkedinEngagement = calculateEngagementScore(linkedinResult);
+        const linkedinDeeplinks = getAllLinkedInDeeplinks(company.name, input.organizationNumber);
+        
+        // Extract Proff.no data
+        const financialData = proffData.status === 'fulfilled' ? proffData.value : null;
+        const financialHealth = financialData ? assessFinancialHealth(financialData) : null;
+        const proffDeeplink = getProffDeeplink(input.organizationNumber, company.name);
+        
+        // Calculate digital maturity score
+        let digitalMaturityScore = 50; // Base score
+        
+        // Website presence (+15 points)
+        if (company.website) {
+          digitalMaturityScore += 15;
+        }
+        
+        // LinkedIn presence and engagement (+20 points)
+        if (linkedinResult.linkedInUrl) {
+          digitalMaturityScore += Math.min(20, linkedinEngagement.score / 5);
+        }
+        
+        // Financial health (+15 points)
+        if (financialHealth) {
+          digitalMaturityScore += Math.min(15, financialHealth.score / 6.67);
+        }
+        
+        // Normalize to 0-100
+        digitalMaturityScore = Math.min(100, Math.max(0, digitalMaturityScore));
+        
+        // Determine competitive position
+        let competitivePosition: 'leader' | 'challenger' | 'follower' | 'niche' = 'follower';
+        if (digitalMaturityScore >= 80) competitivePosition = 'leader';
+        else if (digitalMaturityScore >= 60) competitivePosition = 'challenger';
+        else if (digitalMaturityScore >= 40) competitivePosition = 'follower';
+        else competitivePosition = 'niche';
+        
+        // Calculate data completeness
+        let dataCompleteness = 0;
+        if (brregData.status === 'fulfilled') dataCompleteness += 40;
+        if (proffData.status === 'fulfilled' && proffData.value) dataCompleteness += 30;
+        if (linkedinResult.linkedInUrl) dataCompleteness += 30;
+        
+        return {
+          organizationNumber: company.organizationNumber,
+          name: company.name,
+          industryCode: company.industry.code,
+          industryName: company.industry.name,
+          digitalMaturityScore: Math.round(digitalMaturityScore),
+          dataCompleteness,
+          competitivePosition,
+          
+          // Company details
+          legalForm: company.legalForm,
+          address: company.address,
+          foundedDate: company.foundedDate,
+          employees: company.employees || financialData?.employees,
+          
+          // Website data (placeholder - would need actual scraping)
+          website: company.website ? {
+            url: company.website,
+            seoScore: 0, // Would be calculated by website analyzer
+            performance: 0,
+            mobileOptimized: false,
+            technologies: []
+          } : undefined,
+          
+          // LinkedIn data
+          linkedin: {
+            url: linkedinResult.linkedInUrl,
+            followers: linkedinResult.followers || 0,
+            employees: linkedinResult.employees || company.employees || 0,
+            engagement: linkedinResult.posts?.engagementRate || 0,
+            engagementScore: linkedinEngagement.score,
+            engagementLevel: linkedinEngagement.level,
+            recommendations: linkedinEngagement.recommendations,
+            deeplinks: linkedinDeeplinks
+          },
+          
+          // Financial data
+          financial: financialData ? {
+            revenue: financialData.revenue,
+            profit: financialData.profit,
+            assets: financialData.assets,
+            liabilities: financialData.liabilities,
+            equity: financialData.equity,
+            creditRating: financialData.creditRating,
+            riskLevel: financialData.riskLevel,
+            year: financialData.year,
+            healthScore: financialHealth?.score,
+            healthLevel: financialHealth?.level,
+            healthFactors: financialHealth?.factors,
+            deeplink: proffDeeplink
+          } : undefined,
+          
+          // Social media (placeholder - would need actual scraping)
+          socialMedia: {
+            facebook: { followers: 0, engagement: 0 },
+            instagram: { followers: 0, engagement: 0 },
+            twitter: { followers: 0, engagement: 0 }
+          },
+          
+          // Reviews (placeholder - would need actual scraping)
+          reviews: {
+            google: { rating: 0, count: 0 },
+            trustpilot: { rating: 0, count: 0 }
+          },
+          
+          // Competitors (placeholder - would need industry analysis)
+          competitors: [],
+          
+          // Deeplinks for manual verification
+          deeplinks: {
+            brreg: `https://data.brreg.no/enhetsregisteret/oppslag/enheter/${input.organizationNumber}`,
+            proff: proffDeeplink,
+            linkedin: linkedinDeeplinks
+          }
+        };
+      } catch (error) {
+        console.error('[Business Router] Error analyzing company:', error);
+        if (error instanceof TRPCError) {
+          throw error;
+        }
+        throw new TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'Failed to analyze company'
+        });
+      }
     }),
 
   /**
