@@ -28,6 +28,9 @@ const Login = lazy(() => import("./pages/Login"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const GetStarted = lazy(() => import("./pages/GetStarted"));
+const AnalysisResults = lazy(() => import("./pages/AnalysisResults"));
+const Recommendations = lazy(() => import("./pages/Recommendations"));
+const ExecutionDashboard = lazy(() => import("./pages/ExecutionDashboard"));
 
 function LoadingFallback() {
   return (
@@ -47,6 +50,9 @@ function Router() {
         <Route path="/login" component={Login} />
         <Route path="/" component={Home} />
         <Route path="/get-started" component={GetStarted} />
+        <Route path="/analysis/:orgNumber" component={AnalysisResults} />
+        <Route path="/recommendations/:orgNumber" component={Recommendations} />
+        <Route path="/execution/:workflowId" component={ExecutionDashboard} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/agents" component={Agents} />
         <Route path="/chat" component={Chat} />

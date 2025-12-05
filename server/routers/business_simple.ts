@@ -383,7 +383,14 @@ export const businessRouter = router({
           status: 'completed' as const
         }
       ];
-    })
+    }),
+
+  /**
+   * Alias for executeRecommendations (for backwards compatibility)
+   */
+  get approveRecommendations() {
+    return this.executeRecommendations;
+  }
 });
 
 export default businessRouter;
