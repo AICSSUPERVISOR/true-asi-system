@@ -190,7 +190,7 @@ export default function Recommendations() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 py-8 px-4 relative overflow-hidden">
       <div className="container max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -203,7 +203,7 @@ export default function Recommendations() {
           </Button>
           <div className="flex items-start justify-between">
             <div>
-              <h1 className="text-4xl font-bold text-white mb-2">Improvement Recommendations</h1>
+              <h1 className="text-5xl font-black text-white mb-2 tracking-tight">Business Enhancement Recommendations</h1>
               <p className="text-slate-400">{recommendations.companyName} • {filteredRecs.length} strategies</p>
             </div>
             <div className="text-right">

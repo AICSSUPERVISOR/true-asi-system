@@ -25,6 +25,7 @@ import {
 } from "recharts";
 import { TrendingUp, Users, Globe, Linkedin, Share2, DollarSign, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { LoadingSkeleton } from "@/components/LoadingSkeleton";
 
 type TimeRange = "7d" | "30d" | "90d" | "1y";
 type MetricType = "revenue" | "customers" | "traffic" | "linkedin" | "social" | "all";
@@ -107,8 +108,17 @@ export default function RevenueTracking() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading revenue data...</div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-12 px-4">
+        <div className="container mx-auto max-w-7xl">
+          <div className="mb-8">
+            <div className="w-96 h-12 bg-white/10 rounded animate-pulse mb-2" />
+            <div className="w-64 h-6 bg-white/10 rounded animate-pulse" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <LoadingSkeleton variant="metric" count={6} />
+          </div>
+          <LoadingSkeleton variant="chart" count={1} />
+        </div>
       </div>
     );
   }

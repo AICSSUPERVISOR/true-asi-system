@@ -63,13 +63,13 @@ export default function ExecutionDashboard() {
   const isExecuting = status.status === 'executing';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 py-8 px-4 relative overflow-hidden">
       <div className="container max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-start justify-between">
             <div>
-              <h1 className="text-4xl font-bold text-white mb-2">Automation Execution</h1>
+              <h1 className="text-5xl font-black text-white mb-2 tracking-tight">Automation Execution</h1>
               <p className="text-slate-400">Workflow ID: {workflowId}</p>
               <div className="flex gap-2 mt-2">
                 <Badge 
@@ -95,7 +95,7 @@ export default function ExecutionDashboard() {
         </div>
 
         {/* Overall Progress */}
-        <Card className="bg-slate-900/50 border-slate-700 mb-8">
+        <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 shadow-2xl hover:shadow-cyan-500/10 mb-8">
           <CardHeader>
             <CardTitle className="text-white">Overall Progress</CardTitle>
             <CardDescription>
@@ -277,7 +277,7 @@ export default function ExecutionDashboard() {
         </div>
 
         {/* Timeline */}
-        <Card className="bg-slate-900/50 border-slate-700 mt-8">
+        <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 shadow-2xl hover:shadow-purple-500/20 mt-8">
           <CardHeader>
             <CardTitle className="text-white">Execution Timeline</CardTitle>
           </CardHeader>
