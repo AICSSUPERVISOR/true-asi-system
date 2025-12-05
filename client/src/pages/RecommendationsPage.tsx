@@ -25,7 +25,7 @@ export default function RecommendationsPage() {
       console.log("[RecommendationsPage] Analysis complete:", data);
       
       // Convert AI analysis to Recommendation format
-      const convertedRecommendations: Recommendation[] = data.recommendations.map((rec: any, index: number) => ({
+      const convertedRecommendations: Recommendation[] = (data.executableRecommendations || data.consensusRecommendations || []).map((rec: any, index: number) => ({
         id: `rec_${index}`,
         category: rec.category || "operations",
         action: rec.action || rec.recommendation,

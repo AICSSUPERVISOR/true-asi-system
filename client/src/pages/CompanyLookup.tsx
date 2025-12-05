@@ -4,7 +4,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
-import { Loader2, Building2, Users, MapPin, Calendar, TrendingUp, AlertCircle, Shield, ExternalLink, DollarSign, Activity } from "lucide-react";
+import { Loader2, Building2, Users, MapPin, Calendar, TrendingUp, AlertCircle, Shield, ExternalLink, DollarSign, Activity, Zap } from "lucide-react";
 import { PremiumMetricCard } from "../components/PremiumMetricCard";
 import { PremiumStatsGrid } from "../components/PremiumStatsGrid";
 import { toast } from "sonner";
@@ -242,6 +242,14 @@ export default function CompanyLookup() {
                       className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
                     >
                       Save & Analyze with AI
+                    </Button>
+                    <Button
+                      onClick={() => setLocation('/automation')}
+                      variant="outline"
+                      className="border-primary/50 hover:bg-primary/10"
+                    >
+                      <Zap className="w-4 h-4 mr-2" />
+                      View Automation Plans
                     </Button>
                   </div>
                 </div>

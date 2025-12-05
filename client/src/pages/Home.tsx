@@ -67,11 +67,11 @@ export default function Home() {
               <a href="/chat" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
                 Chat
               </a>
-              <a href="/knowledge-graph" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
-                Knowledge
+              <a href="/company-lookup" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
+                Company Lookup
               </a>
-              <a href="/analytics" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
-                Analytics
+              <a href="/automation" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
+                Automation
               </a>
               <a href="/documentation" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
                 Docs

@@ -9,6 +9,7 @@ import axios from "axios";
 import { emitAnalysisProgress, emitAnalysisComplete } from "../_core/websocket";
 import { selectModelsForTask, ensembleVote, trackModelPerformance, type TaskType } from "../helpers/ai_model_router";
 import { scrapeForvaltData } from "../helpers/forvalt_scraper";
+import { generateExecutionPlan, type Recommendation, type RecommendationCategory, type ImpactLevel, type DifficultyLevel } from "../helpers/recommendation_automation";
 
 /**
  * Business Orchestrator
@@ -112,11 +113,14 @@ export const businessOrchestratorRouter = router({
         // Step 4: Generate consensus recommendations
         const consensusRecommendations = generateConsensusRecommendations(aiAnalysisResults);
 
-        // Step 5: Map recommendations to deeplinks
-        const executableRecommendations = mapRecommendationsToDeeplinks(
+        // Step 5: Map recommendations to deeplinks and generate execution plans
+        const executableRecommendations = await mapRecommendationsToDeeplinksWithAutomation(
           consensusRecommendations,
           company.industryCode || ""
         );
+
+        // Calculate automation coverage
+        const automationStats = calculateAutomationStats(executableRecommendations);
 
         // Step 6: Save results to database
         const analysisId = `analysis_${input.companyId}_${Date.now()}`;
@@ -125,9 +129,12 @@ export const businessOrchestratorRouter = router({
         return {
           success: true,
           analysisId,
-          enrichmentData,
+          company,
           aiAnalysisResults,
-          recommendations: executableRecommendations,
+          consensusRecommendations,
+          executableRecommendations,
+          automationCoverage: automationStats.coveragePercentage,
+          automationStats,
         };
       } catch (error) {
         console.error("[BusinessOrchestrator] Error:", error);
@@ -507,12 +514,60 @@ function generateConsensusRecommendations(results: AIAnalysisResult[]): any[] {
 }
 
 /**
- * Map recommendations to deeplinks for one-click execution
+ * Map recommendations to deeplinks with execution plans
  */
-function mapRecommendationsToDeeplinks(recommendations: any[], industryCode: string): any[] {
-  // TODO: Load industry_deeplinks.ts and map recommendations to platforms
-  return recommendations.map((rec) => ({
-    ...rec,
-    deeplinks: [], // Will be populated with actual deeplinks
-  }));
+async function mapRecommendationsToDeeplinksWithAutomation(recommendations: any[], industryCode: string): Promise<any[]> {
+  const results = [];
+
+  for (const rec of recommendations) {
+    // Convert to Recommendation format
+    const recommendation: Recommendation = {
+      id: rec.id || `rec_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      title: rec.title || rec.recommendation || "Untitled Recommendation",
+      description: rec.description || rec.details || rec.recommendation || "",
+      category: (rec.category || "operations") as RecommendationCategory,
+      impact: (rec.impact || "medium") as ImpactLevel,
+      difficulty: (rec.difficulty || "medium") as DifficultyLevel,
+      priority: rec.priority || 5,
+      expectedROI: rec.expectedROI || "10-30%",
+      cost: rec.cost || "$500-$5,000",
+      timeframe: rec.timeframe || "1-3 months",
+      isAutomated: false,
+    };
+
+    // Generate execution plan
+    const executionPlan = generateExecutionPlan(recommendation);
+
+    results.push({
+      ...rec,
+      executionPlan,
+      automationLevel: executionPlan.automationLevel,
+      platforms: executionPlan.platforms,
+      estimatedTime: executionPlan.estimatedTime,
+      totalCost: executionPlan.totalCost,
+      expectedROI: executionPlan.expectedROI,
+    });
+  }
+
+  return results;
+}
+
+/**
+ * Calculate automation coverage statistics
+ */
+function calculateAutomationStats(recommendations: any[]) {
+  const total = recommendations.length;
+  const fullyAutomated = recommendations.filter(r => r.automationLevel === 'full').length;
+  const partiallyAutomated = recommendations.filter(r => r.automationLevel === 'partial').length;
+  const manual = recommendations.filter(r => r.automationLevel === 'manual').length;
+  const totalPlatforms = recommendations.reduce((sum, r) => sum + (r.platforms?.length || 0), 0);
+
+  return {
+    total,
+    fullyAutomated,
+    partiallyAutomated,
+    manual,
+    coveragePercentage: total > 0 ? ((fullyAutomated + partiallyAutomated) / total) * 100 : 0,
+    totalPlatforms,
+  };
 }
