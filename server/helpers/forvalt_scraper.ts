@@ -9,6 +9,7 @@
  */
 
 import puppeteer, { Browser, Page } from 'puppeteer';
+import { getCachedForvaltData, setCachedForvaltData } from './redis_cache';
 
 // Forvalt.no credentials
 const FORVALT_EMAIL = 'LL2020365@gmail.com';
@@ -416,6 +417,14 @@ async function extractLeadership(page: Page): Promise<{
  * @returns Complete Forvalt company data
  */
 export async function scrapeForvaltData(orgNumber: string): Promise<ForvaltCompanyData> {
+  // Check cache first
+  const cached = await getCachedForvaltData(orgNumber);
+  if (cached) {
+    console.log(`[Forvalt] Cache hit for ${orgNumber}`);
+    return cached as ForvaltCompanyData;
+  }
+  
+  console.log(`[Forvalt] Cache miss for ${orgNumber}, scraping...`);
   let page: Page | null = null;
   
   try {
@@ -508,6 +517,10 @@ export async function scrapeForvaltData(orgNumber: string): Promise<ForvaltCompa
       lastUpdated: new Date(),
       forvaltUrl: companyUrl,
     };
+    
+    // Cache the result (24 hour TTL)
+    await setCachedForvaltData(orgNumber, forvaltData, 86400);
+    console.log(`[Forvalt] Cached data for ${orgNumber}`);
     
     return forvaltData;
     

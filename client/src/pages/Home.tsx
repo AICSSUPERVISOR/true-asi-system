@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Hero3D from "@/components/Hero3D";
 import MobileMenu from "@/components/MobileMenu";
+import { SpiralFlowBackground } from "@/components/SpiralFlowBackground";
 import { getLoginUrl } from "@/const";
 import {
   Brain,
@@ -24,7 +25,9 @@ export default function Home() {
   const { user, isAuthenticated, logout } = useAuth();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      {/* Spiral Flow Animated Background */}
+      <SpiralFlowBackground />
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-border">
         <div className="container mx-auto px-6 py-4">
