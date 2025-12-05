@@ -15,11 +15,38 @@ export default function RecommendationsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingStep, setLoadingStep] = useState(1);
+  const [loadingMessage, setLoadingMessage] = useState("Fetching company data from Brreg.no...");
 
-  // Mock data for now (will be replaced with real tRPC call)
-  useEffect(() => {
-    // Simulate loading
-    setTimeout(() => {
+  // Real AI analysis integration
+  const runAnalysisMutation = trpc.businessOrchestrator.runCompleteAnalysis.useMutation({
+    onSuccess: (data) => {
+      console.log("[RecommendationsPage] Analysis complete:", data);
+      
+      // Convert AI analysis to Recommendation format
+      const convertedRecommendations: Recommendation[] = data.recommendations.map((rec: any, index: number) => ({
+        id: `rec_${index}`,
+        category: rec.category || "operations",
+        action: rec.action || rec.recommendation,
+        impact: rec.impact || "medium",
+        difficulty: rec.difficulty || "medium",
+        roi: rec.roi || "+25%",
+        estimatedCost: rec.estimatedCost || "$100-500/mo",
+        timeframe: rec.timeframe || "2-4 weeks",
+        priority: rec.priority || 5,
+        deeplinks: rec.deeplinks || [],
+      }));
+      
+      setRecommendations(convertedRecommendations);
+      setIsLoading(false);
+      toast.success(`Generated ${convertedRecommendations.length} recommendations!`);
+    },
+    onError: (error) => {
+      console.error("[RecommendationsPage] Analysis failed:", error);
+      toast.error("Failed to generate recommendations. Showing example data.");
+      
+      // Fallback to mock data on error
+      setTimeout(() => {
       setRecommendations([
         {
           id: "1",
@@ -161,11 +188,51 @@ export default function RecommendationsPage() {
       ]);
       setIsLoading(false);
     }, 1500);
+    },
+  });
+
+  // Trigger analysis on mount
+  useEffect(() => {
+    if (!companyId) return;
+    
+    // Start analysis
+    runAnalysisMutation.mutate({
+      companyId,
+      orgnr: new URLSearchParams(window.location.search).get("orgnr") || "",
+    });
   }, [companyId]);
 
+  // Execution tracking mutation
+  const trackExecutionMutation = trpc.executionTracking.trackExecution.useMutation({
+    onSuccess: () => {
+      toast.success("Execution tracked! Opening platform...");
+    },
+    onError: (error) => {
+      console.error("[RecommendationsPage] Failed to track execution:", error);
+      toast.error("Failed to track execution");
+    },
+  });
+
   const handleExecute = (recommendation: Recommendation, deeplink: DeeplinkAction) => {
-    // TODO: Track execution in database
+    if (!companyId) {
+      toast.error("Company ID not found");
+      return;
+    }
+    
     console.log("Executing:", recommendation.action, "via", deeplink.platform);
+    
+    // Track execution
+    trackExecutionMutation.mutate({
+      companyId,
+      recommendationId: recommendation.id || `rec_${Date.now()}`,
+      recommendationAction: recommendation.action,
+      recommendationCategory: recommendation.category as any,
+      deeplinkPlatform: deeplink.platform,
+      deeplinkUrl: deeplink.url,
+    });
+    
+    // Open deeplink in new tab
+    window.open(deeplink.url, "_blank");
   };
 
   const filteredRecommendations = selectedCategory
@@ -187,12 +254,55 @@ export default function RecommendationsPage() {
   }, 0);
 
   if (isLoading) {
+    const steps = [
+      { id: 1, label: "Fetching company data", sublabel: "Brreg.no API" },
+      { id: 2, label: "Analyzing financials", sublabel: "Proff.no data" },
+      { id: 3, label: "Scraping website", sublabel: "AI-powered analysis" },
+      { id: 4, label: "Gathering social data", sublabel: "LinkedIn integration" },
+      { id: 5, label: "Running AI consensus", sublabel: "5 models in parallel" },
+    ];
+
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-purple-400 mx-auto mb-4" />
-          <p className="text-white text-lg font-semibold">Analyzing your business...</p>
-          <p className="text-muted-foreground text-sm mt-2">Running multi-model AI consensus</p>
+        <div className="text-center max-w-2xl mx-auto px-4">
+          <Loader2 className="w-16 h-16 animate-spin text-purple-400 mx-auto mb-6" />
+          <h2 className="text-3xl font-black text-white mb-2">Analyzing Your Business</h2>
+          <p className="text-muted-foreground text-lg mb-8">Running multi-model AI consensus</p>
+          
+          {/* 5-Step Progress */}
+          <div className="space-y-4">
+            {steps.map((step) => (
+              <div
+                key={step.id}
+                className={`flex items-center gap-4 p-4 rounded-lg transition-all duration-300 ${
+                  step.id <= loadingStep
+                    ? "bg-white/10 backdrop-blur-xl border-white/20"
+                    : "bg-white/5 backdrop-blur-sm border-white/10"
+                } border`}
+              >
+                <div
+                  className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
+                    step.id < loadingStep
+                      ? "bg-green-500 text-white"
+                      : step.id === loadingStep
+                      ? "bg-purple-500 text-white animate-pulse"
+                      : "bg-white/10 text-muted-foreground"
+                  }`}
+                >
+                  {step.id < loadingStep ? "✓" : step.id}
+                </div>
+                <div className="text-left flex-1">
+                  <p className="text-white font-semibold">{step.label}</p>
+                  <p className="text-muted-foreground text-sm">{step.sublabel}</p>
+                </div>
+                {step.id === loadingStep && (
+                  <Loader2 className="w-5 h-5 animate-spin text-purple-400" />
+                )}
+              </div>
+            ))}
+          </div>
+          
+          <p className="text-muted-foreground text-sm mt-6">This usually takes 30-60 seconds</p>
         </div>
       </div>
     );
