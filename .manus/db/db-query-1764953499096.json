@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS execution_history (\n  id VARCHAR(255) PRIMARY KEY,\n  user_id VARCHAR(255) NOT NULL,\n  company_id VARCHAR(255) NOT NULL,\n  recommendation_id VARCHAR(255) NOT NULL,\n  recommendation_action TEXT NOT NULL,\n  recommendation_category VARCHAR(50) NOT NULL,\n  deeplink_platform VARCHAR(255) NOT NULL,\n  deeplink_url TEXT NOT NULL,\n  status VARCHAR(50) NOT NULL DEFAULT 'pending',\n  executed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  completed_at TIMESTAMP NULL,\n  actual_roi VARCHAR(50) NULL,\n  notes TEXT NULL,\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  INDEX idx_user_id (user_id),\n  INDEX idx_company_id (company_id),\n  INDEX idx_status (status),\n  INDEX idx_executed_at (executed_at)\n)",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Kbp5zTLhkwYq6S.fc90773ccd92 --database UKEMaqQ27z6bQYJkt3g4ve --execute CREATE TABLE IF NOT EXISTS execution_history (\n  id VARCHAR(255) PRIMARY KEY,\n  user_id VARCHAR(255) NOT NULL,\n  company_id VARCHAR(255) NOT NULL,\n  recommendation_id VARCHAR(255) NOT NULL,\n  recommendation_action TEXT NOT NULL,\n  recommendation_category VARCHAR(50) NOT NULL,\n  deeplink_platform VARCHAR(255) NOT NULL,\n  deeplink_url TEXT NOT NULL,\n  status VARCHAR(50) NOT NULL DEFAULT 'pending',\n  executed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  completed_at TIMESTAMP NULL,\n  actual_roi VARCHAR(50) NULL,\n  notes TEXT NULL,\n  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  INDEX idx_user_id (user_id),\n  INDEX idx_company_id (company_id),\n  INDEX idx_status (status),\n  INDEX idx_executed_at (executed_at)\n)",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1505
+}
