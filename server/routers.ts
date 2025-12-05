@@ -7,6 +7,7 @@ import axios from "axios";
 import { getEnhancedAnswer, getAllEnhancedQuestions, enhancedS7Answers } from "./enhanced_s7_answers";
 import { getCachedS7Answer, setCachedS7Answer, warmUpCache, getCacheStats } from "./_core/cache";
 import { getDb } from "./db";
+import { businessRouter } from "./routers/business_simple";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -17,6 +18,7 @@ const API_KEYS = {
 
 export const appRouter = router({
   system: systemRouter,
+  business: businessRouter,
   
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
@@ -551,8 +553,8 @@ Provide specific recommendations for closing these gaps.`,
       }),
   }),
 
-  // Business Enhancement System
-  business: router({
+  // Business Enhancement System (LEGACY - moved to business_simple.ts)
+  businessLegacy: router({
     // Lookup company by organization number
     lookupCompany: publicProcedure
       .input(z.object({ orgNumber: z.string().regex(/^\d{9}$/, "Must be 9 digits") }))

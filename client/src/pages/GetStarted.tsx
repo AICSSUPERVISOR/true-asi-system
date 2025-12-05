@@ -19,8 +19,8 @@ export default function GetStarted() {
   const [industryAnalysis, setIndustryAnalysis] = useState<any>(null);
 
   // Step 1: Lookup company
-  const lookupMutation = trpc.business.lookupCompany.useQuery(
-    { orgNumber },
+  const lookupMutation = trpc.business.searchCompany.useQuery(
+    { organizationNumber: orgNumber },
     {
       enabled: false,
     }
@@ -32,10 +32,8 @@ export default function GetStarted() {
         if (data) {
           setBusinessData(data);
           setStep(2);
-          // Automatically proceed to website analysis if website exists
-          if (data.businessInfo.website) {
-            analyzeWebsite(data.businessInfo.website);
-          }
+          // Automatically proceed to step 3 (skip website analysis for now)
+          setTimeout(() => setStep(3), 1000);
         }
       });
     }
