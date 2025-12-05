@@ -24,6 +24,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { TrendingUp, Users, Globe, Linkedin, Share2, DollarSign, Download } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 type TimeRange = "7d" | "30d" | "90d" | "1y";
 type MetricType = "revenue" | "customers" | "traffic" | "linkedin" | "social" | "all";
@@ -32,6 +33,60 @@ export default function RevenueTracking() {
   const [timeRange, setTimeRange] = useState<TimeRange>("30d");
   const [metricType, setMetricType] = useState<MetricType>("all");
   const [analysisId] = useState<string>("1"); // Would come from URL params in production
+  const { toast } = useToast();
+
+  // CSV Export function
+  const exportToCSV = () => {
+    if (!records || records.length === 0) {
+      toast({ title: "No data to export", variant: "destructive" });
+      return;
+    }
+
+    // Prepare CSV headers
+    const headers = [
+      "Date",
+      "Revenue (NOK)",
+      "Customers",
+      "Website Traffic",
+      "LinkedIn Followers",
+      "LinkedIn Engagement (%)",
+      "Social Media Followers",
+      "Social Media Engagement (%)",
+      "Review Rating",
+    ];
+
+    // Prepare CSV rows
+    const rows = records.map(record => [
+      new Date(record.createdAt).toLocaleDateString(),
+      record.revenue ? (Number(record.revenue) / 100).toString() : "0",
+      record.customers?.toString() || "0",
+      record.websiteTraffic?.toString() || "0",
+      record.linkedinFollowers?.toString() || "0",
+      record.linkedinEngagement ? (Number(record.linkedinEngagement) / 10).toFixed(1) : "0",
+      record.socialMediaFollowers?.toString() || "0",
+      record.socialMediaEngagement ? (Number(record.socialMediaEngagement) / 10).toFixed(1) : "0",
+      record.averageRating ? (Number(record.averageRating) / 10).toFixed(1) : "0",
+    ]);
+
+    // Combine headers and rows
+    const csvContent = [
+      headers.join(","),
+      ...rows.map(row => row.join(",")),
+    ].join("\n");
+
+    // Create blob and download
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `revenue_tracking_${new Date().toISOString().split("T")[0]}.csv`);
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    toast({ title: "CSV exported successfully" });
+  };
 
   // Fetch tracking records
   const { data: records, isLoading } = trpc.revenueTracking.getTrackingRecords.useQuery({
@@ -104,7 +159,7 @@ export default function RevenueTracking() {
             </SelectContent>
           </Select>
 
-          <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+          <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20" onClick={exportToCSV}>
             <Download className="w-4 h-4 mr-2" />
             Export CSV
           </Button>
