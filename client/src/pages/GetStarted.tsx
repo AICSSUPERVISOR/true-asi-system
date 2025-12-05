@@ -64,11 +64,11 @@ export default function GetStarted() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 py-20 px-4">
-      <div className="container max-w-6xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 py-20 px-4 relative overflow-hidden">
+      <div className="container max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-4">
+          <h1 className="text-6xl font-black text-white mb-4 tracking-tight">
             Get Started with <span className="text-cyan-400">TRUE ASI</span>
           </h1>
           <p className="text-xl text-slate-300">

@@ -159,29 +159,29 @@ export default function AnalysisHistory() {
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">Analysis History</h1>
+          <h1 className="text-5xl font-black text-white mb-2 tracking-tight">Analysis History</h1>
           <p className="text-slate-300">View and manage all your business assessments</p>
         </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] shadow-2xl hover:shadow-purple-500/20 p-6">
             <div className="text-slate-300 mb-2">Total Analyses</div>
             <div className="text-3xl font-bold text-white">{stats?.totalAnalyses || 0}</div>
           </Card>
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] shadow-2xl hover:shadow-purple-500/20 p-6">
             <div className="text-slate-300 mb-2">Average Score</div>
             <div className="text-3xl font-bold text-white">
               {stats?.avgDigitalMaturity?.toFixed(1) || "N/A"}
             </div>
           </Card>
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] shadow-2xl hover:shadow-purple-500/20 p-6">
             <div className="text-slate-300 mb-2">Top Industry</div>
             <div className="text-xl font-bold text-white">
               {stats?.topIndustries?.[0]?.industry || "N/A"}
             </div>
           </Card>
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] shadow-2xl hover:shadow-purple-500/20 p-6">
             <div className="text-slate-300 mb-2">Leaders</div>
             <div className="text-3xl font-bold text-green-400">
               {stats?.positionCounts?.leader || 0}
@@ -191,8 +191,8 @@ export default function AnalysisHistory() {
 
         {/* Trend Chart */}
         {trendData.length > 1 && (
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6 mb-8">
-            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 shadow-2xl hover:shadow-cyan-500/10 p-6 mb-8">
+            <h2 className="text-3xl font-bold text-white mb-6 tracking-tight flex items-center gap-2">
               <TrendingUp className="w-6 h-6" />
               Digital Maturity Score Trend
             </h2>

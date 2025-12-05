@@ -127,7 +127,7 @@ export default function RevenueTracking() {
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">Revenue Tracking Dashboard</h1>
+          <h1 className="text-5xl font-black text-white mb-2 tracking-tight">Revenue Tracking Dashboard</h1>
           <p className="text-slate-300">Monitor your business growth and ROI over time</p>
         </div>
 
@@ -167,9 +167,9 @@ export default function RevenueTracking() {
 
         {/* Metrics Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] shadow-2xl hover:shadow-purple-500/20 p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-green-500/20 rounded-lg">
+              <div className="p-3 bg-gradient-to-br from-green-500/30 to-emerald-500/30 rounded-xl shadow-lg">
                 <DollarSign className="w-6 h-6 text-green-400" />
               </div>
               <div className="text-right">
@@ -188,9 +188,9 @@ export default function RevenueTracking() {
             <div className="text-slate-300">Total Revenue</div>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] shadow-2xl hover:shadow-purple-500/20 p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-blue-500/20 rounded-lg">
+              <div className="p-3 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-xl shadow-lg">
                 <Users className="w-6 h-6 text-blue-400" />
               </div>
               <div className="text-right">
@@ -209,9 +209,9 @@ export default function RevenueTracking() {
             <div className="text-slate-300">Total Customers</div>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] shadow-2xl hover:shadow-purple-500/20 p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-purple-500/20 rounded-lg">
+              <div className="p-3 bg-gradient-to-br from-purple-500/30 to-violet-500/30 rounded-xl shadow-lg">
                 <Globe className="w-6 h-6 text-purple-400" />
               </div>
               <div className="text-right">
@@ -230,9 +230,9 @@ export default function RevenueTracking() {
             <div className="text-slate-300">Website Traffic</div>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] shadow-2xl hover:shadow-purple-500/20 p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-blue-600/20 rounded-lg">
+              <div className="p-3 bg-gradient-to-br from-blue-600/30 to-indigo-600/30 rounded-xl shadow-lg">
                 <Linkedin className="w-6 h-6 text-blue-500" />
               </div>
               <div className="text-right">
@@ -251,9 +251,9 @@ export default function RevenueTracking() {
             <div className="text-slate-300">LinkedIn Engagement</div>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] shadow-2xl hover:shadow-purple-500/20 p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-pink-500/20 rounded-lg">
+              <div className="p-3 bg-gradient-to-br from-pink-500/30 to-rose-500/30 rounded-xl shadow-lg">
                 <Share2 className="w-6 h-6 text-pink-400" />
               </div>
               <div className="text-right">
@@ -272,9 +272,9 @@ export default function RevenueTracking() {
             <div className="text-slate-300">Social Media Followers</div>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] shadow-2xl hover:shadow-purple-500/20 p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-yellow-500/20 rounded-lg">
+              <div className="p-3 bg-gradient-to-br from-yellow-500/30 to-amber-500/30 rounded-xl shadow-lg">
                 <TrendingUp className="w-6 h-6 text-yellow-400" />
               </div>
               <div className="text-right">
@@ -292,8 +292,8 @@ export default function RevenueTracking() {
 
         {/* Charts */}
         {(metricType === "all" || metricType === "revenue") && (
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6 mb-8">
-            <h2 className="text-2xl font-bold text-white mb-6">Revenue Growth Over Time</h2>
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 shadow-2xl hover:shadow-cyan-500/10 p-6 mb-8">
+            <h2 className="text-3xl font-bold text-white mb-6 tracking-tight">Revenue Growth Over Time</h2>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
@@ -311,8 +311,8 @@ export default function RevenueTracking() {
         )}
 
         {(metricType === "all" || metricType === "customers") && (
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6 mb-8">
-            <h2 className="text-2xl font-bold text-white mb-6">Customer Acquisition Trends</h2>
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 shadow-2xl hover:shadow-cyan-500/10 p-6 mb-8">
+            <h2 className="text-3xl font-bold text-white mb-6 tracking-tight">Customer Acquisition Trends</h2>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
@@ -330,8 +330,8 @@ export default function RevenueTracking() {
         )}
 
         {(metricType === "all" || metricType === "traffic") && (
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6 mb-8">
-            <h2 className="text-2xl font-bold text-white mb-6">Website Traffic Improvements</h2>
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 shadow-2xl hover:shadow-cyan-500/10 p-6 mb-8">
+            <h2 className="text-3xl font-bold text-white mb-6 tracking-tight">Website Traffic Improvements</h2>
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
@@ -349,8 +349,8 @@ export default function RevenueTracking() {
         )}
 
         {(metricType === "all" || metricType === "linkedin") && (
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6 mb-8">
-            <h2 className="text-2xl font-bold text-white mb-6">LinkedIn Engagement Metrics</h2>
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 shadow-2xl hover:shadow-cyan-500/10 p-6 mb-8">
+            <h2 className="text-3xl font-bold text-white mb-6 tracking-tight">LinkedIn Engagement Metrics</h2>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
@@ -368,8 +368,8 @@ export default function RevenueTracking() {
         )}
 
         {(metricType === "all" || metricType === "social") && (
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6 mb-8">
-            <h2 className="text-2xl font-bold text-white mb-6">Social Media Follower Growth</h2>
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 shadow-2xl hover:shadow-cyan-500/10 p-6 mb-8">
+            <h2 className="text-3xl font-bold text-white mb-6 tracking-tight">Social Media Follower Growth</h2>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
@@ -388,8 +388,8 @@ export default function RevenueTracking() {
 
         {/* ROI Summary */}
         {roiData && (
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 p-6">
-            <h2 className="text-2xl font-bold text-white mb-6">ROI Summary</h2>
+          <Card className="bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] shadow-2xl hover:shadow-purple-500/20 p-6">
+            <h2 className="text-3xl font-bold text-white mb-6 tracking-tight">ROI Summary</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <div className="text-slate-300 mb-2">Total Investment</div>
