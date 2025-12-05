@@ -9,6 +9,7 @@ import { getCachedS7Answer, setCachedS7Answer, warmUpCache, getCacheStats } from
 import { getDb } from "./db";
 import { businessRouter } from "./routers/business_simple";
 import { analysisHistoryRouter } from "./routers/analysis_history";
+import { revenueTrackingRouter } from "./routers/revenue_tracking";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -21,6 +22,7 @@ export const appRouter = router({
   system: systemRouter,
   business: businessRouter,
   analysisHistory: analysisHistoryRouter,
+  revenueTracking: revenueTrackingRouter,
   
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),

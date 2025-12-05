@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `executions` (\n  `id` varchar(255) NOT NULL PRIMARY KEY,\n  `recommendation_id` varchar(255) NOT NULL,\n  `status` enum('pending', 'running', 'completed', 'failed', 'paused') NOT NULL DEFAULT 'pending',\n  `progress` int NOT NULL DEFAULT 0,\n  `started_at` timestamp NULL,\n  `completed_at` timestamp NULL,\n  `error_message` text,\n  `execution_data` json,\n  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  INDEX `recommendation_id_idx` (`recommendation_id`),\n  INDEX `status_idx` (`status`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Kbp5zTLhkwYq6S.fc90773ccd92 --database UKEMaqQ27z6bQYJkt3g4ve --execute CREATE TABLE IF NOT EXISTS `executions` (\n  `id` varchar(255) NOT NULL PRIMARY KEY,\n  `recommendation_id` varchar(255) NOT NULL,\n  `status` enum('pending', 'running', 'completed', 'failed', 'paused') NOT NULL DEFAULT 'pending',\n  `progress` int NOT NULL DEFAULT 0,\n  `started_at` timestamp NULL,\n  `completed_at` timestamp NULL,\n  `error_message` text,\n  `execution_data` json,\n  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  INDEX `recommendation_id_idx` (`recommendation_id`),\n  INDEX `status_idx` (`status`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 169
+}

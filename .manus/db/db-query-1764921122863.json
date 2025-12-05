@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `revenue_tracking` (\n  `id` varchar(255) NOT NULL PRIMARY KEY,\n  `analysis_id` varchar(255) NOT NULL,\n  `metric_type` enum('revenue', 'customers', 'traffic', 'engagement', 'conversion_rate') NOT NULL,\n  `metric_value` decimal(15,2) NOT NULL,\n  `previous_value` decimal(15,2),\n  `change_percentage` decimal(5,2),\n  `measurement_date` date NOT NULL,\n  `notes` text,\n  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  INDEX `analysis_id_idx` (`analysis_id`),\n  INDEX `metric_type_idx` (`metric_type`),\n  INDEX `measurement_date_idx` (`measurement_date`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Kbp5zTLhkwYq6S.fc90773ccd92 --database UKEMaqQ27z6bQYJkt3g4ve --execute CREATE TABLE IF NOT EXISTS `revenue_tracking` (\n  `id` varchar(255) NOT NULL PRIMARY KEY,\n  `analysis_id` varchar(255) NOT NULL,\n  `metric_type` enum('revenue', 'customers', 'traffic', 'engagement', 'conversion_rate') NOT NULL,\n  `metric_value` decimal(15,2) NOT NULL,\n  `previous_value` decimal(15,2),\n  `change_percentage` decimal(5,2),\n  `measurement_date` date NOT NULL,\n  `notes` text,\n  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  INDEX `analysis_id_idx` (`analysis_id`),\n  INDEX `metric_type_idx` (`metric_type`),\n  INDEX `measurement_date_idx` (`measurement_date`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 171
+}
