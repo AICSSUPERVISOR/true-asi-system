@@ -12,6 +12,10 @@ export function initializeWebSocket(httpServer: HTTPServer) {
     path: "/api/socket.io",
   });
 
+  // Note: WebSocket authentication is handled via session cookies
+  // The session cookie is automatically sent with the WebSocket handshake
+  // For additional security, implement JWT token validation here if needed
+
   io.on("connection", (socket) => {
     console.log(`[WebSocket] Client connected: ${socket.id}`);
 

@@ -152,6 +152,62 @@ export function configureBodyLimits() {
 }
 
 /**
+ * Input sanitization middleware
+ * Sanitizes all string inputs to prevent XSS attacks
+ */
+export function sanitizeInput(req: Request, res: Response, next: NextFunction) {
+  // Sanitize query parameters
+  if (req.query) {
+    for (const key in req.query) {
+      if (typeof req.query[key] === 'string') {
+        req.query[key] = sanitizeString(req.query[key] as string);
+      }
+    }
+  }
+
+  // Sanitize body parameters
+  if (req.body) {
+    req.body = sanitizeObject(req.body);
+  }
+
+  next();
+}
+
+/**
+ * Sanitize a string to prevent XSS attacks
+ */
+function sanitizeString(str: string): string {
+  return str
+    .replace(/[<>]/g, '') // Remove < and >
+    .replace(/javascript:/gi, '') // Remove javascript: protocol
+    .replace(/on\w+=/gi, '') // Remove event handlers (onclick=, onload=, etc.)
+    .trim();
+}
+
+/**
+ * Recursively sanitize an object
+ */
+function sanitizeObject(obj: any): any {
+  if (typeof obj === 'string') {
+    return sanitizeString(obj);
+  }
+  
+  if (Array.isArray(obj)) {
+    return obj.map(sanitizeObject);
+  }
+  
+  if (obj !== null && typeof obj === 'object') {
+    const sanitized: any = {};
+    for (const key in obj) {
+      sanitized[key] = sanitizeObject(obj[key]);
+    }
+    return sanitized;
+  }
+  
+  return obj;
+}
+
+/**
  * Initialize all security middleware
  */
 export function initializeSecurity(app: Express) {
@@ -166,7 +222,10 @@ export function initializeSecurity(app: Express) {
   // 3. Rate limiting
   configureRateLimiting(app);
   
-  // 4. Request logging
+  // 4. Input sanitization
+  app.use(sanitizeInput);
+  
+  // 5. Request logging
   configureRequestLogging(app);
   
   console.log("[Security] All security middleware initialized successfully");
