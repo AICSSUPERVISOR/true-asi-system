@@ -5,8 +5,11 @@ import { Input } from "../components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Loader2, Building2, Users, MapPin, Calendar, TrendingUp, AlertCircle, Shield, ExternalLink, DollarSign, Activity } from "lucide-react";
+import { PremiumMetricCard } from "../components/PremiumMetricCard";
+import { PremiumStatsGrid } from "../components/PremiumStatsGrid";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
+import { useEffect } from "react";
 
 export default function CompanyLookup() {
   const [orgnr, setOrgnr] = useState("");
@@ -16,6 +19,20 @@ export default function CompanyLookup() {
   const [forvaltData, setForvaltData] = useState<any>(null);
   const [isFetchingForvalt, setIsFetchingForvalt] = useState(false);
   const [, setLocation] = useLocation();
+
+  // Auto-search if org number provided in URL
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlOrgNr = params.get('orgnr');
+    if (urlOrgNr && urlOrgNr.length === 9) {
+      setOrgnr(urlOrgNr);
+      // Trigger search after a short delay to ensure state is set
+      setTimeout(() => {
+        const searchButton = document.querySelector('[data-search-button]') as HTMLButtonElement;
+        searchButton?.click();
+      }, 100);
+    }
+  }, []);
 
   const forvaltQuery = trpc.forvalt.getCreditRating.useQuery(
     { orgNumber: orgnr },
@@ -158,6 +175,7 @@ export default function CompanyLookup() {
                 maxLength={9}
               />
               <Button
+                data-search-button
                 onClick={handleSearch}
                 disabled={isSearching || orgnr.length !== 9}
                 className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 px-8"
@@ -263,57 +281,50 @@ export default function CompanyLookup() {
                       </Badge>
                     </div>
 
-                    <div className="grid md:grid-cols-4 gap-4">
-                      {/* Credit Score */}
-                      <div className="p-4 bg-white/5 backdrop-blur-xl rounded-lg border border-white/10">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Activity className="w-4 h-4 text-green-400" />
-                          <span className="text-sm text-slate-400">Credit Score</span>
-                        </div>
-                        <div className="text-3xl font-black text-white">
-                          {forvaltData.creditScore || 'N/A'}
-                          <span className="text-lg text-slate-400">/100</span>
-                        </div>
-                      </div>
-
-                      {/* Bankruptcy Probability */}
-                      <div className="p-4 bg-white/5 backdrop-blur-xl rounded-lg border border-white/10">
-                        <div className="flex items-center gap-2 mb-2">
-                          <AlertCircle className="w-4 h-4 text-yellow-400" />
-                          <span className="text-sm text-slate-400">Bankruptcy Risk</span>
-                        </div>
-                        <div className="text-3xl font-black text-white">
-                          {forvaltData.bankruptcyProbability !== null
+                    <PremiumStatsGrid
+                      stats={[
+                        {
+                          title: "Credit Score",
+                          value: `${forvaltData.creditScore || 'N/A'}/100`,
+                          icon: Activity,
+                          change: undefined,
+                          changeType: "neutral",
+                          gradient: "from-green-500 to-emerald-500",
+                          iconColor: "text-green-400",
+                        },
+                        {
+                          title: "Bankruptcy Risk",
+                          value: forvaltData.bankruptcyProbability !== null
                             ? `${forvaltData.bankruptcyProbability.toFixed(2)}%`
-                            : 'N/A'}
-                        </div>
-                      </div>
-
-                      {/* Credit Limit */}
-                      <div className="p-4 bg-white/5 backdrop-blur-xl rounded-lg border border-white/10">
-                        <div className="flex items-center gap-2 mb-2">
-                          <DollarSign className="w-4 h-4 text-cyan-400" />
-                          <span className="text-sm text-slate-400">Credit Limit</span>
-                        </div>
-                        <div className="text-2xl font-black text-white">
-                          {forvaltData.creditLimit
-                            ? `${(forvaltData.creditLimit / 1000000).toFixed(1)}M`
-                            : 'N/A'}
-                          <span className="text-sm text-slate-400"> NOK</span>
-                        </div>
-                      </div>
-
-                      {/* Risk Level */}
-                      <div className="p-4 bg-white/5 backdrop-blur-xl rounded-lg border border-white/10">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Shield className="w-4 h-4 text-purple-400" />
-                          <span className="text-sm text-slate-400">Risk Level</span>
-                        </div>
-                        <div className="text-lg font-bold text-white capitalize">
-                          {forvaltData.riskDescription || forvaltData.riskLevel?.replace('_', ' ') || 'N/A'}
-                        </div>
-                      </div>
-                    </div>
+                            : 'N/A',
+                          icon: AlertCircle,
+                          change: undefined,
+                          changeType: "neutral",
+                          gradient: "from-yellow-500 to-orange-500",
+                          iconColor: "text-yellow-400",
+                        },
+                        {
+                          title: "Credit Limit",
+                          value: forvaltData.creditLimit
+                            ? `${(forvaltData.creditLimit / 1000000).toFixed(1)}M NOK`
+                            : 'N/A',
+                          icon: DollarSign,
+                          change: undefined,
+                          changeType: "neutral",
+                          gradient: "from-cyan-500 to-blue-500",
+                          iconColor: "text-cyan-400",
+                        },
+                        {
+                          title: "Risk Level",
+                          value: forvaltData.riskDescription || 'N/A',
+                          icon: Shield,
+                          change: undefined,
+                          changeType: "neutral",
+                          gradient: "from-blue-500 to-indigo-500",
+                          iconColor: "text-blue-400",
+                        },
+                      ]}
+                    />
                   </div>
                 )}
 

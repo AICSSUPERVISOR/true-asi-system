@@ -6,6 +6,10 @@ import Hero3D from "@/components/Hero3D";
 import MobileMenu from "@/components/MobileMenu";
 import { SpiralFlowBackground } from "@/components/SpiralFlowBackground";
 import { getLoginUrl } from "@/const";
+import { useLocation } from "wouter";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { toast } from "sonner";
 import {
   Brain,
   Zap,
@@ -19,10 +23,27 @@ import {
   Database,
   Activity,
   Globe,
+  Search,
+  Building2,
 } from "lucide-react";
 
 export default function Home() {
   const { user, isAuthenticated, logout } = useAuth();
+  const [, setLocation] = useLocation();
+  const [orgNumber, setOrgNumber] = useState("");
+
+  const handleAnalyzeCompany = () => {
+    if (!orgNumber.trim()) {
+      toast.error("Please enter an organization number");
+      return;
+    }
+    if (orgNumber.length !== 9) {
+      toast.error("Organization number must be exactly 9 digits");
+      return;
+    }
+    // Navigate to CompanyLookup with org number
+    setLocation(`/company-lookup?orgnr=${orgNumber}`);
+  };
 
   return (
     <div className="min-h-screen bg-background relative">
@@ -72,7 +93,7 @@ export default function Home() {
                   </>
                 ) : (
                   <Button asChild>
-                    <a href={getLoginUrl()}>Get Started</a>
+                    <a href="/company-lookup">Get Started</a>
                   </Button>
                 )}
               </div>
@@ -107,15 +128,70 @@ export default function Home() {
             Built to outcompete every AI system on the planet.
           </p>
 
+          {/* Organization Number Input - Primary CTA */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <Card className="card-glass p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <Building2 className="w-6 h-6 text-primary" />
+                <h3 className="text-2xl font-bold">Analyze Norwegian Company</h3>
+              </div>
+              <p className="text-muted-foreground mb-6">
+                Enter a Norwegian organization number to get instant AI-powered business intelligence,
+                credit ratings, and automated recommendations.
+              </p>
+              <div className="flex gap-3">
+                <Input
+                  type="text"
+                  placeholder="Enter 9-digit org number (e.g., 923609016)"
+                  value={orgNumber}
+                  onChange={(e) => setOrgNumber(e.target.value.replace(/\D/g, '').slice(0, 9))}
+                  onKeyDown={(e) => e.key === 'Enter' && handleAnalyzeCompany()}
+                  className="text-lg"
+                />
+                <Button size="lg" className="btn-primary" onClick={handleAnalyzeCompany}>
+                  <Search className="w-5 h-5 mr-2" />
+                  Analyze
+                </Button>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <span className="text-sm text-muted-foreground">Try examples:</span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setOrgNumber("923609016")}
+                  className="text-xs"
+                >
+                  Equinor (923609016)
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setOrgNumber("984851006")}
+                  className="text-xs"
+                >
+                  DNB Bank (984851006)
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setOrgNumber("976820479")}
+                  className="text-xs"
+                >
+                  Telenor (976820479)
+                </Button>
+              </div>
+            </Card>
+          </div>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <Button size="lg" className="btn-primary group" asChild>
-              <a href={getLoginUrl()}>
-                Start Building
+              <a href="/chat">
+                Start Chat
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
-            <Button size="lg" variant="outline" className="btn-ghost">
-              View Documentation
+            <Button size="lg" variant="outline" className="btn-ghost" asChild>
+              <a href="/documentation">View Documentation</a>
             </Button>
           </div>
 
@@ -285,8 +361,8 @@ export default function Home() {
             6.54TB of knowledge, and unlimited AI model access.
           </p>
           <Button size="lg" className="btn-primary group" asChild>
-            <a href={getLoginUrl()}>
-              Get Started Now
+            <a href="/company-lookup">
+              Analyze Company Now
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </Button>

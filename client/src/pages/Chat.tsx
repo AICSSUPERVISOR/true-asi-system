@@ -24,7 +24,7 @@ interface Message {
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
-  const [selectedModel, setSelectedModel] = useState("gpt-4");
+  // Model is automatically selected by ai_model_router based on task type
 
   const { data: models } = trpc.asi.models.useQuery();
   const chatMutation = trpc.asi.chat.useMutation({
@@ -56,7 +56,7 @@ export default function Chat() {
 
     await chatMutation.mutateAsync({
       message: input,
-      model: selectedModel,
+      model: "asi1-ultra", // Automatically routes to best model via ai_model_router
     });
   };
 
@@ -86,18 +86,9 @@ export default function Chat() {
             </div>
 
             <div className="flex items-center gap-4">
-              <Select value={selectedModel} onValueChange={setSelectedModel}>
-                <SelectTrigger className="w-48">
-                  <SelectValue placeholder="Select model" />
-                </SelectTrigger>
-                <SelectContent>
-                  {models?.models.map((model: any) => (
-                    <SelectItem key={model.id} value={model.id}>
-                      {model.name || model.id}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <Badge variant="outline" className="text-primary border-primary">
+                TRUE ASI
+              </Badge>
               <Badge className="badge-success">Connected</Badge>
             </div>
           </div>
@@ -199,7 +190,7 @@ export default function Chat() {
             </Button>
           </div>
           <div className="text-xs text-muted-foreground mt-2">
-            Model: {selectedModel} • Press Enter to send, Shift+Enter for new line
+            TRUE ASI • Press Enter to send, Shift+Enter for new line
           </div>
         </div>
       </div>

@@ -308,6 +308,19 @@ export const UNIVERSAL_PLATFORMS: DeeplinkPlatform[] = [
 
   // === Communication (40 platforms) ===
   {
+    id: "whatsapp-business",
+    name: "WhatsApp Business API",
+    category: "Communication",
+    industry: ["all"],
+    url: "https://business.whatsapp.com/products/business-platform",
+    description: "Automated customer communication via WhatsApp - inspired by Daniel Gross's whatsapp-gpt. Send text, images, documents, templates. 2B+ users worldwide.",
+    setupTime: "2-4 hours",
+    cost: "Pay-per-message (varies by country)",
+    authType: "apikey",
+    apiDocs: "https://developers.facebook.com/docs/whatsapp/cloud-api",
+    keywords: ["whatsapp", "messaging", "customer", "communication", "automation", "chat", "sms", "notifications"],
+  },
+  {
     id: "slack",
     name: "Slack",
     category: "Communication",
