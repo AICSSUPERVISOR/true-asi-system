@@ -32,6 +32,7 @@ const AnalysisResults = lazy(() => import("./pages/AnalysisResults"));
 const Recommendations = lazy(() => import("./pages/Recommendations"));
 const ExecutionDashboard = lazy(() => import("./pages/ExecutionDashboard"));
 const RevenueTracking = lazy(() => import("./pages/RevenueTracking"));
+const AnalysisHistory = lazy(() => import("./pages/AnalysisHistory"));
 
 function LoadingFallback() {
   return (
@@ -55,6 +56,7 @@ function Router() {
         <Route path="/recommendations/:orgNumber" component={Recommendations} />
         <Route path="/execution-dashboard" component={ExecutionDashboard} />
         <Route path="/revenue-tracking" component={RevenueTracking} />
+        <Route path="/analysis-history" component={AnalysisHistory} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/agents" component={Agents} />
         <Route path="/chat" component={Chat} />
