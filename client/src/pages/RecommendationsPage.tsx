@@ -8,6 +8,7 @@ import { Loader2, Building2, TrendingUp, Target, Zap, ArrowLeft, Filter } from "
 import { toast } from "sonner";
 import RecommendationCard from "../components/RecommendationCard";
 import type { Recommendation, DeeplinkAction } from "../components/RecommendationCard";
+import { useWebSocketEvent } from "../contexts/WebSocketProvider";
 
 export default function RecommendationsPage() {
   const { companyId } = useParams<{ companyId: string }>();
@@ -189,6 +190,23 @@ export default function RecommendationsPage() {
       setIsLoading(false);
     }, 1500);
     },
+  });
+
+  // Listen for WebSocket progress updates
+  useWebSocketEvent("analysis:progress", (data: any) => {
+    console.log("[RecommendationsPage] Progress update:", data);
+    if (data.companyId === companyId) {
+      setLoadingStep(data.step);
+      setLoadingMessage(data.message);
+    }
+  });
+
+  // Listen for analysis completion
+  useWebSocketEvent("analysis:complete", (data: any) => {
+    console.log("[RecommendationsPage] Analysis complete:", data);
+    if (data.companyId === companyId) {
+      toast.success("Analysis complete! Generating recommendations...");
+    }
   });
 
   // Trigger analysis on mount

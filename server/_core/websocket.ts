@@ -216,6 +216,23 @@ export function emitExecutionProgress(workflowId: string, progress: any) {
 }
 
 /**
+ * Emit analysis progress event during multi-step analysis
+ */
+export function emitAnalysisProgress(companyId: string, step: number, message: string) {
+  if (!io) return;
+  
+  // Broadcast to all connected clients
+  io.emit('analysis:progress', {
+    companyId,
+    step,
+    message,
+    timestamp: Date.now(),
+  });
+  
+  console.log('[WebSocket] Emitted analysis:progress:', { companyId, step, message });
+}
+
+/**
  * Emit analysis complete event (broadcast to all)
  */
 export function emitAnalysisComplete(analysisId: string, companyName: string, result: any) {
