@@ -17,6 +17,7 @@ import { executionTrackingRouter } from "./routers/execution_tracking";
 import { forvaltRouter } from "./routers/forvalt";
 import { automationRouter } from "./routers/automation";
 import { fileUploadRouter } from "./routers/file_upload";
+import { trueASIModelRouter } from "./routers/true_asi_model";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -30,6 +31,7 @@ export const appRouter = router({
   business: businessRouter,
   analysisHistory: analysisHistoryRouter,
   fileUpload: fileUploadRouter,
+  trueASI: trueASIModelRouter,
   revenueTracking: revenueTrackingRouter,
   notifications: notificationsRouter,
   brreg: brregRouter,

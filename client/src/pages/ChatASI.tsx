@@ -12,6 +12,7 @@
  */
 
 import { useState, useRef, useEffect } from 'react';
+import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
@@ -38,6 +39,8 @@ import {
   Globe,
   FolderOpen,
   Sparkles,
+  Home,
+  ArrowLeft,
 } from 'lucide-react';
 import { trpc } from '@/lib/trpc';
 import { Streamdown } from 'streamdown';
@@ -55,7 +58,7 @@ type ChatMode = 'default' | 'deep_research' | 'shopping' | 'image_gen' | 'agent'
 export default function ChatASI() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
-  const [selectedModel, setSelectedModel] = useState('asi1-ultra');
+  const [selectedModel, setSelectedModel] = useState('true-asi-ultra');
   const [chatMode, setChatMode] = useState<ChatMode>('default');
   const [isRecording, setIsRecording] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);
@@ -63,7 +66,8 @@ export default function ChatASI() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const chatMutation = trpc.asi.chat.useMutation();
+  const chatMutation = trpc.trueASI.chat.useMutation();
+  const { data: modelsData } = trpc.trueASI.getModels.useQuery();
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -200,6 +204,12 @@ export default function ChatASI() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="true-asi-ultra">
+                <div className="flex flex-col">
+                  <span className="font-bold">TRUE ASI Ultra</span>
+                  <span className="text-xs text-gray-400">All 193 models + AWS + GitHub + 1700 deeplinks</span>
+                </div>
+              </SelectItem>
               <SelectItem value="asi1-ultra">ASI1 Ultra</SelectItem>
               <SelectItem value="gpt-4">GPT-4</SelectItem>
               <SelectItem value="claude-3.5-sonnet">Claude 3.5 Sonnet</SelectItem>
@@ -209,6 +219,16 @@ export default function ChatASI() {
           </Select>
 
           <div className="flex gap-2">
+            <Link href="/">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-2"
+              >
+                <Home className="w-4 h-4" />
+                Home
+              </Button>
+            </Link>
             <Button
               variant="ghost"
               size="sm"
