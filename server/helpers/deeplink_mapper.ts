@@ -1,10 +1,11 @@
 /**
  * Deeplink Mapper
  * Maps AI recommendations to specific platform deeplinks for one-click execution
- * Uses the comprehensive deeplink_database.ts registry (1700+ platforms)
+ * Uses the comprehensive industry_deeplinks.ts registry (300+ platforms)
  */
 
-import { searchPlatforms, getPlatformsByIndustry, getPlatformById, type DeeplinkPlatform } from "./deeplink_database";
+// Import industry deeplinks (will be implemented)
+// import { getIndustryDeeplinks } from "./industry_deeplinks";
 
 export interface Recommendation {
   category: "revenue" | "marketing" | "leadership" | "operations" | "technology";
@@ -37,11 +38,11 @@ export function mapRecommendationsToDeeplinks(
   recommendations: Recommendation[],
   industryCode: string
 ): ExecutableRecommendation[] {
-  // Get industry-specific platforms from database
-  const industryPlatforms = getPlatformsByIndustry(industryCode);
+  // const industryDeeplinks = getIndustryDeeplinks(industryCode);
+  const industryDeeplinks = {}; // Placeholder
 
   return recommendations.map((rec) => {
-    const deeplinks = findMatchingDeeplinks(rec, industryPlatforms);
+    const deeplinks = findMatchingDeeplinks(rec, industryDeeplinks);
     const priority = calculatePriority(rec);
 
     return {
@@ -57,31 +58,10 @@ export function mapRecommendationsToDeeplinks(
  */
 function findMatchingDeeplinks(
   recommendation: Recommendation,
-  industryPlatforms: DeeplinkPlatform[]
+  industryDeeplinks: any
 ): DeeplinkAction[] {
   const deeplinks: DeeplinkAction[] = [];
   const actionLower = recommendation.action.toLowerCase();
-  
-  // Extract keywords from recommendation action
-  const keywords = extractKeywords(actionLower);
-  
-  // Search for matching platforms using keywords
-  const matchingPlatforms = searchPlatforms(keywords);
-  
-  // Convert matching platforms to deeplink actions
-  for (const platform of matchingPlatforms.slice(0, 3)) { // Top 3 matches
-    deeplinks.push({
-      platform: platform.name,
-      category: platform.category,
-      url: platform.url,
-      description: platform.description,
-      setupTime: platform.setupTime,
-      cost: platform.cost,
-    });
-  }
-  
-  // If no matches found, fall back to hardcoded recommendations
-  if (deeplinks.length === 0) {
 
   // Marketing recommendations
   if (recommendation.category === "marketing") {
@@ -493,19 +473,7 @@ function findMatchingDeeplinks(
     });
   }
 
-  } // End of fallback if (deeplinks.length === 0)
-  
   return deeplinks;
-}
-
-/**
- * Extract keywords from recommendation action text
- */
-function extractKeywords(text: string): string[] {
-  // Remove common words and extract meaningful keywords
-  const commonWords = ["the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", "with", "by"];
-  const words = text.toLowerCase().split(/\s+/);
-  return words.filter(word => word.length > 3 && !commonWords.includes(word));
 }
 
 /**

@@ -7,9 +7,6 @@ import { eq } from "drizzle-orm";
 import { invokeLLM } from "../_core/llm";
 import axios from "axios";
 import { emitAnalysisProgress, emitAnalysisComplete } from "../_core/websocket";
-import { selectModelsForTask, ensembleVote, trackModelPerformance, type TaskType } from "../helpers/ai_model_router";
-import { scrapeForvaltData } from "../helpers/forvalt_scraper";
-import { generateExecutionPlan, type Recommendation, type RecommendationCategory, type ImpactLevel, type DifficultyLevel } from "../helpers/recommendation_automation";
 
 /**
  * Business Orchestrator
@@ -22,8 +19,14 @@ const API_KEYS = {
   AIMLAPI: process.env.AIMLAPI_KEY || "147620aa16e04b96bb2f12b79527593f",
 };
 
-// Dynamic AI Model Selection using AI Router
-// Models are selected based on task type for optimal performance
+// AI Model Configuration for Multi-Model Consensus
+const AI_MODELS = [
+  { name: "GPT-4", provider: "aimlapi", model: "gpt-4o", weight: 1.0 },
+  { name: "Claude-3.5", provider: "aimlapi", model: "claude-3-5-sonnet-20241022", weight: 1.0 },
+  { name: "Gemini-Pro", provider: "aimlapi", model: "gemini-2.0-flash-exp", weight: 0.9 },
+  { name: "Llama-3.3", provider: "aimlapi", model: "meta-llama/Llama-3.3-70B-Instruct-Turbo", weight: 0.8 },
+  { name: "ASI1-AI", provider: "asi1", model: "gpt-4o-mini", weight: 1.2 }, // Highest weight for ASI1
+];
 
 interface EnrichmentData {
   company: any;
@@ -113,14 +116,11 @@ export const businessOrchestratorRouter = router({
         // Step 4: Generate consensus recommendations
         const consensusRecommendations = generateConsensusRecommendations(aiAnalysisResults);
 
-        // Step 5: Map recommendations to deeplinks and generate execution plans
-        const executableRecommendations = await mapRecommendationsToDeeplinksWithAutomation(
+        // Step 5: Map recommendations to deeplinks
+        const executableRecommendations = mapRecommendationsToDeeplinks(
           consensusRecommendations,
           company.industryCode || ""
         );
-
-        // Calculate automation coverage
-        const automationStats = calculateAutomationStats(executableRecommendations);
 
         // Step 6: Save results to database
         const analysisId = `analysis_${input.companyId}_${Date.now()}`;
@@ -129,12 +129,9 @@ export const businessOrchestratorRouter = router({
         return {
           success: true,
           analysisId,
-          company,
+          enrichmentData,
           aiAnalysisResults,
-          consensusRecommendations,
-          executableRecommendations,
-          automationCoverage: automationStats.coveragePercentage,
-          automationStats,
+          recommendations: executableRecommendations,
         };
       } catch (error) {
         console.error("[BusinessOrchestrator] Error:", error);
@@ -161,64 +158,25 @@ export const businessOrchestratorRouter = router({
 });
 
 /**
- * Fetch financial data from Forvalt.no Premium + Proff.no
+ * Fetch financial data from Proff.no API
  */
 async function fetchFinancialData(orgnr: string): Promise<any> {
   try {
-    // Fetch real data from Forvalt.no premium platform
-    const forvaltData = await scrapeForvaltData(orgnr);
-    
-    // Return comprehensive financial data
+    // TODO: Integrate real Proff.no API
+    // For now, return mock data
     return {
-      // Credit Rating
-      creditRating: forvaltData.creditRating,
-      creditScore: forvaltData.creditScore,
-      bankruptcyProbability: forvaltData.bankruptcyProbability,
-      creditLimit: forvaltData.creditLimit,
-      riskLevel: forvaltData.riskLevel,
-      riskDescription: forvaltData.riskDescription,
-      
-      // Rating Components
-      leadershipScore: forvaltData.leadershipScore,
-      economyScore: forvaltData.economyScore,
-      paymentHistoryScore: forvaltData.paymentHistoryScore,
-      generalScore: forvaltData.generalScore,
-      
-      // Financial Metrics
-      revenue: forvaltData.revenue,
-      ebitda: forvaltData.ebitda,
-      operatingResult: forvaltData.operatingResult,
-      totalAssets: forvaltData.totalAssets,
-      profitability: forvaltData.profitability,
-      liquidity: forvaltData.liquidity,
-      solidity: forvaltData.solidity,
-      ebitdaMargin: forvaltData.ebitdaMargin,
-      currency: forvaltData.currency,
-      
-      // Payment Remarks
-      voluntaryLiens: forvaltData.voluntaryLiens,
-      factoringAgreements: forvaltData.factoringAgreements,
-      forcedLiens: forvaltData.forcedLiens,
-      hasPaymentRemarks: forvaltData.hasPaymentRemarks,
-      
-      // Company Info
-      companyName: forvaltData.companyName,
-      employees: forvaltData.employees,
-      website: forvaltData.website,
-      phone: forvaltData.phone,
-      
-      // Leadership
-      ceo: forvaltData.ceo,
-      boardChairman: forvaltData.boardChairman,
-      auditor: forvaltData.auditor,
-      
-      // Metadata
-      lastUpdated: forvaltData.lastUpdated,
-      forvaltUrl: forvaltData.forvaltUrl,
+      year: 2024,
+      revenue: 15000000, // 15M NOK
+      profit: 2500000, // 2.5M NOK
+      assets: 8000000,
+      liabilities: 3000000,
+      equity: 5000000,
+      creditRating: "AA",
+      creditScore: 85,
+      riskLevel: "Low",
     };
   } catch (error) {
-    console.error("[Forvalt] Error fetching financial data:", error);
-    // Return null on error, orchestrator will handle gracefully
+    console.error("[Proff] Error fetching financial data:", error);
     return null;
   }
 }
@@ -334,11 +292,6 @@ async function identifyCompetitors(company: any): Promise<any[]> {
  * Run multi-model AI analysis with consensus algorithm
  */
 async function runMultiModelAnalysis(data: EnrichmentData): Promise<AIAnalysisResult[]> {
-  // Determine task type based on analysis needs
-  const taskType: TaskType = "strategy"; // Business strategy analysis
-  
-  // Select optimal models for this task
-  const selectedModels = selectModelsForTask(taskType, 5);
   const prompt = `Analyze this Norwegian company and provide comprehensive business recommendations:
 
 **Company Data:**
@@ -383,19 +336,12 @@ Format as JSON with this structure:
 
   const results: AIAnalysisResult[] = [];
 
-  // Run all selected AI models in parallel
-  const promises = selectedModels.map(async (aiModel) => {
-    const startTime = Date.now();
-    const modelConfig = {
-      name: aiModel.name,
-      provider: aiModel.provider,
-      model: aiModel.id,
-      weight: aiModel.weight / 100, // Convert 0-100 to 0-1
-    };
+  // Run all AI models in parallel
+  const promises = AI_MODELS.map(async (modelConfig) => {
     try {
       let response;
 
-      if (modelConfig.provider === "aiml") {
+      if (modelConfig.provider === "aimlapi") {
         // Use AIML API
         response = await axios.post(
           "https://api.aimlapi.com/chat/completions",
@@ -514,60 +460,12 @@ function generateConsensusRecommendations(results: AIAnalysisResult[]): any[] {
 }
 
 /**
- * Map recommendations to deeplinks with execution plans
+ * Map recommendations to deeplinks for one-click execution
  */
-async function mapRecommendationsToDeeplinksWithAutomation(recommendations: any[], industryCode: string): Promise<any[]> {
-  const results = [];
-
-  for (const rec of recommendations) {
-    // Convert to Recommendation format
-    const recommendation: Recommendation = {
-      id: rec.id || `rec_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      title: rec.title || rec.recommendation || "Untitled Recommendation",
-      description: rec.description || rec.details || rec.recommendation || "",
-      category: (rec.category || "operations") as RecommendationCategory,
-      impact: (rec.impact || "medium") as ImpactLevel,
-      difficulty: (rec.difficulty || "medium") as DifficultyLevel,
-      priority: rec.priority || 5,
-      expectedROI: rec.expectedROI || "10-30%",
-      cost: rec.cost || "$500-$5,000",
-      timeframe: rec.timeframe || "1-3 months",
-      isAutomated: false,
-    };
-
-    // Generate execution plan
-    const executionPlan = generateExecutionPlan(recommendation);
-
-    results.push({
-      ...rec,
-      executionPlan,
-      automationLevel: executionPlan.automationLevel,
-      platforms: executionPlan.platforms,
-      estimatedTime: executionPlan.estimatedTime,
-      totalCost: executionPlan.totalCost,
-      expectedROI: executionPlan.expectedROI,
-    });
-  }
-
-  return results;
-}
-
-/**
- * Calculate automation coverage statistics
- */
-function calculateAutomationStats(recommendations: any[]) {
-  const total = recommendations.length;
-  const fullyAutomated = recommendations.filter(r => r.automationLevel === 'full').length;
-  const partiallyAutomated = recommendations.filter(r => r.automationLevel === 'partial').length;
-  const manual = recommendations.filter(r => r.automationLevel === 'manual').length;
-  const totalPlatforms = recommendations.reduce((sum, r) => sum + (r.platforms?.length || 0), 0);
-
-  return {
-    total,
-    fullyAutomated,
-    partiallyAutomated,
-    manual,
-    coveragePercentage: total > 0 ? ((fullyAutomated + partiallyAutomated) / total) * 100 : 0,
-    totalPlatforms,
-  };
+function mapRecommendationsToDeeplinks(recommendations: any[], industryCode: string): any[] {
+  // TODO: Load industry_deeplinks.ts and map recommendations to platforms
+  return recommendations.map((rec) => ({
+    ...rec,
+    deeplinks: [], // Will be populated with actual deeplinks
+  }));
 }

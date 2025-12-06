@@ -114,26 +114,14 @@ export const brregRouter = router({
       }
 
       try {
-        console.log('[Brreg] Starting company save for orgnr:', input.orgnr);
-        console.log('[Brreg] User ID:', ctx.user.id);
-        console.log('[Brreg] User:', JSON.stringify(ctx.user));
-        
         const companyId = `company_${input.orgnr}_${Date.now()}`;
-        console.log('[Brreg] Generated company ID:', companyId);
 
         // Extract relevant fields from Brreg.no response
         const brregData = input.brregData;
-        console.log('[Brreg] Brreg data keys:', Object.keys(brregData));
-        
-        // Check if company already exists
-        const existingCompany = await db
-          .select()
-          .from(companies)
-          .where(eq(companies.orgnr, input.orgnr))
-          .limit(1);
 
-        const companyData = {
-          userId: parseInt(ctx.user.id.toString()) || 0,
+        await db.insert(companies).values({
+          id: companyId,
+          userId: ctx.user.id,
           orgnr: input.orgnr,
           name: brregData.navn || "",
           organizationForm: brregData.organisasjonsform?.kode || null,
@@ -155,39 +143,14 @@ export const brregRouter = router({
           bankrupt: brregData.konkurs ? 1 : 0,
           underLiquidation: brregData.underAvvikling ? 1 : 0,
           rawData: JSON.stringify(brregData),
-        };
-        
-        console.log('[Brreg] Company data prepared:', JSON.stringify(companyData, null, 2));
+        });
 
-        if (existingCompany.length > 0) {
-          // Update existing company
-          console.log('[Brreg] Company exists, updating...');
-          await db
-            .update(companies)
-            .set(companyData)
-            .where(eq(companies.orgnr, input.orgnr));
-          console.log('[Brreg] Company updated successfully');
-          return { success: true, companyId: existingCompany[0].id };
-        } else {
-          // Insert new company
-          console.log('[Brreg] Company does not exist, inserting...');
-          await db.insert(companies).values({
-            id: companyId,
-            ...companyData,
-          });
-          console.log('[Brreg] Company inserted successfully');
-          return { success: true, companyId };
-        }
-      } catch (error: any) {
-        console.error('[Brreg] Error saving company:', error);
-        console.error('[Brreg] Error stack:', error.stack);
-        console.error('[Brreg] Error message:', error.message);
-        console.error('[Brreg] Error code:', error.code);
-        
+        return { success: true, companyId };
+      } catch (error) {
+        console.error("[Brreg] Error saving company:", error);
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: `Failed to save company data: ${error.message || 'Unknown error'}`,
-          cause: error,
+          message: "Failed to save company data",
         });
       }
     }),

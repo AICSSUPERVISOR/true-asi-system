@@ -14,11 +14,7 @@ import { notificationsRouter } from "./routers/notifications";
 import { brregRouter } from "./routers/brreg";
 import { businessOrchestratorRouter } from "./routers/business_orchestrator";
 import { executionTrackingRouter } from "./routers/execution_tracking";
-import { forvaltRouter } from "./routers/forvalt";
-import { automationRouter } from "./routers/automation";
-import { fileUploadRouter } from "./routers/file_upload";
-import { trueASIModelRouter } from "./routers/true_asi_model";
-import { templateGenerationRouter } from "./routers/template_generation";
+import { trueASIUltraRouter } from "./routers/true_asi_ultra";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -31,16 +27,12 @@ export const appRouter = router({
   system: systemRouter,
   business: businessRouter,
   analysisHistory: analysisHistoryRouter,
-  fileUpload: fileUploadRouter,
-  trueASI: trueASIModelRouter,
-  templateGeneration: templateGenerationRouter,
   revenueTracking: revenueTrackingRouter,
   notifications: notificationsRouter,
   brreg: brregRouter,
   businessOrchestrator: businessOrchestratorRouter,
   executionTracking: executionTrackingRouter,
-  forvalt: forvaltRouter,
-  automation: automationRouter,
+  trueASIUltra: trueASIUltraRouter,
   
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),

@@ -4,53 +4,19 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
-import { Loader2, Building2, Users, MapPin, Calendar, TrendingUp, AlertCircle, Shield, ExternalLink, DollarSign, Activity, Zap } from "lucide-react";
-import { PremiumMetricCard } from "../components/PremiumMetricCard";
-import { PremiumStatsGrid } from "../components/PremiumStatsGrid";
+import { Loader2, Building2, Users, MapPin, Calendar, TrendingUp, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
-import { useEffect } from "react";
 
 export default function CompanyLookup() {
   const [orgnr, setOrgnr] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [companyData, setCompanyData] = useState<any>(null);
   const [rolesData, setRolesData] = useState<any>(null);
-  const [forvaltData, setForvaltData] = useState<any>(null);
-  const [isFetchingForvalt, setIsFetchingForvalt] = useState(false);
   const [, setLocation] = useLocation();
-
-  // Auto-search if org number provided in URL
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const urlOrgNr = params.get('orgnr');
-    if (urlOrgNr && urlOrgNr.length === 9) {
-      setOrgnr(urlOrgNr);
-      // Trigger search after a short delay to ensure state is set
-      setTimeout(() => {
-        const searchButton = document.querySelector('[data-search-button]') as HTMLButtonElement;
-        searchButton?.click();
-      }, 100);
-    }
-  }, []);
-
-  const forvaltQuery = trpc.forvalt.getCreditRating.useQuery(
-    { orgNumber: orgnr },
-    { enabled: false } // Manual trigger
-  );
 
   const saveCompanyMutation = trpc.brreg.saveCompany.useMutation();
   const saveRolesMutation = trpc.brreg.saveCompanyRoles.useMutation();
-
-  const companyQuery = trpc.brreg.getCompanyByOrgnr.useQuery(
-    { orgnr },
-    { enabled: false } // Manual trigger
-  );
-
-  const rolesQuery = trpc.brreg.getCompanyRoles.useQuery(
-    { orgnr },
-    { enabled: false } // Manual trigger
-  );
 
   const handleSearch = async () => {
     if (orgnr.length !== 9) {
@@ -63,39 +29,41 @@ export default function CompanyLookup() {
     setRolesData(null);
 
     try {
-      // Fetch company data using tRPC
-      const companyResult = await companyQuery.refetch();
-      
-      if (!companyResult.data) {
-        toast.error(`Company with organization number ${orgnr} not found`);
+      // Fetch company data from Brreg.no
+      const response = await fetch(
+        `https://data.brreg.no/enhetsregisteret/api/enheter/${orgnr}`,
+        {
+          headers: { Accept: "application/json" },
+        }
+      );
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          toast.error(`Company with organization number ${orgnr} not found`);
+        } else {
+          toast.error("Failed to fetch company data");
+        }
         setIsSearching(false);
         return;
       }
 
-      setCompanyData(companyResult.data);
+      const data = await response.json();
+      setCompanyData(data);
 
-      // Fetch Forvalt.no credit rating in background
-      setIsFetchingForvalt(true);
-      try {
-        const forvaltResult = await forvaltQuery.refetch();
-        if (forvaltResult.data?.success) {
-          setForvaltData(forvaltResult.data);
-          toast.success("Credit rating loaded from Forvalt.no");
+      // Fetch company roles
+      const rolesResponse = await fetch(
+        `https://data.brreg.no/enhetsregisteret/api/enheter/${orgnr}/roller`,
+        {
+          headers: { Accept: "application/json" },
         }
-      } catch (error) {
-        console.error("Error fetching Forvalt data:", error);
-        // Don't show error toast, just log it
-      } finally {
-        setIsFetchingForvalt(false);
+      );
+
+      if (rolesResponse.ok) {
+        const rolesData = await rolesResponse.json();
+        setRolesData(rolesData);
       }
 
-      // Fetch company roles using tRPC
-      const rolesResult = await rolesQuery.refetch();
-      if (rolesResult.data) {
-        setRolesData(rolesResult.data);
-      }
-
-      toast.success(`Found company: ${companyResult.data.navn}`);
+      toast.success(`Found company: ${data.navn}`);
     } catch (error) {
       console.error("Error fetching company:", error);
       toast.error("Failed to fetch company data");
@@ -103,29 +71,6 @@ export default function CompanyLookup() {
       setIsSearching(false);
     }
   };
-
-  // Auto-save company data when it loads
-  useEffect(() => {
-    if (companyData && !saveCompanyMutation.isPending) {
-      const autoSave = async () => {
-        try {
-          console.log('[CompanyLookup] Auto-saving company...');
-          await saveCompanyMutation.mutateAsync({
-            orgnr,
-            brregData: companyData,
-          });
-          console.log('[CompanyLookup] Auto-save successful');
-        } catch (error) {
-          console.error('[CompanyLookup] Auto-save failed:', error);
-          // Don't show error toast for auto-save failures
-        }
-      };
-      
-      // Debounce auto-save by 2 seconds
-      const timer = setTimeout(autoSave, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [companyData, orgnr]);
 
   const handleSaveAndAnalyze = async () => {
     if (!companyData) return;
@@ -191,7 +136,6 @@ export default function CompanyLookup() {
                 maxLength={9}
               />
               <Button
-                data-search-button
                 onClick={handleSearch}
                 disabled={isSearching || orgnr.length !== 9}
                 className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 px-8"
@@ -241,127 +185,15 @@ export default function CompanyLookup() {
                       )}
                     </div>
                   </div>
-                  <div className="flex gap-3">
-                    {forvaltData && forvaltData.creditRating && (
-                      <a
-                        href={`https://forvalt.no/ForetaksIndex/Firma/FirmaSide/${orgnr}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-1"
-                      >
-                        View Full Forvalt Report
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
-                    )}
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm text-green-400 flex items-center gap-2">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        Auto-saved
-                      </span>
-                      <Button
-                        onClick={handleSaveAndAnalyze}
-                        className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
-                      >
-                        Analyze with AI
-                      </Button>
-                    </div>
-                    <Button
-                      onClick={() => setLocation('/automation')}
-                      variant="outline"
-                      className="border-primary/50 hover:bg-primary/10"
-                    >
-                      <Zap className="w-4 h-4 mr-2" />
-                      View Automation Plans
-                    </Button>
-                  </div>
+                  <Button
+                    onClick={handleSaveAndAnalyze}
+                    className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+                  >
+                    Save & Analyze with AI
+                  </Button>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-6">
-                {/* Forvalt Credit Rating Section */}
-                {isFetchingForvalt && (
-                  <div className="p-6 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-xl border border-blue-500/20">
-                    <div className="flex items-center gap-3">
-                      <Loader2 className="w-5 h-5 text-blue-400 animate-spin" />
-                      <span className="text-white font-medium">Loading credit rating from Forvalt.no...</span>
-                    </div>
-                  </div>
-                )}
-
-                {forvaltData && forvaltData.creditRating && (
-                  <div className="p-6 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-xl border border-blue-500/20 space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <Shield className="w-6 h-6 text-blue-400" />
-                        <h3 className="text-xl font-bold text-white">Credit Rating & Financial Health</h3>
-                      </div>
-                      <Badge
-                        className={
-                          forvaltData.riskLevel === 'very_low'
-                            ? 'bg-green-500/20 text-green-300 border-green-500/30 text-lg px-4 py-1'
-                            : forvaltData.riskLevel === 'low'
-                            ? 'bg-blue-500/20 text-blue-300 border-blue-500/30 text-lg px-4 py-1'
-                            : forvaltData.riskLevel === 'moderate'
-                            ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30 text-lg px-4 py-1'
-                            : forvaltData.riskLevel === 'high'
-                            ? 'bg-orange-500/20 text-orange-300 border-orange-500/30 text-lg px-4 py-1'
-                            : 'bg-red-500/20 text-red-300 border-red-500/30 text-lg px-4 py-1'
-                        }
-                      >
-                        {forvaltData.creditRating}
-                      </Badge>
-                    </div>
-
-                    <PremiumStatsGrid
-                      stats={[
-                        {
-                          title: "Credit Score",
-                          value: `${forvaltData.creditScore || 'N/A'}/100`,
-                          icon: Activity,
-                          change: undefined,
-                          changeType: "neutral",
-                          gradient: "from-green-500 to-emerald-500",
-                          iconColor: "text-green-400",
-                        },
-                        {
-                          title: "Bankruptcy Risk",
-                          value: forvaltData.bankruptcyProbability !== null
-                            ? `${forvaltData.bankruptcyProbability.toFixed(2)}%`
-                            : 'N/A',
-                          icon: AlertCircle,
-                          change: undefined,
-                          changeType: "neutral",
-                          gradient: "from-yellow-500 to-orange-500",
-                          iconColor: "text-yellow-400",
-                        },
-                        {
-                          title: "Credit Limit",
-                          value: forvaltData.creditLimit
-                            ? `${(forvaltData.creditLimit / 1000000).toFixed(1)}M NOK`
-                            : 'N/A',
-                          icon: DollarSign,
-                          change: undefined,
-                          changeType: "neutral",
-                          gradient: "from-cyan-500 to-blue-500",
-                          iconColor: "text-cyan-400",
-                        },
-                        {
-                          title: "Risk Level",
-                          value: forvaltData.riskDescription || 'N/A',
-                          icon: Shield,
-                          change: undefined,
-                          changeType: "neutral",
-                          gradient: "from-blue-500 to-indigo-500",
-                          iconColor: "text-blue-400",
-                        },
-                      ]}
-                    />
-                  </div>
-                )}
-
-                {/* Company Details Grid */}
-                <div className="grid md:grid-cols-2 gap-6">
+              <CardContent className="grid md:grid-cols-2 gap-6">
                 {/* Industry */}
                 <div className="flex items-start gap-3">
                   <Building2 className="w-5 h-5 text-blue-400 mt-1" />
@@ -422,7 +254,6 @@ export default function CompanyLookup() {
                       {companyData.registrertIMvaregisteret ? "Yes" : "No"}
                     </div>
                   </div>
-                </div>
                 </div>
               </CardContent>
             </Card>
