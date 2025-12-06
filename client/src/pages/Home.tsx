@@ -199,7 +199,7 @@ export default function Home() {
               <Button variant="ghost">Chat ASI</Button>
             </Link>
             <Link href="/templates">
-              <Button variant="ghost">Templates</Button>
+              <Button variant="ghost">Fill Templates with AI</Button>
             </Link>
             <Link href="/deeplinks">
               <Button variant="ghost">Automations</Button>
