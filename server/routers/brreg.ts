@@ -121,7 +121,7 @@ export const brregRouter = router({
 
         await db.insert(companies).values({
           id: companyId,
-          userId: ctx.user.id,
+          userId: parseInt(ctx.user.id.toString()) || 0,
           orgnr: input.orgnr,
           name: brregData.navn || "",
           organizationForm: brregData.organisasjonsform?.kode || null,
