@@ -198,13 +198,13 @@ export default function Home() {
             <Link href="/chat-asi">
               <Button variant="ghost">Chat ASI</Button>
             </Link>
-            <Link href="/dashboard">
-              <Button variant="ghost">Dashboard</Button>
+            <Link href="/templates">
+              <Button variant="ghost">Templates</Button>
+            </Link>
+            <Link href="/deeplinks">
+              <Button variant="ghost">Automations</Button>
             </Link>
             <ThemeToggle />
-            <Link href="/docs">
-              <Button variant="ghost">Docs</Button>
-            </Link>
           </div>
         </div>
       </nav>

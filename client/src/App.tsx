@@ -38,6 +38,8 @@ const RecommendationsPage = lazy(() => import("./pages/RecommendationsPage"));
 const ExecutionROIDashboard = lazy(() => import("./pages/ExecutionROIDashboard"));
 const AutomationDashboard = lazy(() => import("./pages/AutomationDashboard"));
 const ChatASI = lazy(() => import("./pages/ChatASI"));
+const Templates = lazy(() => import("./pages/Templates"));
+const Deeplinks = lazy(() => import("./pages/Deeplinks"));
 
 function LoadingFallback() {
   return (
@@ -70,6 +72,8 @@ function Router() {
         <Route path="/agents" component={Agents} />
         <Route path="/chat" component={Chat} />
         <Route path="/chat-asi" component={ChatASI} />
+      <Route path="/templates" component={Templates} />
+      <Route path="/deeplinks" component={Deeplinks} />
         <Route path="/knowledge-graph" component={KnowledgeGraph} />
         <Route path="/analytics" component={Analytics} />
       <Route path={"/documentation"} component={Documentation} />
