@@ -111,6 +111,29 @@ export default function CompanyLookup() {
     }
   };
 
+  // Auto-save company data when it loads
+  useEffect(() => {
+    if (companyData && !saveCompanyMutation.isPending) {
+      const autoSave = async () => {
+        try {
+          console.log('[CompanyLookup] Auto-saving company...');
+          await saveCompanyMutation.mutateAsync({
+            orgnr,
+            brregData: companyData,
+          });
+          console.log('[CompanyLookup] Auto-save successful');
+        } catch (error) {
+          console.error('[CompanyLookup] Auto-save failed:', error);
+          // Don't show error toast for auto-save failures
+        }
+      };
+      
+      // Debounce auto-save by 2 seconds
+      const timer = setTimeout(autoSave, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [companyData, orgnr]);
+
   const handleSaveAndAnalyze = async () => {
     if (!companyData) return;
 
@@ -237,12 +260,20 @@ export default function CompanyLookup() {
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     )}
-                    <Button
-                      onClick={handleSaveAndAnalyze}
-                      className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
-                    >
-                      Save & Analyze with AI
-                    </Button>
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm text-green-400 flex items-center gap-2">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        Auto-saved
+                      </span>
+                      <Button
+                        onClick={handleSaveAndAnalyze}
+                        className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+                      >
+                        Analyze with AI
+                      </Button>
+                    </div>
                     <Button
                       onClick={() => setLocation('/automation')}
                       variant="outline"

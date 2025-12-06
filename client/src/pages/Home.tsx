@@ -31,6 +31,7 @@ import {
   CheckCircle2,
   X,
 } from 'lucide-react';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function Home() {
   const [showWelcomeTour, setShowWelcomeTour] = useState(false);
@@ -191,18 +192,16 @@ export default function Home() {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/dashboard">
-              <Button variant="ghost">Dashboard</Button>
-            </Link>
-            <Link href="/agents">
-              <Button variant="ghost">Agents</Button>
-            </Link>
-            <Link href="/chat-asi">
-              <Button variant="ghost">Chat</Button>
-            </Link>
             <Link href="/company-lookup">
               <Button variant="ghost">Company Lookup</Button>
             </Link>
+            <Link href="/chat-asi">
+              <Button variant="ghost">Chat ASI</Button>
+            </Link>
+            <Link href="/dashboard">
+              <Button variant="ghost">Dashboard</Button>
+            </Link>
+            <ThemeToggle />
             <Link href="/docs">
               <Button variant="ghost">Docs</Button>
             </Link>
