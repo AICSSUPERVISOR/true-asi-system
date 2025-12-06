@@ -16,6 +16,7 @@ import { businessOrchestratorRouter } from "./routers/business_orchestrator";
 import { executionTrackingRouter } from "./routers/execution_tracking";
 import { forvaltRouter } from "./routers/forvalt";
 import { automationRouter } from "./routers/automation";
+import { fileUploadRouter } from "./routers/file_upload";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -28,6 +29,7 @@ export const appRouter = router({
   system: systemRouter,
   business: businessRouter,
   analysisHistory: analysisHistoryRouter,
+  fileUpload: fileUploadRouter,
   revenueTracking: revenueTrackingRouter,
   notifications: notificationsRouter,
   brreg: brregRouter,

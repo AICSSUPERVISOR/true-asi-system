@@ -37,6 +37,7 @@ const CompanyLookup = lazy(() => import("./pages/CompanyLookup"));
 const RecommendationsPage = lazy(() => import("./pages/RecommendationsPage"));
 const ExecutionROIDashboard = lazy(() => import("./pages/ExecutionROIDashboard"));
 const AutomationDashboard = lazy(() => import("./pages/AutomationDashboard"));
+const ChatASI = lazy(() => import("./pages/ChatASI"));
 
 function LoadingFallback() {
   return (
@@ -68,6 +69,7 @@ function Router() {
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/agents" component={Agents} />
         <Route path="/chat" component={Chat} />
+        <Route path="/chat-asi" component={ChatASI} />
         <Route path="/knowledge-graph" component={KnowledgeGraph} />
         <Route path="/analytics" component={Analytics} />
       <Route path={"/documentation"} component={Documentation} />
