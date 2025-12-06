@@ -23,10 +23,14 @@ function getRedisClient(): Redis | null {
 
   try {
     // Try to connect to Redis (optional service)
+    const redisHost = (process.env.REDIS_HOST || 'localhost').replace(/^https?:\/\//, '');
+    const isUpstash = redisHost.includes('upstash.io');
+    
     redisClient = new Redis({
-      host: process.env.REDIS_HOST || 'localhost',
+      host: redisHost,
       port: parseInt(process.env.REDIS_PORT || '6379'),
       password: process.env.REDIS_PASSWORD,
+      tls: isUpstash ? {} : undefined, // Enable TLS for Upstash
       retryStrategy: (times) => {
         // Stop retrying after 3 attempts
         if (times > 3) {
