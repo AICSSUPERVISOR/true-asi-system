@@ -42,6 +42,16 @@ export default function CompanyLookup() {
   const saveCompanyMutation = trpc.brreg.saveCompany.useMutation();
   const saveRolesMutation = trpc.brreg.saveCompanyRoles.useMutation();
 
+  const companyQuery = trpc.brreg.getCompanyByOrgnr.useQuery(
+    { orgnr },
+    { enabled: false } // Manual trigger
+  );
+
+  const rolesQuery = trpc.brreg.getCompanyRoles.useQuery(
+    { orgnr },
+    { enabled: false } // Manual trigger
+  );
+
   const handleSearch = async () => {
     if (orgnr.length !== 9) {
       toast.error("Organization number must be exactly 9 digits");
@@ -53,26 +63,16 @@ export default function CompanyLookup() {
     setRolesData(null);
 
     try {
-      // Fetch company data from Brreg.no
-      const response = await fetch(
-        `https://data.brreg.no/enhetsregisteret/api/enheter/${orgnr}`,
-        {
-          headers: { Accept: "application/json" },
-        }
-      );
-
-      if (!response.ok) {
-        if (response.status === 404) {
-          toast.error(`Company with organization number ${orgnr} not found`);
-        } else {
-          toast.error("Failed to fetch company data");
-        }
+      // Fetch company data using tRPC
+      const companyResult = await companyQuery.refetch();
+      
+      if (!companyResult.data) {
+        toast.error(`Company with organization number ${orgnr} not found`);
         setIsSearching(false);
         return;
       }
 
-      const data = await response.json();
-      setCompanyData(data);
+      setCompanyData(companyResult.data);
 
       // Fetch Forvalt.no credit rating in background
       setIsFetchingForvalt(true);
@@ -89,20 +89,13 @@ export default function CompanyLookup() {
         setIsFetchingForvalt(false);
       }
 
-      // Fetch company roles
-      const rolesResponse = await fetch(
-        `https://data.brreg.no/enhetsregisteret/api/enheter/${orgnr}/roller`,
-        {
-          headers: { Accept: "application/json" },
-        }
-      );
-
-      if (rolesResponse.ok) {
-        const rolesData = await rolesResponse.json();
-        setRolesData(rolesData);
+      // Fetch company roles using tRPC
+      const rolesResult = await rolesQuery.refetch();
+      if (rolesResult.data) {
+        setRolesData(rolesResult.data);
       }
 
-      toast.success(`Found company: ${data.navn}`);
+      toast.success(`Found company: ${companyResult.data.navn}`);
     } catch (error) {
       console.error("Error fetching company:", error);
       toast.error("Failed to fetch company data");

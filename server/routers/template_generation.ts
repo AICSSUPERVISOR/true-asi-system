@@ -177,16 +177,109 @@ Output the complete document in Markdown format with proper headings, sections, 
     .mutation(async ({ input }) => {
       const { content, templateName, companyName } = input;
 
-      // TODO: Implement actual PDF generation
-      // For now, return success with metadata
-      return {
-        success: true,
-        pdf: {
-          filename: `${templateName.replace(/\s+/g, '_')}_${companyName.replace(/\s+/g, '_')}_${Date.now()}.pdf`,
-          size: Math.floor(Math.random() * 500000) + 100000, // 100KB - 600KB
-          url: '#', // TODO: Generate actual PDF and upload to S3
-        },
-      };
+      try {
+        const { PDFDocument, StandardFonts, rgb } = await import('pdf-lib');
+        const MarkdownIt = (await import('markdown-it')).default;
+        const md = new MarkdownIt();
+
+        // Create PDF document
+        const pdfDoc = await PDFDocument.create();
+        const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+        const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+
+        // Convert Markdown to plain text (simplified)
+        const plainText = md.render(content)
+          .replace(/<[^>]*>/g, '') // Remove HTML tags
+          .replace(/&nbsp;/g, ' ')
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"');
+
+        // Add pages and text
+        const pageWidth = 595; // A4 width
+        const pageHeight = 842; // A4 height
+        const margin = 50;
+        const maxWidth = pageWidth - 2 * margin;
+        const fontSize = 12;
+        const lineHeight = fontSize * 1.5;
+
+        let page = pdfDoc.addPage([pageWidth, pageHeight]);
+        let yPosition = pageHeight - margin;
+
+        // Split text into lines
+        const lines = plainText.split('\n');
+        for (const line of lines) {
+          if (yPosition < margin + lineHeight) {
+            page = pdfDoc.addPage([pageWidth, pageHeight]);
+            yPosition = pageHeight - margin;
+          }
+
+          // Wrap long lines
+          const words = line.split(' ');
+          let currentLine = '';
+          for (const word of words) {
+            const testLine = currentLine + word + ' ';
+            const textWidth = font.widthOfTextAtSize(testLine, fontSize);
+            if (textWidth > maxWidth && currentLine !== '') {
+              page.drawText(currentLine, {
+                x: margin,
+                y: yPosition,
+                size: fontSize,
+                font,
+                color: rgb(0, 0, 0),
+              });
+              yPosition -= lineHeight;
+              currentLine = word + ' ';
+
+              if (yPosition < margin + lineHeight) {
+                page = pdfDoc.addPage([pageWidth, pageHeight]);
+                yPosition = pageHeight - margin;
+              }
+            } else {
+              currentLine = testLine;
+            }
+          }
+
+          if (currentLine !== '') {
+            page.drawText(currentLine, {
+              x: margin,
+              y: yPosition,
+              size: fontSize,
+              font,
+              color: rgb(0, 0, 0),
+            });
+            yPosition -= lineHeight;
+          }
+        }
+
+        // Generate PDF bytes
+        const pdfBytes = await pdfDoc.save();
+
+        // Upload to S3
+        const { storagePut } = await import('../storage');
+        const filename = `${templateName.replace(/\s+/g, '_')}_${companyName.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
+        const { url } = await storagePut(
+          `templates/${filename}`,
+          Buffer.from(pdfBytes),
+          'application/pdf'
+        );
+
+        return {
+          success: true,
+          pdf: {
+            filename,
+            size: pdfBytes.length,
+            url,
+          },
+        };
+      } catch (error) {
+        console.error('[PDF Generation] Error:', error);
+        throw new TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'Failed to generate PDF',
+        });
+      }
     }),
 
   /**
@@ -203,16 +296,68 @@ Output the complete document in Markdown format with proper headings, sections, 
     .mutation(async ({ input }) => {
       const { content, templateName, companyName } = input;
 
-      // TODO: Implement actual DOCX generation
-      // For now, return success with metadata
-      return {
-        success: true,
-        docx: {
-          filename: `${templateName.replace(/\s+/g, '_')}_${companyName.replace(/\s+/g, '_')}_${Date.now()}.docx`,
-          size: Math.floor(Math.random() * 400000) + 80000, // 80KB - 480KB
-          url: '#', // TODO: Generate actual DOCX and upload to S3
-        },
-      };
+      try {
+        const { Document, Packer, Paragraph, TextRun, HeadingLevel } = await import('docx');
+        const MarkdownIt = (await import('markdown-it')).default;
+        const md = new MarkdownIt();
+
+        // Convert Markdown to plain text
+        const plainText = md.render(content)
+          .replace(/<[^>]*>/g, '')
+          .replace(/&nbsp;/g, ' ')
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"');
+
+        // Create paragraphs from text
+        const paragraphs = plainText.split('\n').filter(line => line.trim()).map(line => {
+          // Check if it's a heading (starts with # in original markdown)
+          const isHeading = content.includes(`# ${line}`) || content.includes(`## ${line}`);
+          
+          return new Paragraph({
+            children: [new TextRun(line)],
+            heading: isHeading ? HeadingLevel.HEADING_1 : undefined,
+          });
+        });
+
+        // Create document
+        const doc = new Document({
+          sections: [
+            {
+              properties: {},
+              children: paragraphs,
+            },
+          ],
+        });
+
+        // Generate DOCX bytes
+        const docxBytes = await Packer.toBuffer(doc);
+
+        // Upload to S3
+        const { storagePut } = await import('../storage');
+        const filename = `${templateName.replace(/\s+/g, '_')}_${companyName.replace(/\s+/g, '_')}_${Date.now()}.docx`;
+        const { url } = await storagePut(
+          `templates/${filename}`,
+          docxBytes,
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        );
+
+        return {
+          success: true,
+          docx: {
+            filename,
+            size: docxBytes.length,
+            url,
+          },
+        };
+      } catch (error) {
+        console.error('[DOCX Generation] Error:', error);
+        throw new TRPCError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'Failed to generate DOCX',
+        });
+      }
     }),
 });
 
