@@ -159,6 +159,8 @@ export default function Templates() {
     ? categories.filter(c => c.id === selectedCategory)
     : categories;
 
+  const generateDocumentMutation = trpc.templateGeneration.generateDocument.useMutation();
+
   const handleGenerateDocument = async (templateName: string, categoryName: string, timeSaved: string, costSaved: string) => {
     if (!orgNumber || orgNumber.length !== 9) {
       toast.error('Please enter a valid 9-digit Norwegian organization number first');
@@ -166,41 +168,30 @@ export default function Templates() {
     }
 
     setGeneratingTemplate(templateName);
-    toast.info(`Starting AI generation for ${templateName}...`);
+    toast.info(`🚀 TRUE ASI Ultra is generating ${templateName}...\\n\\nUsing all 193 AI models + Brreg + Forvalt + AWS S3 knowledge base`);
 
     try {
-      // Fetch company data from Brreg
-      const brregResponse = await fetch(
-        `https://data.brreg.no/enhetsregisteret/api/enheter/${orgNumber}`,
-        { headers: { Accept: 'application/json' } }
-      );
-
-      if (!brregResponse.ok) {
-        throw new Error('Company not found');
-      }
-
-      const companyData = await brregResponse.json();
-
-      // Simulate AI processing (in production, this would call TRUE ASI Ultra)
-      await new Promise(resolve => setTimeout(resolve, 3000));
-
-      toast.success(
-        `✅ ${templateName} generated successfully!\\n\\n` +
-        `Company: ${companyData.navn}\\n` +
-        `Time Saved: ${timeSaved}\\n` +
-        `Cost Saved: ${costSaved}\\n\\n` +
-        `Document is ready for download.`,
-        { duration: 5000 }
-      );
-
-      // TODO: Implement actual PDF/DOCX generation
-      // For now, show success message
-      console.log('Generated document for:', {
-        template: templateName,
-        category: categoryName,
-        company: companyData.navn,
+      const result = await generateDocumentMutation.mutateAsync({
+        templateName,
+        categoryName,
         orgNumber,
       });
+
+      if (result.success) {
+        toast.success(
+          `✅ ${templateName} generated successfully!\\n\\n` +
+          `Company: ${result.document.company.name}\\n` +
+          `Credit Rating: ${result.document.creditRating.rating} (${result.document.creditRating.score}/100)\\n` +
+          `Time Saved: ${result.document.metadata.timeSaved}\\n` +
+          `Cost Saved: ${result.document.metadata.costSaved}\\n\\n` +
+          `AI Models Used: ${result.document.metadata.aiModelsUsed}\\n` +
+          `Data Sources: ${result.document.metadata.dataSources.join(', ')}\\n\\n` +
+          `Document is ready for download.`,
+          { duration: 8000 }
+        );
+
+        console.log('Generated document:', result.document);
+      }
 
     } catch (error) {
       console.error('Error generating document:', error);

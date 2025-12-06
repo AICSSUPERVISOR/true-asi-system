@@ -18,6 +18,7 @@ import { forvaltRouter } from "./routers/forvalt";
 import { automationRouter } from "./routers/automation";
 import { fileUploadRouter } from "./routers/file_upload";
 import { trueASIModelRouter } from "./routers/true_asi_model";
+import { templateGenerationRouter } from "./routers/template_generation";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -32,6 +33,7 @@ export const appRouter = router({
   analysisHistory: analysisHistoryRouter,
   fileUpload: fileUploadRouter,
   trueASI: trueASIModelRouter,
+  templateGeneration: templateGenerationRouter,
   revenueTracking: revenueTrackingRouter,
   notifications: notificationsRouter,
   brreg: brregRouter,
