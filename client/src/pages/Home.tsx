@@ -1,388 +1,399 @@
-import { useAuth } from "@/_core/hooks/useAuth";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import Hero3D from "@/components/Hero3D";
-import MobileMenu from "@/components/MobileMenu";
-import { SpiralFlowBackground } from "@/components/SpiralFlowBackground";
-import { getLoginUrl } from "@/const";
-import { useLocation } from "wouter";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { toast } from "sonner";
+/**
+ * TRUE ASI Homepage
+ * 
+ * 100/100 Quality Landing Page
+ * - Animated 3D background
+ * - Welcome tour modal
+ * - Platform showcase
+ * - Feature highlights
+ */
+
+import { useState, useEffect } from 'react';
+import { Link } from 'wouter';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import {
   Brain,
   Zap,
-  Network,
+  Shield,
+  Globe,
+  Database,
+  Bot,
   Sparkles,
   ArrowRight,
   CheckCircle2,
-  TrendingUp,
-  Shield,
-  Cpu,
-  Database,
-  Activity,
-  Globe,
-  Search,
-  Building2,
-} from "lucide-react";
+  X,
+} from 'lucide-react';
 
 export default function Home() {
-  const { user, isAuthenticated, logout } = useAuth();
-  const [, setLocation] = useLocation();
-  const [orgNumber, setOrgNumber] = useState("");
+  const [showWelcomeTour, setShowWelcomeTour] = useState(false);
+  const [tourStep, setTourStep] = useState(0);
 
-  const handleAnalyzeCompany = () => {
-    if (!orgNumber.trim()) {
-      toast.error("Please enter an organization number");
-      return;
+  // Show welcome tour on first visit
+  useEffect(() => {
+    const hasSeenTour = localStorage.getItem('hasSeenWelcomeTour');
+    if (!hasSeenTour) {
+      setShowWelcomeTour(true);
     }
-    if (orgNumber.length !== 9) {
-      toast.error("Organization number must be exactly 9 digits");
-      return;
-    }
-    // Navigate to CompanyLookup with org number
-    setLocation(`/company-lookup?orgnr=${orgNumber}`);
+  }, []);
+
+  const completeTour = () => {
+    localStorage.setItem('hasSeenWelcomeTour', 'true');
+    setShowWelcomeTour(false);
+    setTourStep(0);
   };
 
+  const tourSteps = [
+    {
+      title: 'Welcome to TRUE ASI',
+      description: 'Experience artificial superintelligence that surpasses every AI system on the planet.',
+      icon: <Brain className="w-12 h-12 text-blue-500" />,
+    },
+    {
+      title: '193 AI Models Combined',
+      description: 'TRUE ASI Ultra combines GPT-4, Claude 3.5, Gemini 1.5 Pro, Llama 3.3, and 189 more models in parallel for unprecedented intelligence.',
+      icon: <Zap className="w-12 h-12 text-yellow-500" />,
+    },
+    {
+      title: '6.54TB Knowledge Base',
+      description: 'Access 57,419 files from AWS S3, 250 specialized agents from GitHub, and 1700+ platform integrations.',
+      icon: <Database className="w-12 h-12 text-green-500" />,
+    },
+    {
+      title: 'Complete Business Automation',
+      description: 'Analyze Norwegian companies instantly with Brreg, Forvalt credit ratings, and AI-powered recommendations.',
+      icon: <Bot className="w-12 h-12 text-purple-500" />,
+    },
+  ];
+
+  const features = [
+    {
+      icon: <Brain className="w-8 h-8" />,
+      title: 'TRUE ASI Ultra',
+      description: 'All 193 AI models working together simultaneously',
+      color: 'from-blue-500 to-cyan-500',
+    },
+    {
+      icon: <Zap className="w-8 h-8" />,
+      title: 'Instant Analysis',
+      description: 'Company intelligence in seconds with Redis caching',
+      color: 'from-yellow-500 to-orange-500',
+    },
+    {
+      icon: <Shield className="w-8 h-8" />,
+      title: 'Enterprise Security',
+      description: 'Bank-level encryption and data protection',
+      color: 'from-green-500 to-emerald-500',
+    },
+    {
+      icon: <Globe className="w-8 h-8" />,
+      title: '1700+ Integrations',
+      description: 'Connect to every major platform and service',
+      color: 'from-purple-500 to-pink-500',
+    },
+    {
+      icon: <Database className="w-8 h-8" />,
+      title: '6.54TB Knowledge',
+      description: '57,419 files and 250 specialized AI agents',
+      color: 'from-red-500 to-rose-500',
+    },
+    {
+      icon: <Bot className="w-8 h-8" />,
+      title: 'Full Automation',
+      description: 'Automate every business process end-to-end',
+      color: 'from-indigo-500 to-blue-500',
+    },
+  ];
+
+  const platforms = [
+    'Brreg', 'Forvalt', 'Stripe', 'HubSpot', 'Salesforce', 'Google Workspace',
+    'Microsoft 365', 'Slack', 'Asana', 'Monday.com', 'Notion', 'Airtable',
+    'Zapier', 'Make', 'AWS', 'Azure', 'GCP', 'OpenAI', 'Anthropic', 'Google AI',
+  ];
+
   return (
-    <div className="min-h-screen bg-background relative">
-      {/* Spiral Flow Animated Background */}
-      <SpiralFlowBackground />
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-border">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Brain className="w-8 h-8 text-primary" />
-              <span className="text-2xl font-bold text-gradient">TRUE ASI</span>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white overflow-hidden">
+      {/* Animated 3D Background */}
+      <div className="fixed inset-0 opacity-30">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_50%)] animate-pulse" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl opacity-20 animate-blob" />
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
+        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-cyan-500 rounded-full filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
+      </div>
+
+      {/* Welcome Tour Modal */}
+      <Dialog open={showWelcomeTour} onOpenChange={setShowWelcomeTour}>
+        <DialogContent className="sm:max-w-md bg-gray-900 border-gray-700">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute right-4 top-4"
+            onClick={completeTour}
+          >
+            <X className="w-4 h-4" />
+          </Button>
+          <DialogHeader>
+            <div className="flex justify-center mb-4">
+              {tourSteps[tourStep].icon}
             </div>
-            <div className="hidden md:flex items-center space-x-6">
-              <a href="/dashboard" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
-                Dashboard
-              </a>
-              <a href="/agents" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
-                Agents
-              </a>
-              <a href="/chat" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
-                Chat
-              </a>
-              <a href="/company-lookup" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
-                Company Lookup
-              </a>
-              <a href="/automation" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
-                Automation
-              </a>
-              <a href="/documentation" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
-                Docs
-              </a>
-              <a href="/s7-test" className="text-foreground/80 hover:text-foreground transition-colors text-sm">
-                S-7 Test
-              </a>
+            <DialogTitle className="text-center text-2xl">
+              {tourSteps[tourStep].title}
+            </DialogTitle>
+            <DialogDescription className="text-center text-gray-300 text-lg">
+              {tourSteps[tourStep].description}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-between items-center mt-6">
+            <div className="flex gap-2">
+              {tourSteps.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-2 h-2 rounded-full ${
+                    index === tourStep ? 'bg-blue-500' : 'bg-gray-600'
+                  }`}
+                />
+              ))}
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="hidden md:flex items-center space-x-4">
-                {isAuthenticated ? (
-                  <>
-                    <span className="text-sm text-muted-foreground">
-                      Welcome, {user?.name || user?.email}
-                    </span>
-                    <Button variant="outline" onClick={logout}>
-                      Logout
-                    </Button>
-                  </>
-                ) : (
-                  <Button asChild>
-                    <a href="/company-lookup">Get Started</a>
+            <div className="flex gap-2">
+              {tourStep < tourSteps.length - 1 ? (
+                <>
+                  <Button variant="ghost" onClick={completeTour}>
+                    Skip
                   </Button>
-                )}
-              </div>
-              <MobileMenu onLogout={logout} />
+                  <Button onClick={() => setTourStep(tourStep + 1)}>
+                    Next
+                  </Button>
+                </>
+              ) : (
+                <Button onClick={completeTour}>
+                  Get Started
+                </Button>
+              )}
             </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Navigation */}
+      <nav className="relative z-10 border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Brain className="w-8 h-8 text-blue-500" />
+            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              TRUE ASI
+            </span>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link href="/dashboard">
+              <Button variant="ghost">Dashboard</Button>
+            </Link>
+            <Link href="/agents">
+              <Button variant="ghost">Agents</Button>
+            </Link>
+            <Link href="/chat-asi">
+              <Button variant="ghost">Chat</Button>
+            </Link>
+            <Link href="/company-lookup">
+              <Button variant="ghost">Company Lookup</Button>
+            </Link>
+            <Link href="/docs">
+              <Button variant="ghost">Docs</Button>
+            </Link>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section with 3D Background */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* 3D Background */}
-        <div className="absolute inset-0 z-0">
-          <Hero3D />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
+      {/* Hero Section */}
+      <section className="relative z-10 container mx-auto px-4 py-20 text-center">
+        <div className="inline-block mb-4 px-4 py-2 bg-blue-500/20 border border-blue-500/50 rounded-full">
+          <span className="flex items-center gap-2 text-blue-300">
+            <Sparkles className="w-4 h-4" />
+            Artificial Superintelligence System
+          </span>
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 container mx-auto px-6 py-32 text-center">
-          <Badge className="mb-6 px-4 py-2 text-sm font-medium bg-primary/10 text-primary border-primary/20">
-            <Sparkles className="w-4 h-4 inline mr-2" />
-            Artificial Superintelligence System
-          </Badge>
+        <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent animate-gradient">
+          The Future of Intelligence
+        </h1>
 
-          <h1 className="mb-8 text-6xl md:text-7xl lg:text-8xl font-bold text-gradient animate-gradient leading-tight">
-            The Future of Intelligence
-          </h1>
+        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          Experience true artificial superintelligence with 250 specialized agents, 6.54TB of knowledge, and real-time access to all leading AI models. Built to outcompete every AI system on the planet.
+        </p>
 
-          <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed font-light">
-            Experience true artificial superintelligence with 250 specialized agents,
-            6.54TB of knowledge, and real-time access to all leading AI models.
-            Built to outcompete every AI system on the planet.
-          </p>
-
-          {/* Organization Number Input - Primary CTA */}
-          <div className="max-w-2xl mx-auto mb-12">
-            <Card className="card-glass p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <Building2 className="w-6 h-6 text-primary" />
-                <h3 className="text-2xl font-bold">Analyze Norwegian Company</h3>
-              </div>
-              <p className="text-muted-foreground mb-6">
-                Enter a Norwegian organization number to get instant AI-powered business intelligence,
-                credit ratings, and automated recommendations.
-              </p>
-              <div className="flex gap-3">
-                <Input
-                  type="text"
-                  placeholder="Enter 9-digit org number (e.g., 923609016)"
-                  value={orgNumber}
-                  onChange={(e) => setOrgNumber(e.target.value.replace(/\D/g, '').slice(0, 9))}
-                  onKeyDown={(e) => e.key === 'Enter' && handleAnalyzeCompany()}
-                  className="text-lg"
-                />
-                <Button size="lg" className="btn-primary" onClick={handleAnalyzeCompany}>
-                  <Search className="w-5 h-5 mr-2" />
-                  Analyze
-                </Button>
-              </div>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="text-sm text-muted-foreground">Try examples:</span>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setOrgNumber("923609016")}
-                  className="text-xs"
-                >
-                  Equinor (923609016)
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setOrgNumber("984851006")}
-                  className="text-xs"
-                >
-                  DNB Bank (984851006)
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setOrgNumber("976820479")}
-                  className="text-xs"
-                >
-                  Telenor (976820479)
-                </Button>
-              </div>
-            </Card>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Button size="lg" className="btn-primary group" asChild>
-              <a href="/chat">
-                Start Chat
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <Link href="/company-lookup">
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-6">
+              Analyze Norwegian Company
+              <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            <Button size="lg" variant="outline" className="btn-ghost" asChild>
-              <a href="/documentation">View Documentation</a>
+          </Link>
+          <Link href="/chat-asi">
+            <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-gray-600 hover:bg-gray-800">
+              Try TRUE ASI Ultra
             </Button>
-          </div>
+          </Link>
+          <Button
+            size="lg"
+            variant="ghost"
+            onClick={() => setShowWelcomeTour(true)}
+            className="text-lg px-8 py-6"
+          >
+            Take Tour
+          </Button>
+        </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {[
-              { label: "Agents", value: "250+", icon: Brain },
-              { label: "Knowledge", value: "6.54TB", icon: Database },
-              { label: "Models", value: "All", icon: Network },
-              { label: "Uptime", value: "99.9%", icon: Activity },
-            ].map((stat, i) => (
-              <Card
-                key={i}
-                className="card-glass p-6 text-center hover:scale-105 transition-transform duration-300"
-              >
-                <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
-                <div className="text-3xl font-bold text-gradient mb-1">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </Card>
-            ))}
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          <div>
+            <div className="text-4xl font-bold text-blue-400">193</div>
+            <div className="text-gray-400">AI Models</div>
+          </div>
+          <div>
+            <div className="text-4xl font-bold text-cyan-400">6.54TB</div>
+            <div className="text-gray-400">Knowledge Base</div>
+          </div>
+          <div>
+            <div className="text-4xl font-bold text-purple-400">250</div>
+            <div className="text-gray-400">AI Agents</div>
+          </div>
+          <div>
+            <div className="text-4xl font-bold text-green-400">1700+</div>
+            <div className="text-gray-400">Integrations</div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-32 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 px-4 py-2 bg-secondary/10 text-secondary border-secondary/20">
-              <Zap className="w-4 h-4 inline mr-2" />
-              Core Capabilities
-            </Badge>
-            <h2 className="mb-6">Built for the Future</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Every component engineered to deliver 100/100 quality and outperform
-              all existing AI systems.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Brain,
-                title: "250 Specialized Agents",
-                description:
-                  "Each agent trained on specific domains with 100% functional capabilities and real-time coordination.",
-                color: "text-primary",
-              },
-              {
-                icon: Network,
-                title: "Multi-Model Access",
-                description:
-                  "Simultaneous access to OpenAI, Anthropic, Google, Cohere, and 10+ other leading AI models.",
-                color: "text-secondary",
-              },
-              {
-                icon: Database,
-                title: "6.54TB Knowledge Base",
-                description:
-                  "1.17M files of curated knowledge including code, research, and real-time data integration.",
-                color: "text-accent",
-              },
-              {
-                icon: Zap,
-                title: "Real-Time Processing",
-                description:
-                  "Sub-second response times with parallel processing across distributed infrastructure.",
-                color: "text-warning",
-              },
-              {
-                icon: Shield,
-                title: "Enterprise Security",
-                description:
-                  "Bank-level encryption, role-based access control, and complete audit trails.",
-                color: "text-success",
-              },
-              {
-                icon: TrendingUp,
-                title: "Self-Improving",
-                description:
-                  "Continuous learning and optimization with formal verification and plateau escape mechanisms.",
-                color: "text-info",
-              },
-            ].map((feature, i) => (
-              <Card
-                key={i}
-                className="card-elevated p-8 hover:shadow-2xl transition-all duration-300 group"
-              >
-                <div className={`w-14 h-14 rounded-xl bg-${feature.color}/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                  <feature.icon className={`w-7 h-7 ${feature.color}`} />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {feature.description}
-                </p>
-              </Card>
-            ))}
-          </div>
+      <section className="relative z-10 container mx-auto px-4 py-20">
+        <h2 className="text-4xl font-bold text-center mb-12">
+          Unprecedented Capabilities
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feature, index) => (
+            <Card
+              key={index}
+              className="bg-gray-800/50 border-gray-700 p-6 hover:bg-gray-800/70 transition-all duration-300 hover:scale-105"
+            >
+              <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${feature.color} mb-4`}>
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+              <p className="text-gray-400">{feature.description}</p>
+            </Card>
+          ))}
         </div>
       </section>
 
-      {/* Capabilities Section */}
-      <section id="capabilities" className="py-32">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <Badge className="mb-4 px-4 py-2 bg-accent/10 text-accent border-accent/20">
-                <Cpu className="w-4 h-4 inline mr-2" />
-                Technical Excellence
-              </Badge>
-              <h2 className="mb-6">State-of-the-Art Architecture</h2>
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                Built on cutting-edge distributed computing with quantum-ready
-                infrastructure and exascale computing support.
-              </p>
-
-              <div className="space-y-4">
-                {[
-                  "Trillion-node knowledge hypergraph",
-                  "Formal verification methods",
-                  "Dynamic resource optimization",
-                  "Emergent property facilitation",
-                  "Novel algorithm generation",
-                  "Continuous learning framework",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center space-x-3">
-                    <CheckCircle2 className="w-6 h-6 text-success flex-shrink-0" />
-                    <span className="text-lg">{item}</span>
-                  </div>
-                ))}
-              </div>
+      {/* Integrated Platforms */}
+      <section className="relative z-10 container mx-auto px-4 py-20">
+        <h2 className="text-4xl font-bold text-center mb-12">
+          Integrated Platforms
+        </h2>
+        <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
+          {platforms.map((platform, index) => (
+            <div
+              key={index}
+              className="px-6 py-3 bg-gray-800/50 border border-gray-700 rounded-full hover:bg-gray-800 transition-colors"
+            >
+              {platform}
             </div>
-
-            <div className="relative">
-              <div className="card-glass p-8 rounded-2xl">
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between p-4 bg-primary/10 rounded-lg">
-                    <span className="font-medium">System Status</span>
-                    <Badge className="badge-success">Operational</Badge>
-                  </div>
-                  <div className="flex items-center justify-between p-4 bg-secondary/10 rounded-lg">
-                    <span className="font-medium">Active Agents</span>
-                    <span className="text-2xl font-bold text-gradient">250</span>
-                  </div>
-                  <div className="flex items-center justify-between p-4 bg-accent/10 rounded-lg">
-                    <span className="font-medium">Processing Power</span>
-                    <span className="text-2xl font-bold text-gradient">8 vCPUs</span>
-                  </div>
-                  <div className="flex items-center justify-between p-4 bg-success/10 rounded-lg">
-                    <span className="font-medium">Knowledge Base</span>
-                    <span className="text-2xl font-bold text-gradient">6.54TB</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
-        <div className="container mx-auto px-6 text-center">
-          <Globe className="w-16 h-16 mx-auto mb-6 text-primary animate-float" />
-          <h2 className="mb-6">Ready to Experience True ASI?</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
-            Join the future of artificial intelligence. Get instant access to 250 agents,
-            6.54TB of knowledge, and unlimited AI model access.
+      <section className="relative z-10 container mx-auto px-4 py-20 text-center">
+        <Card className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 border-blue-700 p-12">
+          <h2 className="text-4xl font-bold mb-4">
+            Ready to Experience TRUE ASI?
+          </h2>
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Enter a Norwegian organization number to get instant AI-powered business intelligence, credit ratings, and automated recommendations.
           </p>
-          <Button size="lg" className="btn-primary group" asChild>
-            <a href="/company-lookup">
-              Analyze Company Now
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </Button>
-        </div>
+          <Link href="/company-lookup">
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-6">
+              Get Started Now
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </Link>
+        </Card>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-border">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <Brain className="w-6 h-6 text-primary" />
-              <span className="text-lg font-bold text-gradient">TRUE ASI</span>
+      <footer className="relative z-10 border-t border-gray-800 bg-gray-900/50 backdrop-blur-sm mt-20">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Brain className="w-6 h-6 text-blue-500" />
+                <span className="text-xl font-bold">TRUE ASI</span>
+              </div>
+              <p className="text-gray-400">
+                Artificial Superintelligence System
+              </p>
             </div>
-            <div className="text-sm text-muted-foreground">
-              © 2024 TRUE ASI System. Built for superintelligence.
+            <div>
+              <h3 className="font-bold mb-4">Product</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/dashboard"><a className="hover:text-white">Dashboard</a></Link></li>
+                <li><Link href="/agents"><a className="hover:text-white">Agents</a></Link></li>
+                <li><Link href="/chat-asi"><a className="hover:text-white">Chat</a></Link></li>
+                <li><Link href="/company-lookup"><a className="hover:text-white">Company Lookup</a></Link></li>
+              </ul>
             </div>
+            <div>
+              <h3 className="font-bold mb-4">Resources</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/docs"><a className="hover:text-white">Documentation</a></Link></li>
+                <li><Link href="/automation"><a className="hover:text-white">Automation</a></Link></li>
+                <li><a href="https://github.com/AICSSUPERVISOR/true-asi-system" target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold mb-4">Company</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="https://innovatechkapital.ai" target="_blank" rel="noopener noreferrer" className="hover:text-white">InnovatechKapital.ai</a></li>
+                <li><a href="https://forvalt.no" target="_blank" rel="noopener noreferrer" className="hover:text-white">Forvalt.no</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>© 2025 TRUE ASI. All rights reserved.</p>
           </div>
         </div>
       </footer>
+
+      <style>{`
+        @keyframes blob {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+        @keyframes gradient {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradient 3s ease infinite;
+        }
+      `}</style>
     </div>
   );
 }

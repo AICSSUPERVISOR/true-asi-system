@@ -44,6 +44,7 @@ import {
 } from 'lucide-react';
 import { trpc } from '@/lib/trpc';
 import { Streamdown } from 'streamdown';
+import { VoiceInput } from '@/components/VoiceInput';
 
 interface Message {
   id: string;
@@ -399,14 +400,17 @@ export default function ChatASI() {
                   className="flex-1 bg-transparent border-none focus-visible:ring-0 text-white placeholder:text-gray-400"
                 />
                 
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={handleVoiceInput}
-                  className={`flex-shrink-0 ${isRecording ? 'text-red-500' : ''}`}
-                >
-                  <Mic className="w-5 h-5" />
-                </Button>
+                <VoiceInput
+                  onTranscript={(text) => {
+                    setInput((prev) => (prev ? prev + ' ' + text : text));
+                  }}
+                  onError={(error) => {
+                    console.error('Voice input error:', error);
+                  }}
+                  language="en-US"
+                  continuous={false}
+                  className="flex-shrink-0"
+                />
                 
                 <Button
                   onClick={handleSendMessage}
