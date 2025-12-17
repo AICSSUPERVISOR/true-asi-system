@@ -1,0 +1,159 @@
+{
+  "s3_recovered_models": [
+    "xai-org/grok-2",
+    "Salesforce/codegen-16B-mono",
+    "WizardLM/WizardCoder-15B-V1.0",
+    "facebook/incoder-6B",
+    "EleutherAI/gpt-j-6b",
+    "meta-llama/Llama-3.1-70B-Instruct"
+  ],
+  "meta_llama": [
+    "meta-llama/Llama-3.3-70B-Instruct",
+    "meta-llama/Llama-3.1-405B-Instruct",
+    "meta-llama/Llama-3.1-70B-Instruct",
+    "meta-llama/Llama-3.1-8B-Instruct",
+    "meta-llama/Llama-3-70B-Instruct",
+    "meta-llama/Llama-3-8B-Instruct",
+    "meta-llama/Llama-2-70b-hf",
+    "meta-llama/Llama-2-13b-hf",
+    "meta-llama/Llama-2-7b-hf"
+  ],
+  "mistral": [
+    "mistralai/Mistral-Large-Instruct-2407",
+    "mistralai/Mixtral-8x22B-Instruct-v0.1",
+    "mistralai/Mixtral-8x7B-Instruct-v0.1",
+    "mistralai/Mistral-7B-Instruct-v0.3",
+    "mistralai/Codestral-22B-v0.1"
+  ],
+  "google": [
+    "google/gemma-2-27b-it",
+    "google/gemma-2-9b-it",
+    "google/gemma-2-2b-it",
+    "google/codegemma-7b-it",
+    "google/codegemma-2b"
+  ],
+  "qwen": [
+    "Qwen/Qwen2.5-72B-Instruct",
+    "Qwen/Qwen2.5-32B-Instruct",
+    "Qwen/Qwen2.5-14B-Instruct",
+    "Qwen/Qwen2.5-7B-Instruct",
+    "Qwen/Qwen2.5-3B-Instruct",
+    "Qwen/Qwen2.5-1.5B-Instruct",
+    "Qwen/Qwen2.5-0.5B-Instruct",
+    "Qwen/Qwen-VL-Chat"
+  ],
+  "deepseek": [
+    "deepseek-ai/DeepSeek-V3",
+    "deepseek-ai/DeepSeek-R1",
+    "deepseek-ai/DeepSeek-Coder-V2-Instruct",
+    "deepseek-ai/deepseek-coder-33b-instruct",
+    "deepseek-ai/deepseek-coder-6.7b-instruct",
+    "deepseek-ai/deepseek-coder-1.3b-instruct",
+    "deepseek-ai/deepseek-math-7b-instruct"
+  ],
+  "code_models": [
+    "meta-llama/CodeLlama-70b-Instruct-hf",
+    "meta-llama/CodeLlama-34b-Instruct-hf",
+    "meta-llama/CodeLlama-13b-Instruct-hf",
+    "meta-llama/CodeLlama-7b-Instruct-hf",
+    "bigcode/starcoder2-15b",
+    "bigcode/starcoder2-7b",
+    "bigcode/starcoder2-3b",
+    "Salesforce/codegen2-16B",
+    "Salesforce/codegen2-7B",
+    "Salesforce/codegen2-3_7B",
+    "Salesforce/codegen2-1B",
+    "WizardLM/WizardCoder-33B-V1.1",
+    "WizardLM/WizardCoder-15B-V1.0",
+    "Phind/Phind-CodeLlama-34B-v2"
+  ],
+  "math_reasoning": [
+    "EleutherAI/llemma_34b",
+    "EleutherAI/llemma_7b",
+    "TIGER-Lab/MAmmoTH-70B",
+    "TIGER-Lab/MAmmoTH-13B",
+    "TIGER-Lab/MAmmoTH-7B",
+    "WizardLM/WizardMath-70B-V1.0",
+    "WizardLM/WizardMath-13B-V1.0",
+    "WizardLM/WizardMath-7B-V1.0",
+    "GAIR/Abel-70B",
+    "GAIR/Abel-13B",
+    "GAIR/Abel-7B"
+  ],
+  "instruction_tuned": [
+    "lmsys/vicuna-33b-v1.3",
+    "lmsys/vicuna-13b-v1.5",
+    "lmsys/vicuna-7b-v1.5",
+    "timdettmers/guanaco-65b",
+    "timdettmers/guanaco-33b",
+    "timdettmers/guanaco-13b",
+    "timdettmers/guanaco-7b",
+    "microsoft/Orca-2-13b",
+    "microsoft/Orca-2-7b",
+    "Open-Orca/Mistral-7B-OpenOrca",
+    "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO",
+    "NousResearch/Nous-Hermes-Llama2-70b",
+    "NousResearch/Nous-Hermes-Llama2-13b",
+    "WizardLM/WizardLM-70B-V1.0",
+    "WizardLM/WizardLM-13B-V1.2",
+    "WizardLM/WizardLM-7B-V1.0"
+  ],
+  "chat_optimized": [
+    "THUDM/chatglm3-6b",
+    "baichuan-inc/Baichuan2-13B-Chat",
+    "baichuan-inc/Baichuan2-7B-Chat",
+    "internlm/internlm2-chat-20b",
+    "internlm/internlm2-chat-7b",
+    "01-ai/Yi-34B-Chat",
+    "01-ai/Yi-6B-Chat",
+    "tiiuae/falcon-180B",
+    "tiiuae/falcon-40b-instruct",
+    "tiiuae/falcon-7b-instruct",
+    "mosaicml/mpt-30b-chat",
+    "mosaicml/mpt-7b-chat",
+    "stabilityai/stablelm-tuned-alpha-7b",
+    "openchat/openchat-3.5-0106"
+  ],
+  "small_efficient": [
+    "microsoft/Phi-3-medium-4k-instruct",
+    "microsoft/Phi-3-small-8k-instruct",
+    "microsoft/Phi-3-mini-4k-instruct",
+    "microsoft/phi-2",
+    "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "HuggingFaceTB/SmolLM-1.7B-Instruct",
+    "HuggingFaceTB/SmolLM-360M-Instruct",
+    "HuggingFaceTB/SmolLM-135M-Instruct",
+    "stabilityai/stablelm-zephyr-3b"
+  ],
+  "multimodal": [
+    "liuhaotian/llava-v1.6-34b",
+    "liuhaotian/llava-v1.5-13b",
+    "liuhaotian/llava-v1.5-7b",
+    "Salesforce/blip2-opt-6.7b",
+    "Salesforce/blip2-opt-2.7b"
+  ],
+  "embedding": [
+    "sentence-transformers/all-mpnet-base-v2",
+    "sentence-transformers/all-MiniLM-L6-v2",
+    "intfloat/e5-large-v2",
+    "intfloat/e5-base-v2",
+    "intfloat/e5-small-v2",
+    "BAAI/bge-large-en-v1.5",
+    "BAAI/bge-base-en-v1.5",
+    "BAAI/bge-small-en-v1.5"
+  ],
+  "medical": [
+    "microsoft/BioGPT-Large",
+    "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext",
+    "dmis-lab/biobert-v1.1",
+    "emilyalsentzer/Bio_ClinicalBERT",
+    "UFNLP/gatortron-base"
+  ],
+  "multilingual": [
+    "bigscience/bloom-7b1",
+    "bigscience/bloom-3b",
+    "bigscience/bloom-1b7",
+    "bigscience/bloom-560m",
+    "inceptionai/jais-13b-chat"
+  ]
+}

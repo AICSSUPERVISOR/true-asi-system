@@ -1,0 +1,770 @@
+{
+  "total_models": 127,
+  "configs_downloaded": 0,
+  "download_scripts_created": 127,
+  "results": [
+    {
+      "model_id": "xai-org/grok-2",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "s3_recovered_models"
+    },
+    {
+      "model_id": "Salesforce/codegen-16B-mono",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "s3_recovered_models"
+    },
+    {
+      "model_id": "WizardLM/WizardCoder-15B-V1.0",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "s3_recovered_models"
+    },
+    {
+      "model_id": "facebook/incoder-6B",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "s3_recovered_models"
+    },
+    {
+      "model_id": "EleutherAI/gpt-j-6b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "s3_recovered_models"
+    },
+    {
+      "model_id": "meta-llama/Llama-3.1-70B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "s3_recovered_models"
+    },
+    {
+      "model_id": "meta-llama/Llama-3.3-70B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "meta_llama"
+    },
+    {
+      "model_id": "meta-llama/Llama-3.1-405B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "meta_llama"
+    },
+    {
+      "model_id": "meta-llama/Llama-3.1-70B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "meta_llama"
+    },
+    {
+      "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "meta_llama"
+    },
+    {
+      "model_id": "meta-llama/Llama-3-70B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "meta_llama"
+    },
+    {
+      "model_id": "meta-llama/Llama-3-8B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "meta_llama"
+    },
+    {
+      "model_id": "meta-llama/Llama-2-70b-hf",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "meta_llama"
+    },
+    {
+      "model_id": "meta-llama/Llama-2-13b-hf",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "meta_llama"
+    },
+    {
+      "model_id": "meta-llama/Llama-2-7b-hf",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "meta_llama"
+    },
+    {
+      "model_id": "mistralai/Mistral-Large-Instruct-2407",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "mistral"
+    },
+    {
+      "model_id": "mistralai/Mixtral-8x22B-Instruct-v0.1",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "mistral"
+    },
+    {
+      "model_id": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "mistral"
+    },
+    {
+      "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "mistral"
+    },
+    {
+      "model_id": "mistralai/Codestral-22B-v0.1",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "mistral"
+    },
+    {
+      "model_id": "google/gemma-2-27b-it",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "google"
+    },
+    {
+      "model_id": "google/gemma-2-9b-it",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "google"
+    },
+    {
+      "model_id": "google/gemma-2-2b-it",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "google"
+    },
+    {
+      "model_id": "google/codegemma-7b-it",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "google"
+    },
+    {
+      "model_id": "google/codegemma-2b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "google"
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-72B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "qwen"
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-32B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "qwen"
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-14B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "qwen"
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "qwen"
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-3B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "qwen"
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "qwen"
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "qwen"
+    },
+    {
+      "model_id": "Qwen/Qwen-VL-Chat",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "qwen"
+    },
+    {
+      "model_id": "deepseek-ai/DeepSeek-V3",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "deepseek"
+    },
+    {
+      "model_id": "deepseek-ai/DeepSeek-R1",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "deepseek"
+    },
+    {
+      "model_id": "deepseek-ai/DeepSeek-Coder-V2-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "deepseek"
+    },
+    {
+      "model_id": "deepseek-ai/deepseek-coder-33b-instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "deepseek"
+    },
+    {
+      "model_id": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "deepseek"
+    },
+    {
+      "model_id": "deepseek-ai/deepseek-coder-1.3b-instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "deepseek"
+    },
+    {
+      "model_id": "deepseek-ai/deepseek-math-7b-instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "deepseek"
+    },
+    {
+      "model_id": "meta-llama/CodeLlama-70b-Instruct-hf",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "meta-llama/CodeLlama-34b-Instruct-hf",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "meta-llama/CodeLlama-13b-Instruct-hf",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "meta-llama/CodeLlama-7b-Instruct-hf",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "bigcode/starcoder2-15b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "bigcode/starcoder2-7b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "bigcode/starcoder2-3b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "Salesforce/codegen2-16B",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "Salesforce/codegen2-7B",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "Salesforce/codegen2-3_7B",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "Salesforce/codegen2-1B",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "WizardLM/WizardCoder-33B-V1.1",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "WizardLM/WizardCoder-15B-V1.0",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "Phind/Phind-CodeLlama-34B-v2",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "code_models"
+    },
+    {
+      "model_id": "EleutherAI/llemma_34b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "math_reasoning"
+    },
+    {
+      "model_id": "EleutherAI/llemma_7b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "math_reasoning"
+    },
+    {
+      "model_id": "TIGER-Lab/MAmmoTH-70B",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "math_reasoning"
+    },
+    {
+      "model_id": "TIGER-Lab/MAmmoTH-13B",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "math_reasoning"
+    },
+    {
+      "model_id": "TIGER-Lab/MAmmoTH-7B",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "math_reasoning"
+    },
+    {
+      "model_id": "WizardLM/WizardMath-70B-V1.0",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "math_reasoning"
+    },
+    {
+      "model_id": "WizardLM/WizardMath-13B-V1.0",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "math_reasoning"
+    },
+    {
+      "model_id": "WizardLM/WizardMath-7B-V1.0",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "math_reasoning"
+    },
+    {
+      "model_id": "GAIR/Abel-70B",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "math_reasoning"
+    },
+    {
+      "model_id": "GAIR/Abel-13B",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "math_reasoning"
+    },
+    {
+      "model_id": "GAIR/Abel-7B",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "math_reasoning"
+    },
+    {
+      "model_id": "lmsys/vicuna-33b-v1.3",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "lmsys/vicuna-13b-v1.5",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "lmsys/vicuna-7b-v1.5",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "timdettmers/guanaco-65b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "timdettmers/guanaco-33b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "timdettmers/guanaco-13b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "timdettmers/guanaco-7b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "microsoft/Orca-2-13b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "microsoft/Orca-2-7b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "Open-Orca/Mistral-7B-OpenOrca",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "NousResearch/Nous-Hermes-Llama2-70b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "NousResearch/Nous-Hermes-Llama2-13b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "WizardLM/WizardLM-70B-V1.0",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "WizardLM/WizardLM-13B-V1.2",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "WizardLM/WizardLM-7B-V1.0",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "instruction_tuned"
+    },
+    {
+      "model_id": "THUDM/chatglm3-6b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "baichuan-inc/Baichuan2-13B-Chat",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "baichuan-inc/Baichuan2-7B-Chat",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "internlm/internlm2-chat-20b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "internlm/internlm2-chat-7b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "01-ai/Yi-34B-Chat",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "01-ai/Yi-6B-Chat",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "tiiuae/falcon-180B",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "tiiuae/falcon-40b-instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "tiiuae/falcon-7b-instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "mosaicml/mpt-30b-chat",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "mosaicml/mpt-7b-chat",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "stabilityai/stablelm-tuned-alpha-7b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "openchat/openchat-3.5-0106",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "chat_optimized"
+    },
+    {
+      "model_id": "microsoft/Phi-3-medium-4k-instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "small_efficient"
+    },
+    {
+      "model_id": "microsoft/Phi-3-small-8k-instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "small_efficient"
+    },
+    {
+      "model_id": "microsoft/Phi-3-mini-4k-instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "small_efficient"
+    },
+    {
+      "model_id": "microsoft/phi-2",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "small_efficient"
+    },
+    {
+      "model_id": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "small_efficient"
+    },
+    {
+      "model_id": "HuggingFaceTB/SmolLM-1.7B-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "small_efficient"
+    },
+    {
+      "model_id": "HuggingFaceTB/SmolLM-360M-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "small_efficient"
+    },
+    {
+      "model_id": "HuggingFaceTB/SmolLM-135M-Instruct",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "small_efficient"
+    },
+    {
+      "model_id": "stabilityai/stablelm-zephyr-3b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "small_efficient"
+    },
+    {
+      "model_id": "liuhaotian/llava-v1.6-34b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "multimodal"
+    },
+    {
+      "model_id": "liuhaotian/llava-v1.5-13b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "multimodal"
+    },
+    {
+      "model_id": "liuhaotian/llava-v1.5-7b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "multimodal"
+    },
+    {
+      "model_id": "Salesforce/blip2-opt-6.7b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "multimodal"
+    },
+    {
+      "model_id": "Salesforce/blip2-opt-2.7b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "multimodal"
+    },
+    {
+      "model_id": "sentence-transformers/all-mpnet-base-v2",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "embedding"
+    },
+    {
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "embedding"
+    },
+    {
+      "model_id": "intfloat/e5-large-v2",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "embedding"
+    },
+    {
+      "model_id": "intfloat/e5-base-v2",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "embedding"
+    },
+    {
+      "model_id": "intfloat/e5-small-v2",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "embedding"
+    },
+    {
+      "model_id": "BAAI/bge-large-en-v1.5",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "embedding"
+    },
+    {
+      "model_id": "BAAI/bge-base-en-v1.5",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "embedding"
+    },
+    {
+      "model_id": "BAAI/bge-small-en-v1.5",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "embedding"
+    },
+    {
+      "model_id": "microsoft/BioGPT-Large",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "medical"
+    },
+    {
+      "model_id": "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "medical"
+    },
+    {
+      "model_id": "dmis-lab/biobert-v1.1",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "medical"
+    },
+    {
+      "model_id": "emilyalsentzer/Bio_ClinicalBERT",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "medical"
+    },
+    {
+      "model_id": "UFNLP/gatortron-base",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "medical"
+    },
+    {
+      "model_id": "bigscience/bloom-7b1",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "multilingual"
+    },
+    {
+      "model_id": "bigscience/bloom-3b",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "multilingual"
+    },
+    {
+      "model_id": "bigscience/bloom-1b7",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "multilingual"
+    },
+    {
+      "model_id": "bigscience/bloom-560m",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "multilingual"
+    },
+    {
+      "model_id": "inceptionai/jais-13b-chat",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'huggingface-cli'",
+      "category": "multilingual"
+    }
+  ],
+  "timestamp": "2025-12-17T01:48:21.190413"
+}
