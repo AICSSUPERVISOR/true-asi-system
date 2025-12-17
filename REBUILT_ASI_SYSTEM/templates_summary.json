@@ -1,0 +1,49 @@
+{
+  "total_templates": 6108,
+  "categories": {
+    "contracts": 476,
+    "business_plans": 288,
+    "financial": 588,
+    "hr_templates": 400,
+    "marketing": 500,
+    "sales": 400,
+    "project_management": 336,
+    "technical": 500,
+    "legal_compliance": 336,
+    "customer_service": 300,
+    "operations": 348,
+    "research": 300,
+    "ai_ml_templates": 400,
+    "startup": 336,
+    "industry_specific": 600
+  },
+  "template_types": 261,
+  "formats_supported": [
+    "docx",
+    "pdf",
+    "google_docs",
+    "notion",
+    "markdown",
+    "html"
+  ],
+  "languages_supported": [
+    "en",
+    "no",
+    "de",
+    "fr",
+    "es",
+    "it",
+    "pt",
+    "nl",
+    "sv",
+    "da"
+  ],
+  "customization_options": [
+    "company_branding",
+    "custom_fields",
+    "conditional_sections",
+    "multi_language",
+    "version_control",
+    "approval_workflow"
+  ]
+}
