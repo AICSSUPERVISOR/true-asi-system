@@ -1,0 +1,132 @@
+{
+  "timestamp": "2025-12-17T23:04:05.407468",
+  "competitor_prices": [
+    {
+      "competitor": "Uber",
+      "route": "London to Heathrow",
+      "origin": "London, UK",
+      "destination": "Heathrow Airport (LHR)",
+      "price": 45.0,
+      "currency": "GBP",
+      "service_type": "UberX",
+      "source_url": "https://www.uber.com/global/en/r/routes/london-eng-gb-to-lhr/",
+      "scraped_at": "2025-12-17T23:04:05.407509"
+    },
+    {
+      "competitor": "Bolt",
+      "route": "London to Heathrow",
+      "origin": "London, UK",
+      "destination": "Heathrow Airport (LHR)",
+      "price": 42.0,
+      "currency": "GBP",
+      "service_type": "Bolt Standard",
+      "source_url": "https://bolt.eu/en/airports/lhr/",
+      "scraped_at": "2025-12-17T23:04:05.407509"
+    },
+    {
+      "competitor": "Uber",
+      "route": "Manhattan to JFK",
+      "origin": "Manhattan, NY",
+      "destination": "JFK Airport",
+      "price": 107.0,
+      "currency": "USD",
+      "service_type": "UberX",
+      "source_url": "https://www.uber.com/global/en/r/routes/manhattan-ny-to-jfk/",
+      "scraped_at": "2025-12-17T23:04:05.407509"
+    },
+    {
+      "competitor": "Lyft",
+      "route": "Manhattan to JFK",
+      "origin": "Manhattan, NY",
+      "destination": "JFK Airport",
+      "price": 95.0,
+      "currency": "USD",
+      "service_type": "Lyft Standard",
+      "source_url": "https://www.lyft.com/pricing/BKN",
+      "scraped_at": "2025-12-17T23:04:05.407509"
+    },
+    {
+      "competitor": "Uber",
+      "route": "San Francisco to SFO",
+      "origin": "San Francisco, CA",
+      "destination": "SFO Airport",
+      "price": 48.0,
+      "currency": "USD",
+      "service_type": "UberX",
+      "source_url": "https://www.uber.com/global/en/r/routes/sfo-to-san-francisco-ca/",
+      "scraped_at": "2025-12-17T23:04:05.407509"
+    },
+    {
+      "competitor": "Lyft",
+      "route": "San Francisco to SFO",
+      "origin": "San Francisco, CA",
+      "destination": "SFO Airport",
+      "price": 45.0,
+      "currency": "USD",
+      "service_type": "Lyft Standard",
+      "source_url": "https://www.lyft.com/pricing/SFO",
+      "scraped_at": "2025-12-17T23:04:05.407509"
+    }
+  ],
+  "velocity_prices": [
+    {
+      "route": "London to Heathrow",
+      "origin": "London, UK",
+      "destination": "Heathrow Airport (LHR)",
+      "competitor_prices": {
+        "uber": 45.0,
+        "bolt": 42.0
+      },
+      "velocity_standard_price": 38.64,
+      "velocity_autonomous_price": 23.18,
+      "discount_vs_uber": 14.1,
+      "discount_vs_bolt": 8.0,
+      "discount_vs_lyft": 0,
+      "currency": "GBP",
+      "calculated_at": "2025-12-17T23:04:05.407468"
+    },
+    {
+      "route": "Manhattan to JFK",
+      "origin": "Manhattan, NY",
+      "destination": "JFK Airport",
+      "competitor_prices": {
+        "uber": 107.0,
+        "lyft": 95.0
+      },
+      "velocity_standard_price": 85.5,
+      "velocity_autonomous_price": 51.3,
+      "discount_vs_uber": 20.1,
+      "discount_vs_bolt": 0,
+      "discount_vs_lyft": 10.0,
+      "currency": "USD",
+      "calculated_at": "2025-12-17T23:04:05.407468"
+    },
+    {
+      "route": "San Francisco to SFO",
+      "origin": "San Francisco, CA",
+      "destination": "SFO Airport",
+      "competitor_prices": {
+        "uber": 48.0,
+        "lyft": 45.0
+      },
+      "velocity_standard_price": 40.5,
+      "velocity_autonomous_price": 24.3,
+      "discount_vs_uber": 15.6,
+      "discount_vs_bolt": 0,
+      "discount_vs_lyft": 10.0,
+      "currency": "USD",
+      "calculated_at": "2025-12-17T23:04:05.407468"
+    }
+  ],
+  "summary": {
+    "total_routes_analyzed": 3,
+    "competitors_tracked": [
+      "Lyft",
+      "Bolt",
+      "Uber"
+    ],
+    "average_savings_vs_uber": 16.6,
+    "average_savings_vs_bolt": 8.0,
+    "average_savings_vs_lyft": 10.0
+  }
+}
