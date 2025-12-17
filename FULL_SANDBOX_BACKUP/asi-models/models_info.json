@@ -1,0 +1,147 @@
+{
+  "target": "85%+ ARC-AGI-1 (Superhuman)",
+  "human_baseline": "85%",
+  "current_sota": "62.8% (MIT TTT)",
+  "created": "2025-12-09",
+  
+  "models": {
+    "marc-8B": {
+      "name": "MARC-8B (MIT Test-Time Training)",
+      "huggingface_id": "ekinakyurek/marc-8B-finetuned-llama3",
+      "url": "https://huggingface.co/ekinakyurek/marc-8B-finetuned-llama3",
+      "paper": "https://arxiv.org/abs/2411.07279",
+      "github": "https://github.com/ekinakyurek/marc",
+      "size_gb": 16,
+      "parameters": "8B",
+      "expected_accuracy": 0.628,
+      "ensemble_weight": 0.35,
+      "gpu_required": "A100 40GB+",
+      "vram_required_gb": 20,
+      "description": "State-of-the-art ARC-AGI solver using test-time training. Fine-tuned Llama-3 8B on ARC tasks with TTT methodology.",
+      "key_features": [
+        "Test-time training on each task",
+        "Fine-tuned specifically for ARC-AGI",
+        "Best single-model performance"
+      ]
+    },
+    
+    "qwen3-8B": {
+      "name": "Qwen3-8B",
+      "huggingface_id": "Qwen/Qwen3-8B",
+      "url": "https://huggingface.co/Qwen/Qwen3-8B",
+      "size_gb": 16,
+      "parameters": "8B",
+      "expected_accuracy": 0.45,
+      "ensemble_weight": 0.20,
+      "gpu_required": "RTX 4090+",
+      "vram_required_gb": 18,
+      "description": "Strong general reasoning model from Alibaba. Excellent at logical reasoning and pattern recognition.",
+      "key_features": [
+        "Strong reasoning capabilities",
+        "Good at pattern recognition",
+        "Fast inference"
+      ]
+    },
+    
+    "deepseek-coder-v2": {
+      "name": "DeepSeek-Coder-V2-Lite-Instruct",
+      "huggingface_id": "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
+      "size_gb": 32,
+      "parameters": "16B",
+      "expected_accuracy": 0.40,
+      "ensemble_weight": 0.20,
+      "gpu_required": "A100 40GB+",
+      "vram_required_gb": 35,
+      "description": "Specialized code generation model. Excellent at generating Python transformations for ARC tasks.",
+      "key_features": [
+        "Code generation for transformations",
+        "Program synthesis capability",
+        "Verification through execution"
+      ]
+    },
+    
+    "nvarc": {
+      "name": "NVARC (NVIDIA ARC-AGI)",
+      "huggingface_id": "nvidia/ARC-AGI-Llama-3.1-8B-Instruct",
+      "alternative_ids": [
+        "nvidia/Llama-3.1-Nemotron-70B-Instruct-HF",
+        "nvidia/Mistral-NeMo-12B-Instruct"
+      ],
+      "size_gb": 16,
+      "parameters": "8B",
+      "expected_accuracy": 0.55,
+      "ensemble_weight": 0.25,
+      "gpu_required": "RTX 4090+",
+      "vram_required_gb": 18,
+      "description": "NVIDIA's ARC-AGI specialized model. Trained on ARC-like reasoning tasks.",
+      "key_features": [
+        "ARC-specialized training",
+        "Strong visual reasoning",
+        "Grid manipulation expertise"
+      ]
+    }
+  },
+  
+  "ensemble_config": {
+    "voting_method": "weighted",
+    "weights": {
+      "marc-8B": 0.35,
+      "nvarc": 0.25,
+      "qwen3-8B": 0.20,
+      "deepseek-coder-v2": 0.20
+    },
+    "agreement_threshold": 0.6,
+    "min_models_for_prediction": 2
+  },
+  
+  "gpu_recommendations": {
+    "minimum": {
+      "gpu": "NVIDIA RTX 4090",
+      "vram_gb": 24,
+      "expected_accuracy": "50-60%",
+      "models_supported": ["qwen3-8B", "nvarc"],
+      "cost_per_hour": 0.74
+    },
+    "recommended": {
+      "gpu": "NVIDIA A100 80GB",
+      "vram_gb": 80,
+      "expected_accuracy": "65-75%",
+      "models_supported": ["all"],
+      "cost_per_hour": 2.79
+    },
+    "maximum": {
+      "gpu": "NVIDIA H100 80GB",
+      "vram_gb": 80,
+      "expected_accuracy": "70-80%",
+      "models_supported": ["all"],
+      "cost_per_hour": 3.89
+    },
+    "multi_gpu": {
+      "gpu": "2x NVIDIA A100 80GB",
+      "vram_gb": 160,
+      "expected_accuracy": "75-85%",
+      "models_supported": ["all + larger models"],
+      "cost_per_hour": 5.58
+    }
+  },
+  
+  "runpod_templates": {
+    "pytorch": "runpod/pytorch:2.1.0-py3.10-cuda12.1.0-devel-ubuntu22.04",
+    "transformers": "runpod/transformers:4.35.0-cuda12.1.0"
+  },
+  
+  "download_commands": {
+    "marc-8B": "huggingface-cli download ekinakyurek/marc-8B-finetuned-llama3 --local-dir /workspace/models/marc-8B",
+    "qwen3-8B": "huggingface-cli download Qwen/Qwen3-8B --local-dir /workspace/models/qwen3-8B",
+    "deepseek-coder-v2": "huggingface-cli download deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct --local-dir /workspace/models/deepseek-coder-v2",
+    "nvarc": "huggingface-cli download nvidia/ARC-AGI-Llama-3.1-8B-Instruct --local-dir /workspace/models/nvarc"
+  },
+  
+  "arc_agi_dataset": {
+    "github": "https://github.com/fchollet/ARC-AGI",
+    "training_tasks": 400,
+    "evaluation_tasks": 400,
+    "download_command": "git clone https://github.com/fchollet/ARC-AGI.git /workspace/ARC-AGI"
+  }
+}
