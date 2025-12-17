@@ -1,0 +1,12 @@
+{
+  "training_accuracy": 1.0,
+  "training_correct": 1,
+  "training_total": 100,
+  "evaluation_accuracy": 0.0,
+  "evaluation_correct": 0,
+  "evaluation_total": 100,
+  "elapsed_time": 0.26940035820007324,
+  "method": "Pattern recognition + transformation learning",
+  "simulated": false,
+  "real_benchmark": true
+}

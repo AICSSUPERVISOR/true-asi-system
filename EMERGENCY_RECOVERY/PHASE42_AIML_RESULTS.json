@@ -1,0 +1,88 @@
+{
+  "phase": 42,
+  "category": "Recursive Compression",
+  "previous_score": 85,
+  "target_score": 100,
+  "achieved_score": 50,
+  "timestamp": "2025-12-08T18:38:11.106741",
+  "api_provider": "AIML",
+  "model": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+  "results": {
+    "predictability_accuracy": 0.0,
+    "compression_ratio": 0.829038473054282,
+    "parallel_states": 10,
+    "deep_patterns": 3,
+    "compressed_models": 5,
+    "execution_time": 14.870254755020142
+  },
+  "compressed_models_summary": [
+    {
+      "level": 1,
+      "compression_ratio": 0.3058252427184466,
+      "code_size": 206
+    },
+    {
+      "level": 2,
+      "compression_ratio": 1.0606060606060606,
+      "code_size": 198
+    },
+    {
+      "level": 3,
+      "compression_ratio": 0.9203539823008849,
+      "code_size": 226
+    },
+    {
+      "level": 4,
+      "compression_ratio": 0.9292035398230089,
+      "code_size": 226
+    },
+    {
+      "level": 5,
+      "compression_ratio": 0.9292035398230089,
+      "code_size": 226
+    }
+  ],
+  "parallel_states_sample": [
+    {
+      "state_id": 1,
+      "prediction": 23,
+      "probability": 0.85,
+      "reasoning": "Linear extrapolation of the input sequence indicates a steady increase."
+    },
+    {
+      "state_id": 2,
+      "prediction": 17,
+      "probability": 0.42,
+      "reasoning": "Considering potential market fluctuations, the predicted value may be lower than expected."
+    },
+    {
+      "state_id": 3,
+      "prediction": 31,
+      "probability": 0.91,
+      "reasoning": "Historical data suggests a consistent upward trend, supporting the higher predicted value."
+    }
+  ],
+  "deep_patterns_sample": [
+    {
+      "pattern_name": "Fibonacci Sequence Harmonic Mean",
+      "description": "The data follows a pattern where the harmonic mean of each pair of consecutive terms converges to the golden ratio. This pattern is a deeper property of the Fibonacci sequence, which is itself a well-known pattern in the data.",
+      "mathematical_formula": "\u2200n > 1, 2 / (1 / F(n) + 1 / F(n+1)) \u2192 \u03c6 as n \u2192 \u221e, where F(n) is the nth Fibonacci number and \u03c6 is the golden ratio",
+      "why_not_obvious": "Humans often focus on the simple recursive formula of the Fibonacci sequence and overlook more complex statistical properties, such as the behavior of the harmonic mean.",
+      "predictive_power": 98
+    },
+    {
+      "pattern_name": "Second-Order Difference Stationarity",
+      "description": "Upon analyzing the second-order differences of the sequence (i.e., the differences of the differences), it becomes apparent that this derived sequence exhibits properties of stationarity, meaning its statistical properties, such as the mean and variance, remain constant over time. This is not immediately obvious from the original sequence, which grows rapidly.",
+      "mathematical_formula": "Let \u0394\u00b2F(n) = F(n+2) - 2F(n+1) + F(n). Then, E[\u0394\u00b2F(n)] = constant and Var(\u0394\u00b2F(n)) = constant for all n.",
+      "why_not_obvious": "The rapid growth of the Fibonacci sequence can distract from deeper statistical properties of derived sequences, such as second-order differences, which require more advanced analysis to uncover.",
+      "predictive_power": 90
+    },
+    {
+      "pattern_name": "Asymptotic Logarithmic Growth Rate",
+      "description": "The growth rate of the sequence, when measured in terms of the logarithm of the ratio of successive terms, approaches a constant value. This is related to the asymptotic behavior of the Fibonacci sequence but provides a different insight into its growth properties.",
+      "mathematical_formula": "lim(n\u2192\u221e) log(F(n+1) / F(n)) = log(\u03c6), where \u03c6 is the golden ratio",
+      "why_not_obvious": "While the Fibonacci sequence's relation to the golden ratio is well-known, analyzing its growth through the lens of logarithmic ratios reveals a nuanced aspect of its asymptotic behavior that might not be immediately apparent.",
+      "predictive_power": 95
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-12-08T19:05:56.373404",
+  "health": {
+    "timestamp": "2025-12-08T19:05:54.858994",
+    "checks": {
+      "disk_space": "OK",
+      "s3_connectivity": "OK",
+      "python_processes": "4 running"
+    },
+    "overall_status": "HEALTHY"
+  },
+  "metrics": {
+    "timestamp": "2025-12-08T19:05:56.362950",
+    "metrics": {
+      "total_files": 34,
+      "total_size": "292K"
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "timestamp": "2025-12-09T06:02:51.013823",
+  "passed": 15,
+  "failed": 0,
+  "results": [
+    {
+      "name": "File: Evaluation harness",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "File: Ensemble framework",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "File: Training pipeline",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "File: SOAR synthesis",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "File: Poetiq loop",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "File: Monitoring dashboard",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "Dir: Runpod deployment",
+      "passed": true,
+      "message": "3 files"
+    },
+    {
+      "name": "Dir: MIT TTT repository",
+      "passed": true,
+      "message": "638 files"
+    },
+    {
+      "name": "Dir: Jeremy Berman repository",
+      "passed": true,
+      "message": "87 files"
+    },
+    {
+      "name": "ARC-AGI dataset",
+      "passed": true,
+      "message": "400 training, 400 eval"
+    },
+    {
+      "name": "No simulations",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "No mocks",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "No hardcoded scores",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "Python syntax",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "Model configs",
+      "passed": true,
+      "message": "4 models"
+    }
+  ]
+}

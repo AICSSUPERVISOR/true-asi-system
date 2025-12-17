@@ -1,0 +1,30 @@
+{
+  "model": {
+    "name": "CompressARC",
+    "hidden_dim": 64,
+    "num_layers": 4,
+    "kernel_size": 3,
+    "num_colors": 10,
+    "max_grid_size": 30,
+    "estimated_params": "~76K"
+  },
+  "test_time_training": {
+    "epochs": 1000,
+    "learning_rate": 0.001,
+    "batch_size": 1,
+    "optimizer": "Adam",
+    "scheduler": "CosineAnnealing",
+    "early_stopping_threshold": 0.01
+  },
+  "hardware": {
+    "recommended_gpu": "NVIDIA RTX 4070 or better",
+    "min_vram": "8GB",
+    "time_per_task": "~20 minutes",
+    "full_eval_time": "~130 hours (400 tasks)"
+  },
+  "expected_results": {
+    "arc_agi_1_accuracy": "40-50%",
+    "arc_agi_2_accuracy": "15-25%",
+    "key_insight": "No pretraining needed, learns from scratch per task"
+  }
+}

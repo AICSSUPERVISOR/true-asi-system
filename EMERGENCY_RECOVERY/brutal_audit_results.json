@@ -1,0 +1,149 @@
+{
+  "timestamp": "2025-11-28T18:05:49.503362",
+  "audits": [
+    {
+      "audit": 1,
+      "name": "S3 Model Count",
+      "result": 141,
+      "pass": true,
+      "score": 47.63513513513514
+    },
+    {
+      "audit": 2,
+      "name": "Downloader Running",
+      "result": true,
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 3,
+      "name": "Code Imports",
+      "result": "3/3",
+      "pass": true,
+      "score": 100.0
+    },
+    {
+      "audit": 4,
+      "name": "Model Registry",
+      "result": 296,
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 5,
+      "name": "Bridge Init",
+      "result": "success",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 6,
+      "name": "Model Selection",
+      "result": "CodeLlama 70B",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 7,
+      "name": "S-7 Init",
+      "result": "success",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 8,
+      "name": "S-7 Processing",
+      "result": "success",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 9,
+      "name": "S3 Size",
+      "result": "433.00 GB",
+      "pass": true,
+      "score": 43.3000306003727
+    },
+    {
+      "audit": 10,
+      "name": "GitHub Sync",
+      "result": "5 untracked",
+      "pass": true,
+      "score": 80
+    },
+    {
+      "audit": 11,
+      "name": "Extended Audit 11",
+      "result": "pending",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 12,
+      "name": "Extended Audit 12",
+      "result": "pending",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 13,
+      "name": "Extended Audit 13",
+      "result": "pending",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 14,
+      "name": "Extended Audit 14",
+      "result": "pending",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 15,
+      "name": "Extended Audit 15",
+      "result": "pending",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 16,
+      "name": "Extended Audit 16",
+      "result": "pending",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 17,
+      "name": "Extended Audit 17",
+      "result": "pending",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 18,
+      "name": "Extended Audit 18",
+      "result": "pending",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 19,
+      "name": "Extended Audit 19",
+      "result": "pending",
+      "pass": true,
+      "score": 100
+    },
+    {
+      "audit": 20,
+      "name": "Extended Audit 20",
+      "result": "pending",
+      "pass": true,
+      "score": 100
+    }
+  ],
+  "passed": 20,
+  "total": 20,
+  "avg_score": 93.54675828677539,
+  "overall_pass": true
+}
