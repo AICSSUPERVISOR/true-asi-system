@@ -1,0 +1,76 @@
+{
+  "total_tasks": 10,
+  "correct": 0,
+  "accuracy": 0.0,
+  "avg_confidence": 0.6666666666666667,
+  "avg_agreement": 0.6666666666666669,
+  "solver_contributions": {
+    "identity": 0,
+    "copy_output": 0,
+    "pattern_match": 0,
+    "transformation": 0,
+    "llm": 0
+  },
+  "task_results": [
+    {
+      "task_id": "007bbfb7",
+      "correct": false,
+      "confidence": 0.6666666666666666,
+      "agreement": 0.6666666666666667
+    },
+    {
+      "task_id": "00d62c1b",
+      "correct": false,
+      "confidence": 0.6666666666666666,
+      "agreement": 0.6666666666666667
+    },
+    {
+      "task_id": "017c7c7b",
+      "correct": false,
+      "confidence": 0.6666666666666666,
+      "agreement": 0.6666666666666667
+    },
+    {
+      "task_id": "025d127b",
+      "correct": false,
+      "confidence": 0.6666666666666666,
+      "agreement": 0.6666666666666667
+    },
+    {
+      "task_id": "045e512c",
+      "correct": false,
+      "confidence": 0.6666666666666666,
+      "agreement": 0.6666666666666667
+    },
+    {
+      "task_id": "0520fde7",
+      "correct": false,
+      "confidence": 0.6666666666666666,
+      "agreement": 0.6666666666666667
+    },
+    {
+      "task_id": "05269061",
+      "correct": false,
+      "confidence": 0.6666666666666666,
+      "agreement": 0.6666666666666667
+    },
+    {
+      "task_id": "05f2a901",
+      "correct": false,
+      "confidence": 0.6666666666666666,
+      "agreement": 0.6666666666666667
+    },
+    {
+      "task_id": "06df4c85",
+      "correct": false,
+      "confidence": 0.6666666666666666,
+      "agreement": 0.6666666666666667
+    },
+    {
+      "task_id": "08ed6ac7",
+      "correct": false,
+      "confidence": 0.6666666666666666,
+      "agreement": 0.6666666666666667
+    }
+  ]
+}

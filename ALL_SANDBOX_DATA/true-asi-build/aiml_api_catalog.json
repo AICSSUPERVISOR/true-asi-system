@@ -1,0 +1,266 @@
+{
+  "total_models": 198,
+  "categories": 12,
+  "models_by_category": {
+    "chat": {
+      "count": 63,
+      "models": [
+        "gpt-4",
+        "gpt-4-turbo",
+        "gpt-4-32k",
+        "gpt-3.5-turbo",
+        "gpt-3.5-turbo-16k",
+        "gpt-5",
+        "gpt-5-turbo",
+        "claude-3-opus-20240229",
+        "claude-3-sonnet-20240229",
+        "claude-3-haiku-20240307",
+        "claude-2.1",
+        "claude-2.0",
+        "claude-instant-1.2",
+        "gemini-pro",
+        "gemini-pro-vision",
+        "gemini-2.5-flash",
+        "gemini-ultra",
+        "llama-3-70b",
+        "llama-3-8b",
+        "llama-2-70b",
+        "llama-2-13b",
+        "llama-2-7b",
+        "llama-3.1-405b",
+        "llama-3.1-70b",
+        "llama-3.1-8b",
+        "mistral-large",
+        "mistral-medium",
+        "mistral-small",
+        "mistral-tiny",
+        "mixtral-8x7b",
+        "mixtral-8x22b",
+        "grok-1",
+        "grok-2",
+        "grok-beta",
+        "command-r-plus",
+        "command-r",
+        "command",
+        "command-light",
+        "qwen-2.5-72b",
+        "qwen-2.5-32b",
+        "qwen-2.5-14b",
+        "qwen-2.5-7b",
+        "qwen-2.5-coder-32b",
+        "qwen-2.5-coder-7b",
+        "deepseek-coder-33b",
+        "deepseek-coder-6.7b",
+        "deepseek-math-7b",
+        "falcon-180b",
+        "falcon-40b",
+        "falcon-7b",
+        "mpt-30b",
+        "mpt-7b",
+        "yi-34b",
+        "yi-6b",
+        "phi-3",
+        "phi-2",
+        "orca-2-13b",
+        "orca-2-7b",
+        "wizardlm-70b",
+        "wizardlm-13b",
+        "vicuna-33b",
+        "vicuna-13b",
+        "vicuna-7b"
+      ]
+    },
+    "code": {
+      "count": 17,
+      "models": [
+        "codellama-70b",
+        "codellama-34b",
+        "codellama-13b",
+        "codellama-7b",
+        "starcoder2-15b",
+        "starcoder-15b",
+        "starcoder-7b",
+        "codegen-16b",
+        "codegen-6b",
+        "codegen-2b",
+        "santacoder-1b",
+        "wizardcoder-34b",
+        "wizardcoder-15b",
+        "deepseek-coder-33b-instruct",
+        "phind-codellama-34b",
+        "replit-code-v1-3b",
+        "code-cushman-001"
+      ]
+    },
+    "image": {
+      "count": 26,
+      "models": [
+        "stable-diffusion-xl",
+        "stable-diffusion-2.1",
+        "stable-diffusion-1.5",
+        "dall-e-3",
+        "dall-e-2",
+        "midjourney-v6",
+        "midjourney-v5",
+        "playground-v2.5",
+        "playground-v2",
+        "kandinsky-3",
+        "kandinsky-2.2",
+        "dreamshaper-8",
+        "dreamshaper-7",
+        "realistic-vision-5.1",
+        "deliberate-v3",
+        "anything-v5",
+        "openjourney-v4",
+        "protogen-x3.4",
+        "analog-diffusion",
+        "redshift-diffusion",
+        "nitro-diffusion",
+        "llava-13b",
+        "llava-7b",
+        "cogvlm-17b",
+        "blip-2",
+        "clip-vit-large"
+      ]
+    },
+    "video": {
+      "count": 8,
+      "models": [
+        "runway-gen-2",
+        "runway-gen-1",
+        "pika-1.0",
+        "stable-video-diffusion",
+        "animatediff",
+        "zeroscope-v2",
+        "modelscope-text-to-video",
+        "cogvideo"
+      ]
+    },
+    "audio": {
+      "count": 13,
+      "models": [
+        "musicgen-large",
+        "musicgen-medium",
+        "musicgen-small",
+        "audiocraft",
+        "bark",
+        "riffusion",
+        "whisper-large-v3",
+        "whisper-large-v2",
+        "whisper-medium",
+        "whisper-small",
+        "whisper-tiny",
+        "seamless-m4t",
+        "mms-1b-all"
+      ]
+    },
+    "voice": {
+      "count": 8,
+      "models": [
+        "eleven-labs-v2",
+        "eleven-labs-v1",
+        "play-ht-2.0",
+        "play-ht-1.0",
+        "coqui-xtts-v2",
+        "tortoise-tts",
+        "bark-voice",
+        "vall-e-x"
+      ]
+    },
+    "embedding": {
+      "count": 15,
+      "models": [
+        "text-embedding-ada-002",
+        "text-embedding-3-small",
+        "text-embedding-3-large",
+        "embed-english-v3.0",
+        "embed-multilingual-v3.0",
+        "bge-large-en-v1.5",
+        "bge-base-en-v1.5",
+        "e5-large-v2",
+        "e5-base-v2",
+        "instructor-xl",
+        "instructor-large",
+        "gte-large",
+        "gte-base",
+        "all-mpnet-base-v2",
+        "all-minilm-l6-v2"
+      ]
+    },
+    "reasoning": {
+      "count": 5,
+      "models": [
+        "o1-preview",
+        "o1-mini",
+        "gpt-4-turbo-reasoning",
+        "claude-3-opus-reasoning",
+        "gemini-ultra-reasoning"
+      ]
+    },
+    "multimodal": {
+      "count": 13,
+      "models": [
+        "gpt-4-vision",
+        "gpt-4-turbo-vision",
+        "claude-3-opus-vision",
+        "claude-3-sonnet-vision",
+        "gemini-pro-vision",
+        "gemini-ultra-vision",
+        "llava-next-34b",
+        "llava-next-13b",
+        "cogvlm-chat-17b",
+        "qwen-vl-plus",
+        "qwen-vl-max",
+        "fuyu-8b",
+        "kosmos-2"
+      ]
+    },
+    "3d": {
+      "count": 5,
+      "models": [
+        "shap-e",
+        "point-e",
+        "dreamfusion",
+        "magic3d",
+        "get3d"
+      ]
+    },
+    "search": {
+      "count": 5,
+      "models": [
+        "perplexity-sonar-large",
+        "perplexity-sonar-medium",
+        "you-chat-2.0",
+        "bing-chat",
+        "bard-search"
+      ]
+    },
+    "specialized": {
+      "count": 20,
+      "models": [
+        "med-palm-2",
+        "med-palm",
+        "biogpt-large",
+        "pubmedbert",
+        "clinicalbert",
+        "legal-bert",
+        "case-law-bert",
+        "finbert",
+        "bloomberg-gpt",
+        "galactica-120b",
+        "galactica-30b",
+        "scibert",
+        "minerva-540b",
+        "minerva-62b",
+        "llemma-34b",
+        "llemma-7b",
+        "nllb-200-3.3b",
+        "nllb-200-1.3b",
+        "m2m-100-12b",
+        "m2m-100-1.2b"
+      ]
+    }
+  },
+  "integration_status": "ready",
+  "api_endpoint": "https://api.aimlapi.com/v1"
+}

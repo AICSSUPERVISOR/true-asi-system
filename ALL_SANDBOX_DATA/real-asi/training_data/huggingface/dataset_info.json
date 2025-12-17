@@ -1,0 +1,12 @@
+{
+  "dataset_name": "arc-agi-augmented",
+  "num_examples": 11660,
+  "num_tasks": 3600,
+  "features": [
+    "task_id",
+    "example_idx",
+    "input",
+    "output",
+    "difficulty"
+  ]
+}
