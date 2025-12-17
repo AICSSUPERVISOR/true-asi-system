@@ -1,0 +1,67 @@
+{
+  "timestamp": "2025-12-09T06:02:46.151199",
+  "system": "ASI Monitoring Dashboard",
+  "version": "1.0.0",
+  "components": {
+    "arc_agi_dataset": {
+      "status": "healthy",
+      "training_tasks": 400,
+      "evaluation_tasks": 400
+    },
+    "evaluation_harness": {
+      "status": "healthy",
+      "size_bytes": 11804,
+      "modified": "2025-12-09T04:24:06.211424"
+    },
+    "ensemble_framework": {
+      "status": "healthy",
+      "size_bytes": 18245,
+      "modified": "2025-12-09T04:35:48.909822"
+    },
+    "training_pipeline": {
+      "status": "healthy",
+      "size_bytes": 17370,
+      "modified": "2025-12-09T04:33:29.917316"
+    },
+    "runpod_deployment": {
+      "status": "healthy",
+      "file_count": 3
+    },
+    "mit_ttt_repo": {
+      "status": "healthy",
+      "file_count": 638
+    },
+    "jeremy_repo": {
+      "status": "healthy",
+      "file_count": 87
+    },
+    "soar_synthesis": {
+      "status": "healthy",
+      "size_bytes": 20418,
+      "modified": "2025-12-09T04:32:18.985076"
+    },
+    "poetiq_loop": {
+      "status": "healthy",
+      "size_bytes": 15642,
+      "modified": "2025-12-09T04:23:15.919255"
+    }
+  },
+  "aws": {
+    "status": "error",
+    "message": "\nUnknown options: --max-items,1\n"
+  },
+  "system_metrics": {
+    "disk": {
+      "total": "41G",
+      "used": "12G",
+      "available": "30G",
+      "percent_used": "28%"
+    },
+    "memory": {
+      "total": "3.8Gi",
+      "used": "1.9Gi",
+      "available": "1.7Gi"
+    }
+  },
+  "overall_status": "degraded"
+}

@@ -1,0 +1,31 @@
+{
+  "total_tasks": 4000,
+  "unique_original_tasks": 400,
+  "augmentations": {
+    "original": 400,
+    "rot90": 400,
+    "rot180": 400,
+    "rot270": 400,
+    "flip_h": 400,
+    "flip_v": 400,
+    "transpose": 400,
+    "color_0": 400,
+    "color_1": 400,
+    "color_2": 400
+  },
+  "difficulty_distribution": {
+    "easy": 250,
+    "medium": 3170,
+    "hard": 580
+  },
+  "avg_train_examples": 3.255,
+  "avg_test_examples": 1.04,
+  "grid_size_stats": {
+    "min_input": 4,
+    "max_input": 900,
+    "avg_input": 137.38863287250385,
+    "min_output": 1,
+    "max_output": 900,
+    "avg_output": 105.67434715821813
+  }
+}
