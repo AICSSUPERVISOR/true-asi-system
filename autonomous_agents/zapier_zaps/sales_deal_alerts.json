@@ -1,0 +1,26 @@
+{
+  "id": "sales_deal_alerts",
+  "name": "Sales Deal Stage Alerts",
+  "description": "Alert on deal stage changes",
+  "trigger": {
+    "app": "Supabase",
+    "event": "Record Updated",
+    "table": "deals",
+    "field": "stage"
+  },
+  "actions": [
+    {
+      "app": "Slack",
+      "action": "Send Message",
+      "channel": "#sales-pipeline"
+    },
+    {
+      "app": "Gmail",
+      "action": "Send Email",
+      "to": "{{deal_owner}}",
+      "template": "deal_stage_change"
+    }
+  ],
+  "status": "ready_to_deploy",
+  "generated_at": "2025-12-16T22:06:22.635351"
+}

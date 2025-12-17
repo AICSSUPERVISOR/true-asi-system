@@ -1,0 +1,36 @@
+{
+  "id": "agent_marketing_20251216220657",
+  "name": "MarketingASI",
+  "industry": "marketing",
+  "description": "Campaign optimization, content creation, analytics, and brand management",
+  "specializations": [
+    "campaign_optimization",
+    "content_generation",
+    "audience_analysis",
+    "seo_optimization",
+    "social_media_management",
+    "brand_monitoring",
+    "email_marketing",
+    "influencer_analysis",
+    "market_research",
+    "competitive_intelligence",
+    "ad_creative",
+    "conversion_optimization"
+  ],
+  "tools": [
+    "canva",
+    "gmail",
+    "zapier",
+    "supabase"
+  ],
+  "code_capabilities": [
+    "analytics_dashboards",
+    "content_schedulers",
+    "seo_tools",
+    "campaign_trackers",
+    "audience_segmentation"
+  ],
+  "generation": 1,
+  "performance_score": 1.0,
+  "created_at": "2025-12-16T22:06:57.966174"
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Legal Contract Review Workflow",
+  "description": "Automate contract review process",
+  "trigger": {
+    "app": "Google Drive",
+    "event": "New File in Folder",
+    "folder": "Contracts/Pending"
+  },
+  "actions": [
+    {
+      "app": "Webhook",
+      "action": "POST",
+      "url": "{{ASI_API}}/analyze-contract",
+      "body": [
+        "file_url",
+        "contract_type"
+      ]
+    },
+    {
+      "app": "Supabase",
+      "action": "Create Record",
+      "table": "contract_reviews",
+      "fields": [
+        "file_name",
+        "status=pending",
+        "submitted_at"
+      ]
+    },
+    {
+      "app": "Slack",
+      "action": "Send Message",
+      "channel": "#legal-team"
+    }
+  ],
+  "industry": "legal"
+}

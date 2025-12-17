@@ -1,0 +1,20 @@
+{
+  "name": "Healthcare Patient Follow-up",
+  "description": "Automated patient follow-up after visits",
+  "trigger": {
+    "type": "schedule",
+    "condition": "24h_after_appointment"
+  },
+  "actions": [
+    {
+      "app": "typeform",
+      "action": "send_survey",
+      "template": "patient_satisfaction"
+    },
+    {
+      "app": "gmail",
+      "action": "send_email",
+      "template": "followup_care"
+    }
+  ]
+}

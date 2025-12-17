@@ -1,0 +1,39 @@
+{
+  "id": "finance_payment_processor",
+  "name": "Finance Payment Processor",
+  "description": "Automatically process payments and update records",
+  "trigger": {
+    "app": "Stripe",
+    "event": "New Payment",
+    "fields": [
+      "amount",
+      "customer_email",
+      "payment_id"
+    ]
+  },
+  "actions": [
+    {
+      "app": "Supabase",
+      "action": "Create Record",
+      "table": "transactions",
+      "fields": [
+        "amount",
+        "customer_email",
+        "payment_id",
+        "timestamp"
+      ]
+    },
+    {
+      "app": "Gmail",
+      "action": "Send Email",
+      "template": "payment_confirmation"
+    },
+    {
+      "app": "Slack",
+      "action": "Send Message",
+      "channel": "#finance-alerts"
+    }
+  ],
+  "status": "ready_to_deploy",
+  "generated_at": "2025-12-16T22:06:22.634315"
+}

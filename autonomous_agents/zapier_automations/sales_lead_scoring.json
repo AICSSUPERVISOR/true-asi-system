@@ -1,0 +1,29 @@
+{
+  "name": "Sales Lead Scoring",
+  "description": "Automatically score and route leads",
+  "trigger": {
+    "type": "webhook",
+    "event": "new_lead"
+  },
+  "actions": [
+    {
+      "app": "webhook",
+      "action": "POST",
+      "url": "{{ASI_API}}/score-lead"
+    },
+    {
+      "app": "salesforce",
+      "action": "create_lead"
+    },
+    {
+      "app": "slack",
+      "action": "send_message",
+      "channel": "#sales-leads"
+    },
+    {
+      "app": "gmail",
+      "action": "send_email",
+      "template": "lead_assignment"
+    }
+  ]
+}

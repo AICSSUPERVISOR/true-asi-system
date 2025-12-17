@@ -1,0 +1,20 @@
+{
+  "id": "bcee1bbe1e131860",
+  "name": "ASI_education_Agent",
+  "industry": "education",
+  "capabilities": [
+    "research",
+    "communication",
+    "learning",
+    "decision_making",
+    "self_improvement",
+    "replication"
+  ],
+  "knowledge_base": {},
+  "task_history": [],
+  "performance_score": 0.0,
+  "generation": 1,
+  "parent_id": null,
+  "created_at": "2025-12-16T22:06:15.834284",
+  "last_active": "2025-12-16T22:06:15.834284"
+}

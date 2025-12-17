@@ -1,0 +1,26 @@
+{
+  "name": "Agent Health Monitor",
+  "description": "Monitor agent health and alert on issues",
+  "trigger": {
+    "type": "schedule",
+    "interval": "15min"
+  },
+  "actions": [
+    {
+      "app": "webhook",
+      "action": "GET",
+      "url": "{{ASI_API}}/agents/health"
+    },
+    {
+      "app": "slack",
+      "action": "send_message",
+      "channel": "#agent-monitoring",
+      "condition": "health_score < 0.8"
+    },
+    {
+      "app": "supabase",
+      "action": "insert",
+      "table": "agent_health_logs"
+    }
+  ]
+}

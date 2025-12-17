@@ -1,0 +1,64 @@
+{
+  "total_connectors": 6,
+  "total_tools": 109,
+  "connectors": {
+    "supabase": {
+      "tools": 29,
+      "categories": [
+        "database",
+        "project",
+        "storage",
+        "branching"
+      ]
+    },
+    "gmail": {
+      "tools": 3,
+      "categories": [
+        "read",
+        "write"
+      ]
+    },
+    "zapier": {
+      "tools": 36,
+      "categories": [
+        "slack",
+        "sheets",
+        "calendar",
+        "notion"
+      ]
+    },
+    "vercel": {
+      "tools": 11,
+      "categories": [
+        "deployment",
+        "project",
+        "domain"
+      ]
+    },
+    "hugging-face": {
+      "tools": 9,
+      "categories": [
+        "search",
+        "docs",
+        "generate"
+      ]
+    },
+    "canva": {
+      "tools": 21,
+      "categories": [
+        "design",
+        "edit",
+        "template",
+        "folder"
+      ]
+    }
+  },
+  "capabilities": [
+    "Database operations (Supabase)",
+    "Email automation (Gmail)",
+    "Workflow automation (Zapier/Slack/Sheets)",
+    "Deployment management (Vercel)",
+    "AI model discovery (Hugging Face)",
+    "Design creation (Canva)"
+  ]
+}

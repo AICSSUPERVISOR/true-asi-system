@@ -1,0 +1,29 @@
+{
+  "name": "Marketing Lead Capture",
+  "description": "Capture and nurture leads automatically",
+  "trigger": {
+    "type": "typeform",
+    "event": "response_submitted"
+  },
+  "actions": [
+    {
+      "app": "supabase",
+      "action": "insert",
+      "table": "leads"
+    },
+    {
+      "app": "mailchimp",
+      "action": "add_subscriber",
+      "list": "nurture_sequence"
+    },
+    {
+      "app": "hubspot",
+      "action": "create_contact"
+    },
+    {
+      "app": "slack",
+      "action": "send_message",
+      "channel": "#leads"
+    }
+  ]
+}

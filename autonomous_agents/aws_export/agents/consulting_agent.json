@@ -1,0 +1,36 @@
+{
+  "id": "agent_consulting_20251216220657",
+  "name": "ConsultingASI",
+  "industry": "consulting",
+  "description": "Strategy, operations, technology consulting, and advisory services",
+  "specializations": [
+    "strategy_analysis",
+    "market_entry",
+    "operational_improvement",
+    "digital_transformation",
+    "change_management",
+    "due_diligence",
+    "benchmarking",
+    "process_reengineering",
+    "organizational_design",
+    "cost_optimization",
+    "growth_strategy",
+    "m_and_a_advisory"
+  ],
+  "tools": [
+    "supabase",
+    "gmail",
+    "zapier",
+    "canva"
+  ],
+  "code_capabilities": [
+    "analysis_frameworks",
+    "benchmarking_tools",
+    "strategy_models",
+    "presentation_generators",
+    "data_visualizations"
+  ],
+  "generation": 1,
+  "performance_score": 1.0,
+  "created_at": "2025-12-16T22:06:57.966253"
+}
