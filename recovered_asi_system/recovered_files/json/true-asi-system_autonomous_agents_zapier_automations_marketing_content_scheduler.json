@@ -1,0 +1,32 @@
+{
+  "name": "Marketing Content Scheduler",
+  "description": "Schedule and publish content",
+  "trigger": {
+    "type": "airtable",
+    "event": "record_updated",
+    "condition": "status == 'approved'"
+  },
+  "actions": [
+    {
+      "app": "buffer",
+      "action": "schedule_post",
+      "platforms": [
+        "twitter",
+        "linkedin",
+        "facebook"
+      ]
+    },
+    {
+      "app": "canva",
+      "action": "export_design"
+    },
+    {
+      "app": "supabase",
+      "action": "update",
+      "table": "content",
+      "set": {
+        "status": "published"
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Healthcare Appointment Workflow",
+  "description": "Complete appointment management",
+  "trigger": {
+    "type": "calendly",
+    "event": "appointment_scheduled"
+  },
+  "actions": [
+    {
+      "app": "supabase",
+      "action": "insert",
+      "table": "appointments"
+    },
+    {
+      "app": "twilio",
+      "action": "send_sms",
+      "template": "appointment_confirmation"
+    },
+    {
+      "app": "gmail",
+      "action": "send_email",
+      "template": "appointment_details"
+    },
+    {
+      "app": "google_calendar",
+      "action": "create_event"
+    }
+  ]
+}

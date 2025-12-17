@@ -1,0 +1,30 @@
+{
+  "name": "Engineering Deployment Pipeline",
+  "description": "Automated deployment notifications",
+  "trigger": {
+    "type": "github",
+    "event": "push",
+    "branch": "main"
+  },
+  "actions": [
+    {
+      "app": "vercel",
+      "action": "deploy"
+    },
+    {
+      "app": "slack",
+      "action": "send_message",
+      "channel": "#deployments"
+    },
+    {
+      "app": "supabase",
+      "action": "insert",
+      "table": "deployments"
+    },
+    {
+      "app": "jira",
+      "action": "update_ticket",
+      "status": "deployed"
+    }
+  ]
+}

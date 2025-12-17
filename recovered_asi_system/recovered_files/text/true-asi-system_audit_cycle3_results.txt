@@ -1,0 +1,9 @@
+CYCLE 3 RESULTS
+===============
+
+Models in S3: 90
+Model files: 765
+Model storage: 184.09 GB
+Code files: 396
+Code storage: 2.61 MB
+S3 score: 100.0/100

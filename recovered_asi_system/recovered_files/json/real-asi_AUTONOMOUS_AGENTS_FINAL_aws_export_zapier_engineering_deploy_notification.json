@@ -1,0 +1,31 @@
+{
+  "name": "Engineering Deployment Notification",
+  "description": "Notify team on successful deployments",
+  "trigger": {
+    "app": "Vercel",
+    "event": "Deployment Successful",
+    "fields": [
+      "project_name",
+      "deployment_url",
+      "commit_message"
+    ]
+  },
+  "actions": [
+    {
+      "app": "Slack",
+      "action": "Send Message",
+      "channel": "#deployments"
+    },
+    {
+      "app": "Supabase",
+      "action": "Create Record",
+      "table": "deployments",
+      "fields": [
+        "project",
+        "url",
+        "timestamp"
+      ]
+    }
+  ],
+  "industry": "engineering"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "hr_onboarding",
+  "name": "HR New Employee Onboarding",
+  "description": "Automate new employee onboarding",
+  "trigger": {
+    "app": "Supabase",
+    "event": "New Record",
+    "table": "employees",
+    "condition": "status=new"
+  },
+  "actions": [
+    {
+      "app": "Gmail",
+      "action": "Send Email",
+      "template": "welcome_email"
+    },
+    {
+      "app": "Slack",
+      "action": "Invite to Channel",
+      "channels": [
+        "#general",
+        "#{{department}}"
+      ]
+    },
+    {
+      "app": "Google Calendar",
+      "action": "Create Event",
+      "title": "Onboarding Session"
+    },
+    {
+      "app": "Notion",
+      "action": "Create Page",
+      "template": "employee_handbook"
+    }
+  ],
+  "status": "ready_to_deploy",
+  "generated_at": "2025-12-16T22:06:22.635577"
+}

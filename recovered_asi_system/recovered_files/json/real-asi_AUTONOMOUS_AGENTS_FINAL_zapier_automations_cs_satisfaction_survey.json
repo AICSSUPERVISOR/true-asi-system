@@ -1,0 +1,25 @@
+{
+  "name": "Customer Satisfaction Survey",
+  "description": "Send surveys after ticket resolution",
+  "trigger": {
+    "type": "zendesk",
+    "event": "ticket_solved"
+  },
+  "actions": [
+    {
+      "app": "delay",
+      "action": "wait",
+      "duration": "24h"
+    },
+    {
+      "app": "typeform",
+      "action": "send_survey",
+      "template": "csat"
+    },
+    {
+      "app": "supabase",
+      "action": "insert",
+      "table": "survey_requests"
+    }
+  ]
+}

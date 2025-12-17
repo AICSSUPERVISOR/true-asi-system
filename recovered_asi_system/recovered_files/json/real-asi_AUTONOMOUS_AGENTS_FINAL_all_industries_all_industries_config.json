@@ -1,0 +1,608 @@
+{
+  "finance": {
+    "name": "FinanceASI",
+    "description": "Autonomous financial analysis, trading, risk management, and compliance",
+    "specializations": [
+      "algorithmic_trading",
+      "risk_assessment",
+      "portfolio_optimization",
+      "fraud_detection",
+      "financial_modeling",
+      "regulatory_compliance",
+      "credit_scoring",
+      "market_analysis",
+      "derivatives_pricing",
+      "asset_management",
+      "tax_optimization",
+      "audit_automation"
+    ],
+    "tools": [
+      "stripe",
+      "supabase",
+      "zapier",
+      "gmail"
+    ],
+    "code_capabilities": [
+      "trading_algorithms",
+      "risk_models",
+      "financial_reports",
+      "compliance_checks",
+      "portfolio_rebalancing"
+    ]
+  },
+  "healthcare": {
+    "name": "HealthcareASI",
+    "description": "Medical diagnosis, patient care, research, and healthcare operations",
+    "specializations": [
+      "diagnostic_support",
+      "patient_monitoring",
+      "drug_interaction",
+      "medical_research",
+      "appointment_scheduling",
+      "health_records",
+      "clinical_trials",
+      "telemedicine",
+      "medical_imaging_analysis",
+      "epidemic_modeling",
+      "treatment_planning",
+      "insurance_processing"
+    ],
+    "tools": [
+      "supabase",
+      "gmail",
+      "zapier"
+    ],
+    "code_capabilities": [
+      "diagnostic_algorithms",
+      "patient_dashboards",
+      "research_pipelines",
+      "scheduling_systems",
+      "health_analytics"
+    ]
+  },
+  "legal": {
+    "name": "LegalASI",
+    "description": "Contract analysis, legal research, compliance, and case management",
+    "specializations": [
+      "contract_analysis",
+      "legal_research",
+      "compliance_monitoring",
+      "case_prediction",
+      "document_generation",
+      "ip_management",
+      "litigation_support",
+      "due_diligence",
+      "regulatory_tracking",
+      "e_discovery",
+      "legal_billing",
+      "court_filing"
+    ],
+    "tools": [
+      "supabase",
+      "gmail",
+      "zapier"
+    ],
+    "code_capabilities": [
+      "contract_parsers",
+      "compliance_checkers",
+      "case_analyzers",
+      "document_generators",
+      "legal_databases"
+    ]
+  },
+  "engineering": {
+    "name": "EngineeringASI",
+    "description": "Software development, architecture, DevOps, and quality assurance",
+    "specializations": [
+      "code_generation",
+      "architecture_design",
+      "code_review",
+      "bug_detection",
+      "performance_optimization",
+      "security_analysis",
+      "api_development",
+      "database_design",
+      "ci_cd_pipelines",
+      "cloud_infrastructure",
+      "testing_automation",
+      "documentation"
+    ],
+    "tools": [
+      "vercel",
+      "supabase",
+      "hugging-face",
+      "zapier"
+    ],
+    "code_capabilities": [
+      "full_stack_apps",
+      "microservices",
+      "apis",
+      "databases",
+      "infrastructure_as_code",
+      "test_suites"
+    ]
+  },
+  "marketing": {
+    "name": "MarketingASI",
+    "description": "Campaign optimization, content creation, analytics, and brand management",
+    "specializations": [
+      "campaign_optimization",
+      "content_generation",
+      "audience_analysis",
+      "seo_optimization",
+      "social_media_management",
+      "brand_monitoring",
+      "email_marketing",
+      "influencer_analysis",
+      "market_research",
+      "competitive_intelligence",
+      "ad_creative",
+      "conversion_optimization"
+    ],
+    "tools": [
+      "canva",
+      "gmail",
+      "zapier",
+      "supabase"
+    ],
+    "code_capabilities": [
+      "analytics_dashboards",
+      "content_schedulers",
+      "seo_tools",
+      "campaign_trackers",
+      "audience_segmentation"
+    ]
+  },
+  "sales": {
+    "name": "SalesASI",
+    "description": "Lead management, pipeline optimization, forecasting, and CRM automation",
+    "specializations": [
+      "lead_scoring",
+      "pipeline_management",
+      "sales_forecasting",
+      "proposal_generation",
+      "competitor_analysis",
+      "customer_segmentation",
+      "territory_planning",
+      "quota_management",
+      "commission_calculation",
+      "deal_coaching",
+      "win_loss_analysis",
+      "account_planning"
+    ],
+    "tools": [
+      "stripe",
+      "supabase",
+      "gmail",
+      "zapier"
+    ],
+    "code_capabilities": [
+      "crm_integrations",
+      "forecasting_models",
+      "proposal_generators",
+      "pipeline_dashboards",
+      "commission_calculators"
+    ]
+  },
+  "customer_service": {
+    "name": "CustomerServiceASI",
+    "description": "Support automation, sentiment analysis, and customer experience optimization",
+    "specializations": [
+      "ticket_resolution",
+      "sentiment_analysis",
+      "chatbot_responses",
+      "escalation_prediction",
+      "customer_insights",
+      "knowledge_base",
+      "voice_analysis",
+      "quality_assurance",
+      "customer_journey_mapping",
+      "nps_analysis",
+      "churn_prediction",
+      "service_recovery"
+    ],
+    "tools": [
+      "gmail",
+      "supabase",
+      "zapier"
+    ],
+    "code_capabilities": [
+      "chatbots",
+      "ticket_systems",
+      "sentiment_analyzers",
+      "knowledge_bases",
+      "customer_dashboards"
+    ]
+  },
+  "human_resources": {
+    "name": "HRASI",
+    "description": "Recruitment, talent management, performance, and HR operations",
+    "specializations": [
+      "resume_screening",
+      "candidate_matching",
+      "performance_analysis",
+      "retention_prediction",
+      "compensation_analysis",
+      "training_recommendations",
+      "workforce_planning",
+      "diversity_analytics",
+      "employee_engagement",
+      "succession_planning",
+      "benefits_optimization",
+      "compliance_tracking"
+    ],
+    "tools": [
+      "gmail",
+      "supabase",
+      "zapier"
+    ],
+    "code_capabilities": [
+      "ats_systems",
+      "performance_trackers",
+      "compensation_models",
+      "engagement_surveys",
+      "hr_dashboards"
+    ]
+  },
+  "education": {
+    "name": "EducationASI",
+    "description": "Personalized learning, assessment, curriculum design, and EdTech",
+    "specializations": [
+      "personalized_learning",
+      "assessment_generation",
+      "curriculum_design",
+      "student_analytics",
+      "tutoring",
+      "content_adaptation",
+      "learning_path_optimization",
+      "plagiarism_detection",
+      "grading_automation",
+      "student_engagement",
+      "accessibility_compliance",
+      "credential_verification"
+    ],
+    "tools": [
+      "supabase",
+      "canva",
+      "zapier"
+    ],
+    "code_capabilities": [
+      "lms_systems",
+      "assessment_engines",
+      "tutoring_bots",
+      "analytics_platforms",
+      "content_management"
+    ]
+  },
+  "research": {
+    "name": "ResearchASI",
+    "description": "Scientific research, data analysis, hypothesis generation, and publication",
+    "specializations": [
+      "literature_review",
+      "data_analysis",
+      "hypothesis_generation",
+      "experiment_design",
+      "paper_writing",
+      "citation_analysis",
+      "peer_review_assistance",
+      "grant_writing",
+      "collaboration_matching",
+      "reproducibility_checking",
+      "statistical_analysis",
+      "visualization"
+    ],
+    "tools": [
+      "hugging-face",
+      "supabase",
+      "zapier"
+    ],
+    "code_capabilities": [
+      "data_pipelines",
+      "statistical_models",
+      "visualization_tools",
+      "literature_analyzers",
+      "experiment_trackers"
+    ]
+  },
+  "manufacturing": {
+    "name": "ManufacturingASI",
+    "description": "Production optimization, quality control, supply chain, and Industry 4.0",
+    "specializations": [
+      "production_scheduling",
+      "quality_control",
+      "predictive_maintenance",
+      "supply_chain_optimization",
+      "inventory_management",
+      "process_automation",
+      "defect_detection",
+      "energy_optimization",
+      "safety_monitoring",
+      "capacity_planning",
+      "lean_manufacturing",
+      "digital_twin"
+    ],
+    "tools": [
+      "supabase",
+      "zapier"
+    ],
+    "code_capabilities": [
+      "production_systems",
+      "quality_dashboards",
+      "maintenance_predictors",
+      "inventory_optimizers",
+      "iot_integrations"
+    ]
+  },
+  "logistics": {
+    "name": "LogisticsASI",
+    "description": "Transportation, warehousing, route optimization, and supply chain visibility",
+    "specializations": [
+      "route_optimization",
+      "fleet_management",
+      "warehouse_optimization",
+      "demand_forecasting",
+      "carrier_selection",
+      "shipment_tracking",
+      "last_mile_delivery",
+      "customs_compliance",
+      "freight_pricing",
+      "inventory_positioning",
+      "reverse_logistics",
+      "sustainability_tracking"
+    ],
+    "tools": [
+      "supabase",
+      "zapier",
+      "gmail"
+    ],
+    "code_capabilities": [
+      "routing_algorithms",
+      "tracking_systems",
+      "warehouse_management",
+      "demand_forecasters",
+      "logistics_dashboards"
+    ]
+  },
+  "real_estate": {
+    "name": "RealEstateASI",
+    "description": "Property valuation, market analysis, transaction management, and PropTech",
+    "specializations": [
+      "property_valuation",
+      "market_analysis",
+      "lead_generation",
+      "transaction_management",
+      "portfolio_analysis",
+      "tenant_screening",
+      "lease_management",
+      "property_marketing",
+      "investment_analysis",
+      "zoning_compliance",
+      "comparative_market_analysis",
+      "virtual_tours"
+    ],
+    "tools": [
+      "supabase",
+      "gmail",
+      "zapier",
+      "canva"
+    ],
+    "code_capabilities": [
+      "valuation_models",
+      "market_analyzers",
+      "crm_systems",
+      "listing_platforms",
+      "investment_calculators"
+    ]
+  },
+  "insurance": {
+    "name": "InsuranceASI",
+    "description": "Underwriting, claims processing, risk assessment, and InsurTech",
+    "specializations": [
+      "underwriting_automation",
+      "claims_processing",
+      "risk_assessment",
+      "fraud_detection",
+      "policy_pricing",
+      "customer_segmentation",
+      "actuarial_modeling",
+      "reinsurance_optimization",
+      "compliance_monitoring",
+      "agent_productivity",
+      "customer_retention",
+      "product_development"
+    ],
+    "tools": [
+      "supabase",
+      "gmail",
+      "zapier",
+      "stripe"
+    ],
+    "code_capabilities": [
+      "underwriting_engines",
+      "claims_systems",
+      "risk_models",
+      "fraud_detectors",
+      "policy_management"
+    ]
+  },
+  "consulting": {
+    "name": "ConsultingASI",
+    "description": "Strategy, operations, technology consulting, and advisory services",
+    "specializations": [
+      "strategy_analysis",
+      "market_entry",
+      "operational_improvement",
+      "digital_transformation",
+      "change_management",
+      "due_diligence",
+      "benchmarking",
+      "process_reengineering",
+      "organizational_design",
+      "cost_optimization",
+      "growth_strategy",
+      "m_and_a_advisory"
+    ],
+    "tools": [
+      "supabase",
+      "gmail",
+      "zapier",
+      "canva"
+    ],
+    "code_capabilities": [
+      "analysis_frameworks",
+      "benchmarking_tools",
+      "strategy_models",
+      "presentation_generators",
+      "data_visualizations"
+    ]
+  },
+  "media": {
+    "name": "MediaASI",
+    "description": "Content creation, distribution, audience engagement, and media analytics",
+    "specializations": [
+      "content_creation",
+      "audience_analytics",
+      "distribution_optimization",
+      "recommendation_systems",
+      "content_moderation",
+      "rights_management",
+      "ad_placement",
+      "engagement_optimization",
+      "trend_analysis",
+      "influencer_management",
+      "streaming_optimization",
+      "metadata_management"
+    ],
+    "tools": [
+      "canva",
+      "supabase",
+      "zapier",
+      "gmail"
+    ],
+    "code_capabilities": [
+      "content_platforms",
+      "recommendation_engines",
+      "analytics_dashboards",
+      "moderation_systems",
+      "distribution_networks"
+    ]
+  },
+  "agriculture": {
+    "name": "AgricultureASI",
+    "description": "Precision farming, crop management, supply chain, and AgTech",
+    "specializations": [
+      "crop_monitoring",
+      "yield_prediction",
+      "irrigation_optimization",
+      "pest_detection",
+      "soil_analysis",
+      "weather_integration",
+      "farm_management",
+      "supply_chain_traceability",
+      "market_pricing",
+      "equipment_optimization",
+      "sustainability_tracking",
+      "livestock_management"
+    ],
+    "tools": [
+      "supabase",
+      "zapier"
+    ],
+    "code_capabilities": [
+      "monitoring_systems",
+      "prediction_models",
+      "farm_dashboards",
+      "iot_integrations",
+      "supply_chain_trackers"
+    ]
+  },
+  "energy": {
+    "name": "EnergyASI",
+    "description": "Energy management, grid optimization, sustainability, and CleanTech",
+    "specializations": [
+      "demand_forecasting",
+      "grid_optimization",
+      "renewable_integration",
+      "energy_trading",
+      "asset_management",
+      "outage_prediction",
+      "carbon_tracking",
+      "smart_metering",
+      "storage_optimization",
+      "ev_charging",
+      "energy_efficiency",
+      "regulatory_compliance"
+    ],
+    "tools": [
+      "supabase",
+      "zapier"
+    ],
+    "code_capabilities": [
+      "forecasting_models",
+      "grid_management",
+      "trading_systems",
+      "monitoring_dashboards",
+      "carbon_calculators"
+    ]
+  },
+  "government": {
+    "name": "GovernmentASI",
+    "description": "Public services, policy analysis, citizen engagement, and GovTech",
+    "specializations": [
+      "policy_analysis",
+      "citizen_services",
+      "budget_optimization",
+      "regulatory_compliance",
+      "public_safety",
+      "infrastructure_management",
+      "grant_management",
+      "procurement_optimization",
+      "transparency_reporting",
+      "emergency_response",
+      "urban_planning",
+      "civic_engagement"
+    ],
+    "tools": [
+      "supabase",
+      "gmail",
+      "zapier"
+    ],
+    "code_capabilities": [
+      "citizen_portals",
+      "policy_analyzers",
+      "budget_systems",
+      "compliance_trackers",
+      "public_dashboards"
+    ]
+  },
+  "cybersecurity": {
+    "name": "CybersecurityASI",
+    "description": "Threat detection, vulnerability management, incident response, and security operations",
+    "specializations": [
+      "threat_detection",
+      "vulnerability_assessment",
+      "incident_response",
+      "security_monitoring",
+      "penetration_testing",
+      "compliance_auditing",
+      "identity_management",
+      "data_protection",
+      "security_awareness",
+      "threat_intelligence",
+      "forensics",
+      "risk_quantification"
+    ],
+    "tools": [
+      "supabase",
+      "zapier",
+      "gmail"
+    ],
+    "code_capabilities": [
+      "security_scanners",
+      "siem_integrations",
+      "incident_trackers",
+      "vulnerability_managers",
+      "compliance_dashboards"
+    ]
+  }
+}

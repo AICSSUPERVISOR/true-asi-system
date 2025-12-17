@@ -1,0 +1,35 @@
+{
+  "id": "agent_human_resources_20251216220657",
+  "name": "HRASI",
+  "industry": "human_resources",
+  "description": "Recruitment, talent management, performance, and HR operations",
+  "specializations": [
+    "resume_screening",
+    "candidate_matching",
+    "performance_analysis",
+    "retention_prediction",
+    "compensation_analysis",
+    "training_recommendations",
+    "workforce_planning",
+    "diversity_analytics",
+    "employee_engagement",
+    "succession_planning",
+    "benefits_optimization",
+    "compliance_tracking"
+  ],
+  "tools": [
+    "gmail",
+    "supabase",
+    "zapier"
+  ],
+  "code_capabilities": [
+    "ats_systems",
+    "performance_trackers",
+    "compensation_models",
+    "engagement_surveys",
+    "hr_dashboards"
+  ],
+  "generation": 1,
+  "performance_score": 1.0,
+  "created_at": "2025-12-16T22:06:57.966208"
+}

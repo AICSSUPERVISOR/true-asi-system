@@ -1,0 +1,38 @@
+{
+  "id": "finance_fraud_alert",
+  "name": "Finance Fraud Detection Alert",
+  "description": "Alert on suspicious transactions",
+  "trigger": {
+    "app": "Webhook",
+    "event": "Fraud Score > 0.8",
+    "fields": [
+      "transaction_id",
+      "fraud_score",
+      "risk_factors"
+    ]
+  },
+  "actions": [
+    {
+      "app": "Supabase",
+      "action": "Update Record",
+      "table": "transactions",
+      "fields": [
+        "status=flagged",
+        "fraud_score"
+      ]
+    },
+    {
+      "app": "Gmail",
+      "action": "Send Email",
+      "to": "compliance@company.com",
+      "template": "fraud_alert"
+    },
+    {
+      "app": "Slack",
+      "action": "Send Message",
+      "channel": "#security-alerts"
+    }
+  ],
+  "status": "ready_to_deploy",
+  "generated_at": "2025-12-16T22:06:22.634584"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Universal Error Handler",
+  "description": "Handle all system errors",
+  "trigger": {
+    "type": "webhook",
+    "event": "error"
+  },
+  "actions": [
+    {
+      "app": "supabase",
+      "action": "insert",
+      "table": "error_logs"
+    },
+    {
+      "app": "slack",
+      "action": "send_message",
+      "channel": "#errors"
+    },
+    {
+      "app": "pagerduty",
+      "action": "create_incident",
+      "condition": "severity == 'critical'"
+    },
+    {
+      "app": "gmail",
+      "action": "send_email",
+      "to": "devops@company.com"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "total_zaps": 17,
+  "by_industry": {
+    "finance": 2,
+    "healthcare": 2,
+    "legal": 1,
+    "engineering": 2,
+    "marketing": 2,
+    "sales": 2,
+    "customer_service": 2,
+    "human_resources": 1,
+    "research": 1,
+    "universal": 2
+  },
+  "triggers": [
+    "Gmail",
+    "Google Drive",
+    "Stripe",
+    "Typeform",
+    "Webhook",
+    "Supabase",
+    "Schedule",
+    "RSS",
+    "Airtable",
+    "GitHub",
+    "Vercel"
+  ],
+  "actions": [
+    "Gmail",
+    "Mailchimp",
+    "Buffer",
+    "Slack",
+    "Typeform",
+    "Webhook",
+    "Supabase",
+    "Delay",
+    "Notion",
+    "Twilio",
+    "Google Calendar",
+    "GitHub"
+  ]
+}

@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  true-asi-system:
+    build: .
+    container_name: true-asi-system
+    restart: unless-stopped
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=us-east-1
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+      - ./models:/app/models
+      - ./data:/app/data
+    ports:
+      - "8000:8000"
+      - "8080:8080"
+      - "5000:5000"
+    networks:
+      - asi-network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  asi-web-interface:
+    build: .
+    container_name: asi-web-interface
+    restart: unless-stopped
+    command: ["python", "web_interface.py"]
+    environment:
+      - PYTHONPATH=/app
+    ports:
+      - "3000:3000"
+    networks:
+      - asi-network
+    depends_on:
+      - true-asi-system
+
+networks:
+  asi-network:
+    driver: bridge
+
+volumes:
+  asi-logs:
+  asi-cache:
+  asi-models:
+  asi-data:

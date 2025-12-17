@@ -1,0 +1,18 @@
+{
+  "service": "You.com",
+  "api_key": "ydc-sk-00e9a9987248309d-ssvmXwrSde4CRBPZ5DBUnBHDI5OFYEZl-840927f2",
+  "api_base_url": "https://api.you.com",
+  "integration_date": "2025-11-25",
+  "status": "active",
+  "capabilities": [
+    "web_search",
+    "ai_chat",
+    "code_generation",
+    "research",
+    "multimodal_search"
+  ],
+  "power_level": "100/100",
+  "usage": "maximum_power",
+  "integration_location": "s3://asi-knowledge-base-898982995956/api_keys/youcom/",
+  "notes": "Integrated for full S-7 ASI system and all 250 agents in 100/100 quality"
+}

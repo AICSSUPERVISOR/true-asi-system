@@ -1,0 +1,37 @@
+{
+  "name": "Engineering Bug Auto-Triage",
+  "description": "Automatically triage and assign bugs",
+  "trigger": {
+    "app": "GitHub",
+    "event": "New Issue",
+    "labels": [
+      "bug"
+    ]
+  },
+  "actions": [
+    {
+      "app": "Webhook",
+      "action": "POST",
+      "url": "{{ASI_API}}/analyze-bug",
+      "body": [
+        "issue_title",
+        "issue_body",
+        "labels"
+      ]
+    },
+    {
+      "app": "GitHub",
+      "action": "Add Labels",
+      "labels": [
+        "{{priority}}",
+        "{{component}}"
+      ]
+    },
+    {
+      "app": "Slack",
+      "action": "Send Message",
+      "channel": "#bugs"
+    }
+  ],
+  "industry": "engineering"
+}

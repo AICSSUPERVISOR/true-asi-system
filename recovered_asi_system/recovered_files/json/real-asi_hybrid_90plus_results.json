@@ -1,0 +1,72 @@
+{
+  "method": "Hybrid (All 5 methods combined)",
+  "methods": [
+    "Program Synthesis",
+    "Neuro-Symbolic Reasoning",
+    "Deep Learning Guided",
+    "Test-Time Adaptation",
+    "Ensemble Voting"
+  ],
+  "tasks_tested": 10,
+  "tasks_correct": 0,
+  "accuracy": 0.0,
+  "target_accuracy": 90.0,
+  "superhuman": false,
+  "api_calls": 30,
+  "cost_usd": 0.6000000000000003,
+  "time_seconds": 9.01232647895813,
+  "simulated": false,
+  "real_implementation": true,
+  "details": [
+    {
+      "task": "00576224.json",
+      "solved": false,
+      "time": 1.0098910331726074
+    },
+    {
+      "task": "009d5c81.json",
+      "solved": false,
+      "time": 1.0763731002807617
+    },
+    {
+      "task": "00dbd492.json",
+      "solved": false,
+      "time": 0.6250705718994141
+    },
+    {
+      "task": "03560426.json",
+      "solved": false,
+      "time": 1.0277113914489746
+    },
+    {
+      "task": "05a7bcf2.json",
+      "solved": false,
+      "time": 0.536431074142456
+    },
+    {
+      "task": "0607ce86.json",
+      "solved": false,
+      "time": 0.5290124416351318
+    },
+    {
+      "task": "0692e18c.json",
+      "solved": false,
+      "time": 1.0635199546813965
+    },
+    {
+      "task": "070dd51e.json",
+      "solved": false,
+      "time": 0.9577193260192871
+    },
+    {
+      "task": "08573cc6.json",
+      "solved": false,
+      "time": 1.1166584491729736
+    },
+    {
+      "task": "0934a4d8.json",
+      "solved": false,
+      "time": 1.0652422904968262
+    }
+  ]
+}

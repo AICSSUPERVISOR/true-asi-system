@@ -1,0 +1,246 @@
+{
+  "supabase": {
+    "total_tools": 29,
+    "tools": [
+      "search_docs",
+      "list_organizations",
+      "get_organization",
+      "list_projects",
+      "get_project",
+      "get_cost",
+      "confirm_cost",
+      "create_project",
+      "pause_project",
+      "restore_project",
+      "list_tables",
+      "list_extensions",
+      "list_migrations",
+      "apply_migration",
+      "execute_sql",
+      "get_logs",
+      "get_project_url",
+      "get_anon_key",
+      "get_service_key",
+      "create_branch",
+      "list_branches",
+      "delete_branch",
+      "merge_branch",
+      "reset_branch",
+      "rebase_branch",
+      "generate_typescript_types",
+      "create_storage_bucket",
+      "list_storage_buckets",
+      "delete_storage_bucket"
+    ],
+    "categories": {
+      "database": [
+        "execute_sql",
+        "apply_migration",
+        "list_tables",
+        "list_migrations"
+      ],
+      "project": [
+        "list_projects",
+        "get_project",
+        "create_project",
+        "pause_project"
+      ],
+      "storage": [
+        "create_storage_bucket",
+        "list_storage_buckets",
+        "delete_storage_bucket"
+      ],
+      "branching": [
+        "create_branch",
+        "list_branches",
+        "merge_branch",
+        "delete_branch"
+      ]
+    }
+  },
+  "gmail": {
+    "total_tools": 3,
+    "tools": [
+      "gmail_search_messages",
+      "gmail_read_threads",
+      "gmail_send_messages"
+    ],
+    "categories": {
+      "read": [
+        "gmail_search_messages",
+        "gmail_read_threads"
+      ],
+      "write": [
+        "gmail_send_messages"
+      ]
+    }
+  },
+  "zapier": {
+    "total_tools": 36,
+    "tools": [
+      "add_tools",
+      "edit_tools",
+      "slack_get_conversation",
+      "slack_get_conversation_members",
+      "slack_get_message",
+      "slack_get_message_permalink",
+      "slack_get_message_reactions",
+      "slack_find_message",
+      "slack_find_user_by_email",
+      "slack_find_user_by_id",
+      "slack_find_user_by_name",
+      "slack_find_user_by_username",
+      "slack_add_reaction",
+      "slack_add_reminder",
+      "slack_archive_conversation",
+      "slack_create_conversation",
+      "slack_invite_to_conversation",
+      "slack_send_channel_message",
+      "slack_send_direct_message",
+      "slack_send_private_channel_message",
+      "slack_set_status",
+      "slack_update_profile",
+      "google_sheets_create_spreadsheet",
+      "google_sheets_create_worksheet",
+      "google_sheets_get_spreadsheet",
+      "google_sheets_get_worksheet",
+      "google_sheets_find_rows",
+      "google_sheets_create_row",
+      "google_sheets_update_row",
+      "google_sheets_delete_row",
+      "google_calendar_find_event",
+      "google_calendar_create_event",
+      "google_calendar_update_event",
+      "google_calendar_delete_event",
+      "notion_search",
+      "notion_create_page"
+    ],
+    "categories": {
+      "slack": [
+        "slack_send_channel_message",
+        "slack_send_direct_message",
+        "slack_find_user_by_email"
+      ],
+      "sheets": [
+        "google_sheets_create_spreadsheet",
+        "google_sheets_find_rows",
+        "google_sheets_create_row"
+      ],
+      "calendar": [
+        "google_calendar_create_event",
+        "google_calendar_find_event"
+      ],
+      "notion": [
+        "notion_search",
+        "notion_create_page"
+      ]
+    }
+  },
+  "vercel": {
+    "total_tools": 11,
+    "tools": [
+      "search_vercel_documentation",
+      "deploy_to_vercel",
+      "list_projects",
+      "get_project",
+      "list_deployments",
+      "get_deployment",
+      "get_deployment_build_logs",
+      "get_access_to_vercel_url",
+      "web_fetch_vercel_url",
+      "list_domains",
+      "get_domain"
+    ],
+    "categories": {
+      "deployment": [
+        "deploy_to_vercel",
+        "list_deployments",
+        "get_deployment"
+      ],
+      "project": [
+        "list_projects",
+        "get_project"
+      ],
+      "domain": [
+        "list_domains",
+        "get_domain"
+      ]
+    }
+  },
+  "hugging-face": {
+    "total_tools": 9,
+    "tools": [
+      "hf_whoami",
+      "space_search",
+      "model_search",
+      "paper_search",
+      "dataset_search",
+      "hub_repo_details",
+      "hf_doc_search",
+      "hf_doc_fetch",
+      "gr1_z_image_turbo_generate"
+    ],
+    "categories": {
+      "search": [
+        "model_search",
+        "dataset_search",
+        "paper_search",
+        "space_search"
+      ],
+      "docs": [
+        "hf_doc_search",
+        "hf_doc_fetch"
+      ],
+      "generate": [
+        "gr1_z_image_turbo_generate"
+      ]
+    }
+  },
+  "canva": {
+    "total_tools": 21,
+    "tools": [
+      "upload-asset-from-url",
+      "search-designs",
+      "get-design",
+      "get-design-pages",
+      "get-design-content",
+      "get-presenter-notes",
+      "import-design-from-url",
+      "export-design",
+      "get-export-formats",
+      "create-folder",
+      "move-item-to-folder",
+      "list-folder-items",
+      "delete-folder",
+      "create-design",
+      "start-editing-transaction",
+      "commit-editing-transaction",
+      "cancel-editing-transaction",
+      "list-templates",
+      "get-template",
+      "create-design-from-template",
+      "generate-design"
+    ],
+    "categories": {
+      "design": [
+        "create-design",
+        "get-design",
+        "search-designs",
+        "export-design"
+      ],
+      "edit": [
+        "start-editing-transaction",
+        "commit-editing-transaction"
+      ],
+      "template": [
+        "list-templates",
+        "create-design-from-template"
+      ],
+      "folder": [
+        "create-folder",
+        "list-folder-items",
+        "delete-folder"
+      ]
+    }
+  }
+}

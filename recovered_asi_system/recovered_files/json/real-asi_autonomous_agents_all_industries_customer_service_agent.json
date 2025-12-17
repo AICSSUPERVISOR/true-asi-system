@@ -1,0 +1,35 @@
+{
+  "id": "agent_customer_service_20251216220619",
+  "name": "CustomerServiceASI",
+  "industry": "customer_service",
+  "description": "Support automation, sentiment analysis, and customer experience optimization",
+  "specializations": [
+    "ticket_resolution",
+    "sentiment_analysis",
+    "chatbot_responses",
+    "escalation_prediction",
+    "customer_insights",
+    "knowledge_base",
+    "voice_analysis",
+    "quality_assurance",
+    "customer_journey_mapping",
+    "nps_analysis",
+    "churn_prediction",
+    "service_recovery"
+  ],
+  "tools": [
+    "gmail",
+    "supabase",
+    "zapier"
+  ],
+  "code_capabilities": [
+    "chatbots",
+    "ticket_systems",
+    "sentiment_analyzers",
+    "knowledge_bases",
+    "customer_dashboards"
+  ],
+  "generation": 1,
+  "performance_score": 1.0,
+  "created_at": "2025-12-16T22:06:19.322603"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Sales Lead Scoring Automation",
+  "description": "Automatically score and route leads",
+  "trigger": {
+    "app": "Webhook",
+    "event": "New Lead",
+    "fields": [
+      "email",
+      "company",
+      "title",
+      "source"
+    ]
+  },
+  "actions": [
+    {
+      "app": "Webhook",
+      "action": "POST",
+      "url": "{{ASI_API}}/score-lead",
+      "body": [
+        "email",
+        "company",
+        "title",
+        "source"
+      ]
+    },
+    {
+      "app": "Supabase",
+      "action": "Create Record",
+      "table": "leads",
+      "fields": [
+        "email",
+        "company",
+        "score",
+        "assigned_rep"
+      ]
+    },
+    {
+      "app": "Slack",
+      "action": "Send Message",
+      "channel": "#sales-leads"
+    }
+  ],
+  "industry": "sales"
+}

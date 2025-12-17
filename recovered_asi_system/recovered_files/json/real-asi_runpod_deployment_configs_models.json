@@ -1,0 +1,126 @@
+{
+  "models": {
+    "marc_8b": {
+      "name": "MARC-8B (MIT TTT)",
+      "huggingface_id": "ekinakyurek/marc-8B-finetuned-llama3",
+      "size_gb": 16,
+      "parameters": "8B",
+      "expected_accuracy": {
+        "arc_agi_1": 0.628,
+        "arc_agi_2": 0.30
+      },
+      "inference_time_per_task_seconds": 60,
+      "vram_required_gb": 24,
+      "quantization": "bfloat16",
+      "priority": 1,
+      "notes": "Best single-model performance on ARC-AGI-1"
+    },
+    "qwen3_8b": {
+      "name": "Qwen3-8B",
+      "huggingface_id": "Qwen/Qwen3-8B",
+      "size_gb": 16,
+      "parameters": "8B",
+      "expected_accuracy": {
+        "arc_agi_1": 0.45,
+        "arc_agi_2": 0.20
+      },
+      "inference_time_per_task_seconds": 45,
+      "vram_required_gb": 20,
+      "quantization": "bfloat16",
+      "priority": 2,
+      "notes": "Strong reasoning and code generation"
+    },
+    "deepseek_coder_v2": {
+      "name": "DeepSeek-Coder-V2-Lite",
+      "huggingface_id": "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
+      "size_gb": 32,
+      "parameters": "16B",
+      "expected_accuracy": {
+        "arc_agi_1": 0.40,
+        "arc_agi_2": 0.18
+      },
+      "inference_time_per_task_seconds": 90,
+      "vram_required_gb": 40,
+      "quantization": "bfloat16",
+      "priority": 3,
+      "notes": "Excellent at program synthesis"
+    },
+    "llama3_70b": {
+      "name": "Llama-3-70B-Instruct",
+      "huggingface_id": "meta-llama/Meta-Llama-3-70B-Instruct",
+      "size_gb": 140,
+      "parameters": "70B",
+      "expected_accuracy": {
+        "arc_agi_1": 0.35,
+        "arc_agi_2": 0.15
+      },
+      "inference_time_per_task_seconds": 180,
+      "vram_required_gb": 80,
+      "quantization": "4bit",
+      "priority": 4,
+      "notes": "Requires A100 80GB or H100"
+    },
+    "nvarc": {
+      "name": "NVARC (NVIDIA)",
+      "huggingface_id": "nvidia/nvarc-arc-agi",
+      "size_gb": 8,
+      "parameters": "3B",
+      "expected_accuracy": {
+        "arc_agi_1": 0.55,
+        "arc_agi_2": 0.25
+      },
+      "inference_time_per_task_seconds": 30,
+      "vram_required_gb": 12,
+      "quantization": "float16",
+      "priority": 2,
+      "notes": "Specialized for ARC-AGI, efficient"
+    }
+  },
+  "ensemble_config": {
+    "voting_method": "weighted",
+    "weights": {
+      "marc_8b": 0.35,
+      "qwen3_8b": 0.25,
+      "deepseek_coder_v2": 0.20,
+      "nvarc": 0.15,
+      "pattern_match": 0.05
+    },
+    "confidence_threshold": 0.7,
+    "fallback_strategy": "highest_confidence",
+    "max_candidates_per_model": 3
+  },
+  "hardware_recommendations": {
+    "minimum": {
+      "gpu": "NVIDIA RTX 4090",
+      "vram_gb": 24,
+      "ram_gb": 64,
+      "disk_gb": 100,
+      "cost_per_hour": 0.74
+    },
+    "recommended": {
+      "gpu": "NVIDIA A100 80GB",
+      "vram_gb": 80,
+      "ram_gb": 128,
+      "disk_gb": 200,
+      "cost_per_hour": 2.79
+    },
+    "maximum": {
+      "gpu": "NVIDIA H100 80GB",
+      "vram_gb": 80,
+      "ram_gb": 256,
+      "disk_gb": 500,
+      "cost_per_hour": 3.89
+    }
+  },
+  "runpod_templates": {
+    "pytorch_2.1_cuda_12.1": {
+      "template_id": "runpod/pytorch:2.1.0-py3.10-cuda12.1.0-devel-ubuntu22.04",
+      "recommended": true
+    },
+    "vllm": {
+      "template_id": "runpod/vllm:0.2.7",
+      "recommended": false,
+      "notes": "Use for high-throughput inference"
+    }
+  }
+}

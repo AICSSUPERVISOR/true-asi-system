@@ -1,0 +1,17 @@
+{
+  "id": "9d42d690b0196a68",
+  "name": "ASI_logistics_Agent",
+  "industry": "logistics",
+  "capabilities": [
+    "learning",
+    "self_improvement",
+    "replication"
+  ],
+  "knowledge_base": {},
+  "task_history": [],
+  "performance_score": 0.0,
+  "generation": 1,
+  "parent_id": null,
+  "created_at": "2025-12-16T22:06:15.834319",
+  "last_active": "2025-12-16T22:06:15.834319"
+}

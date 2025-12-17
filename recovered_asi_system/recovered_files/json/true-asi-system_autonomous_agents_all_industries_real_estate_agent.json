@@ -1,0 +1,36 @@
+{
+  "id": "agent_real_estate_20251216220619",
+  "name": "RealEstateASI",
+  "industry": "real_estate",
+  "description": "Property valuation, market analysis, transaction management, and PropTech",
+  "specializations": [
+    "property_valuation",
+    "market_analysis",
+    "lead_generation",
+    "transaction_management",
+    "portfolio_analysis",
+    "tenant_screening",
+    "lease_management",
+    "property_marketing",
+    "investment_analysis",
+    "zoning_compliance",
+    "comparative_market_analysis",
+    "virtual_tours"
+  ],
+  "tools": [
+    "supabase",
+    "gmail",
+    "zapier",
+    "canva"
+  ],
+  "code_capabilities": [
+    "valuation_models",
+    "market_analyzers",
+    "crm_systems",
+    "listing_platforms",
+    "investment_calculators"
+  ],
+  "generation": 1,
+  "performance_score": 1.0,
+  "created_at": "2025-12-16T22:06:19.322665"
+}

@@ -1,0 +1,38 @@
+{
+  "name": "Universal Error Handler",
+  "description": "Handle and log all system errors",
+  "trigger": {
+    "app": "Webhook",
+    "event": "Error Received",
+    "fields": [
+      "error_type",
+      "message",
+      "stack_trace"
+    ]
+  },
+  "actions": [
+    {
+      "app": "Supabase",
+      "action": "Create Record",
+      "table": "error_logs",
+      "fields": [
+        "error_type",
+        "message",
+        "stack_trace",
+        "timestamp"
+      ]
+    },
+    {
+      "app": "Slack",
+      "action": "Send Message",
+      "channel": "#system-errors"
+    },
+    {
+      "app": "Gmail",
+      "action": "Send Email",
+      "to": "devops@company.com",
+      "template": "error_alert"
+    }
+  ],
+  "industry": "universal"
+}

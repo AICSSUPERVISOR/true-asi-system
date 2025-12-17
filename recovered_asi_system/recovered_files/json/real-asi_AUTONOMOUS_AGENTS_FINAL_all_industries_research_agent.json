@@ -1,0 +1,35 @@
+{
+  "id": "agent_research_20251216220619",
+  "name": "ResearchASI",
+  "industry": "research",
+  "description": "Scientific research, data analysis, hypothesis generation, and publication",
+  "specializations": [
+    "literature_review",
+    "data_analysis",
+    "hypothesis_generation",
+    "experiment_design",
+    "paper_writing",
+    "citation_analysis",
+    "peer_review_assistance",
+    "grant_writing",
+    "collaboration_matching",
+    "reproducibility_checking",
+    "statistical_analysis",
+    "visualization"
+  ],
+  "tools": [
+    "hugging-face",
+    "supabase",
+    "zapier"
+  ],
+  "code_capabilities": [
+    "data_pipelines",
+    "statistical_models",
+    "visualization_tools",
+    "literature_analyzers",
+    "experiment_trackers"
+  ],
+  "generation": 1,
+  "performance_score": 1.0,
+  "created_at": "2025-12-16T22:06:19.322639"
+}

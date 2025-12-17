@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agent-6-orchestrator
+  labels:
+    app: agent-6-orchestrator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agent-6-orchestrator
+  template:
+    metadata:
+      labels:
+        app: agent-6-orchestrator
+    spec:
+      containers:
+      - name: agent-6-orchestrator
+        image: your-registry/agent-6-orchestrator:latest # Replace with your image registry
+        ports:
+        - containerPort: 8080
+        env:
+        - name: REDIS_URL
+          value: "redis://redis:6379"
+        - name: POSTGRES_URL
+          value: "postgresql://postgres:your-strong-password@postgres:5432/s7_db" # Replace with a secret in production

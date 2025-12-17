@@ -1,0 +1,37 @@
+{
+  "name": "Research New Paper Alert",
+  "description": "Alert on new papers in research area",
+  "trigger": {
+    "app": "RSS",
+    "event": "New Item",
+    "feed": "arxiv.org/rss/cs.AI"
+  },
+  "actions": [
+    {
+      "app": "Webhook",
+      "action": "POST",
+      "url": "{{ASI_API}}/analyze-paper",
+      "body": [
+        "title",
+        "abstract",
+        "authors"
+      ]
+    },
+    {
+      "app": "Supabase",
+      "action": "Create Record",
+      "table": "papers",
+      "fields": [
+        "title",
+        "relevance_score",
+        "summary"
+      ]
+    },
+    {
+      "app": "Slack",
+      "action": "Send Message",
+      "channel": "#research-papers"
+    }
+  ],
+  "industry": "research"
+}

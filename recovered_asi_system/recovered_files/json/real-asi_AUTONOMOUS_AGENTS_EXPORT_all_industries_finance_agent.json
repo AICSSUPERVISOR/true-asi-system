@@ -1,0 +1,36 @@
+{
+  "id": "agent_finance_20251216220619",
+  "name": "FinanceASI",
+  "industry": "finance",
+  "description": "Autonomous financial analysis, trading, risk management, and compliance",
+  "specializations": [
+    "algorithmic_trading",
+    "risk_assessment",
+    "portfolio_optimization",
+    "fraud_detection",
+    "financial_modeling",
+    "regulatory_compliance",
+    "credit_scoring",
+    "market_analysis",
+    "derivatives_pricing",
+    "asset_management",
+    "tax_optimization",
+    "audit_automation"
+  ],
+  "tools": [
+    "stripe",
+    "supabase",
+    "zapier",
+    "gmail"
+  ],
+  "code_capabilities": [
+    "trading_algorithms",
+    "risk_models",
+    "financial_reports",
+    "compliance_checks",
+    "portfolio_rebalancing"
+  ],
+  "generation": 1,
+  "performance_score": 1.0,
+  "created_at": "2025-12-16T22:06:19.322512"
+}

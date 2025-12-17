@@ -1,0 +1,28 @@
+{
+  "total_agents": 20,
+  "industries": [
+    "finance",
+    "healthcare",
+    "legal",
+    "engineering",
+    "marketing",
+    "sales",
+    "customer_service",
+    "human_resources",
+    "education",
+    "research",
+    "manufacturing",
+    "logistics",
+    "real_estate",
+    "insurance",
+    "consulting",
+    "media",
+    "agriculture",
+    "energy",
+    "government",
+    "cybersecurity"
+  ],
+  "total_specializations": 240,
+  "total_code_capabilities": 101,
+  "created_at": "2025-12-16T22:06:19.325309"
+}

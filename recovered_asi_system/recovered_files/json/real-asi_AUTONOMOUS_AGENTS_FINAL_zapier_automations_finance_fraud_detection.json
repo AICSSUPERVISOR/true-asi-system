@@ -1,0 +1,28 @@
+{
+  "name": "Finance Fraud Detection Alert",
+  "description": "Alert on suspicious transactions",
+  "trigger": {
+    "type": "webhook",
+    "event": "fraud_detected"
+  },
+  "actions": [
+    {
+      "app": "slack",
+      "action": "send_message",
+      "channel": "#security-alerts",
+      "priority": "urgent"
+    },
+    {
+      "app": "pagerduty",
+      "action": "create_incident"
+    },
+    {
+      "app": "supabase",
+      "action": "update",
+      "table": "transactions",
+      "set": {
+        "status": "flagged"
+      }
+    }
+  ]
+}

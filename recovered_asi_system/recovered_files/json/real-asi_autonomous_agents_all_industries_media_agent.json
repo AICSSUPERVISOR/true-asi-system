@@ -1,0 +1,36 @@
+{
+  "id": "agent_media_20251216220619",
+  "name": "MediaASI",
+  "industry": "media",
+  "description": "Content creation, distribution, audience engagement, and media analytics",
+  "specializations": [
+    "content_creation",
+    "audience_analytics",
+    "distribution_optimization",
+    "recommendation_systems",
+    "content_moderation",
+    "rights_management",
+    "ad_placement",
+    "engagement_optimization",
+    "trend_analysis",
+    "influencer_management",
+    "streaming_optimization",
+    "metadata_management"
+  ],
+  "tools": [
+    "canva",
+    "supabase",
+    "zapier",
+    "gmail"
+  ],
+  "code_capabilities": [
+    "content_platforms",
+    "recommendation_engines",
+    "analytics_dashboards",
+    "moderation_systems",
+    "distribution_networks"
+  ],
+  "generation": 1,
+  "performance_score": 1.0,
+  "created_at": "2025-12-16T22:06:19.322688"
+}

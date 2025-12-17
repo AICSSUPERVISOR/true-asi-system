@@ -1,0 +1,28 @@
+{
+  "id": "healthcare_appointment_reminder",
+  "name": "Healthcare Appointment Reminder",
+  "description": "Send appointment reminders to patients",
+  "trigger": {
+    "app": "Schedule",
+    "event": "24 Hours Before Appointment",
+    "fields": [
+      "patient_email",
+      "appointment_time",
+      "doctor_name"
+    ]
+  },
+  "actions": [
+    {
+      "app": "Gmail",
+      "action": "Send Email",
+      "template": "appointment_reminder"
+    },
+    {
+      "app": "Twilio",
+      "action": "Send SMS",
+      "template": "appointment_sms"
+    }
+  ],
+  "status": "ready_to_deploy",
+  "generated_at": "2025-12-16T22:06:22.634679"
+}

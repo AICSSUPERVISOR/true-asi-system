@@ -1,0 +1,35 @@
+{
+  "id": "agent_logistics_20251216220619",
+  "name": "LogisticsASI",
+  "industry": "logistics",
+  "description": "Transportation, warehousing, route optimization, and supply chain visibility",
+  "specializations": [
+    "route_optimization",
+    "fleet_management",
+    "warehouse_optimization",
+    "demand_forecasting",
+    "carrier_selection",
+    "shipment_tracking",
+    "last_mile_delivery",
+    "customs_compliance",
+    "freight_pricing",
+    "inventory_positioning",
+    "reverse_logistics",
+    "sustainability_tracking"
+  ],
+  "tools": [
+    "supabase",
+    "zapier",
+    "gmail"
+  ],
+  "code_capabilities": [
+    "routing_algorithms",
+    "tracking_systems",
+    "warehouse_management",
+    "demand_forecasters",
+    "logistics_dashboards"
+  ],
+  "generation": 1,
+  "performance_score": 1.0,
+  "created_at": "2025-12-16T22:06:19.322656"
+}

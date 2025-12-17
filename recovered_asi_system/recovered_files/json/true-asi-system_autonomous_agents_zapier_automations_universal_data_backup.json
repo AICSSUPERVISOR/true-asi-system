@@ -1,0 +1,24 @@
+{
+  "name": "Universal Data Backup",
+  "description": "Automated data backup",
+  "trigger": {
+    "type": "schedule",
+    "interval": "daily"
+  },
+  "actions": [
+    {
+      "app": "supabase",
+      "action": "export_data"
+    },
+    {
+      "app": "aws_s3",
+      "action": "upload",
+      "bucket": "asi-knowledge-base-898982995956"
+    },
+    {
+      "app": "slack",
+      "action": "send_message",
+      "channel": "#backups"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Agent Task Completion Notifier",
+  "description": "Notify when agents complete tasks",
+  "trigger": {
+    "type": "webhook",
+    "event": "task_completed"
+  },
+  "actions": [
+    {
+      "app": "slack",
+      "action": "send_message",
+      "channel": "#task-completions"
+    },
+    {
+      "app": "google_sheets",
+      "action": "append_row",
+      "spreadsheet": "Task Log"
+    },
+    {
+      "app": "gmail",
+      "action": "send_email",
+      "condition": "priority == 'high'"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "downloaded": [
+    "Llama 4 70B",
+    "Llama 4 405B",
+    "Llama 3.1 8B",
+    "Llama 3.1 70B",
+    "Llama 3 8B",
+    "Llama 3 70B",
+    "Llama 2 13B",
+    "Llama 2 70B",
+    "Llama 2 7B",
+    "Llama 3.1 405B",
+    "Qwen 2.5 32B",
+    "Qwen 2.5 14B",
+    "Qwen 2.5 7B",
+    "Qwen 2.5 1.5B",
+<<<<<<< HEAD
+    "Qwen 2.5 0.5B",
+    "Qwen 2.5 72B",
+    "Qwen 3 72B"
+=======
+    "Qwen 2.5 0.5B"
+>>>>>>> daae0f8 (✅ Complete Symbiosis Integration - All AWS code integrated)
+  ],
+  "failed": [
+    "Qwen 2.5 3B"
+  ],
+  "in_progress": []
+}

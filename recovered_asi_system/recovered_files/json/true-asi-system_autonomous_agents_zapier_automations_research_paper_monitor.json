@@ -1,0 +1,31 @@
+{
+  "name": "Research Paper Monitor",
+  "description": "Monitor new research papers",
+  "trigger": {
+    "type": "rss",
+    "feed": "arxiv.org/rss/cs.AI"
+  },
+  "actions": [
+    {
+      "app": "webhook",
+      "action": "POST",
+      "url": "{{ASI_API}}/analyze-paper"
+    },
+    {
+      "app": "supabase",
+      "action": "insert",
+      "table": "papers"
+    },
+    {
+      "app": "slack",
+      "action": "send_message",
+      "channel": "#research",
+      "condition": "relevance_score > 0.8"
+    },
+    {
+      "app": "notion",
+      "action": "create_page",
+      "database": "Research Papers"
+    }
+  ]
+}

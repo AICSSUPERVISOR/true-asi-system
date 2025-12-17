@@ -1,0 +1,2376 @@
+{
+  "status": {
+    "total_agents": 100,
+    "behavior": "collaboration",
+    "average_performance": 0.960000000000002,
+    "top_performer": "Swarm_Finance_0",
+    "collective_knowledge_topics": 4,
+    "total_connections": 485,
+    "roles": {
+      "leader": 20,
+      "worker": 40,
+      "scout": 20,
+      "validator": 0,
+      "coordinator": 20
+    }
+  },
+  "agents": {
+    "swarm_finance_0": {
+      "id": "swarm_finance_0",
+      "name": "Swarm_Finance_0",
+      "industry": "finance",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1",
+        "swarm_healthcare_2",
+        "swarm_legal_0",
+        "swarm_legal_1",
+        "swarm_legal_2",
+        "swarm_engineering_0",
+        "swarm_engineering_1",
+        "swarm_engineering_2",
+        "swarm_marketing_0",
+        "swarm_marketing_1",
+        "swarm_marketing_2",
+        "swarm_sales_0",
+        "swarm_sales_1",
+        "swarm_sales_2",
+        "swarm_customer_service_0",
+        "swarm_customer_service_1",
+        "swarm_customer_service_2",
+        "swarm_human_resources_0",
+        "swarm_human_resources_1",
+        "swarm_human_resources_2",
+        "swarm_education_0",
+        "swarm_education_1",
+        "swarm_education_2",
+        "swarm_research_0",
+        "swarm_research_1",
+        "swarm_research_2",
+        "swarm_manufacturing_0",
+        "swarm_manufacturing_1",
+        "swarm_manufacturing_2",
+        "swarm_logistics_0",
+        "swarm_logistics_1",
+        "swarm_logistics_2",
+        "swarm_real_estate_0",
+        "swarm_real_estate_1",
+        "swarm_real_estate_2",
+        "swarm_insurance_0",
+        "swarm_insurance_1",
+        "swarm_insurance_2",
+        "swarm_consulting_0",
+        "swarm_consulting_1",
+        "swarm_consulting_2",
+        "swarm_media_0",
+        "swarm_media_1",
+        "swarm_media_2",
+        "swarm_agriculture_0",
+        "swarm_agriculture_1",
+        "swarm_agriculture_2",
+        "swarm_energy_0",
+        "swarm_energy_1",
+        "swarm_energy_2",
+        "swarm_government_0",
+        "swarm_government_1",
+        "swarm_government_2",
+        "swarm_cybersecurity_0",
+        "swarm_cybersecurity_1",
+        "swarm_cybersecurity_2",
+        "swarm_finance_0_child_60",
+        "swarm_finance_1_child_61",
+        "swarm_finance_2_child_62",
+        "swarm_healthcare_0_child_63",
+        "swarm_healthcare_1_child_64",
+        "swarm_healthcare_2_child_65",
+        "swarm_legal_0_child_66",
+        "swarm_legal_1_child_67",
+        "swarm_legal_2_child_68",
+        "swarm_engineering_0_child_69",
+        "swarm_engineering_1_child_70",
+        "swarm_engineering_2_child_71",
+        "swarm_marketing_0_child_72",
+        "swarm_marketing_1_child_73",
+        "swarm_marketing_2_child_74",
+        "swarm_sales_0_child_75",
+        "swarm_sales_1_child_76",
+        "swarm_sales_2_child_77",
+        "swarm_customer_service_0_child_78",
+        "swarm_customer_service_1_child_79",
+        "swarm_customer_service_2_child_80",
+        "swarm_human_resources_0_child_81",
+        "swarm_human_resources_1_child_82",
+        "swarm_human_resources_2_child_83",
+        "swarm_education_0_child_84",
+        "swarm_education_1_child_85",
+        "swarm_education_2_child_86",
+        "swarm_research_0_child_87",
+        "swarm_research_1_child_88",
+        "swarm_research_2_child_89",
+        "swarm_manufacturing_0_child_90",
+        "swarm_manufacturing_1_child_91",
+        "swarm_manufacturing_2_child_92",
+        "swarm_logistics_0_child_93",
+        "swarm_logistics_1_child_94",
+        "swarm_logistics_2_child_95",
+        "swarm_real_estate_0_child_96",
+        "swarm_real_estate_1_child_97",
+        "swarm_real_estate_2_child_98",
+        "swarm_insurance_0_child_99"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 5
+    },
+    "swarm_finance_1": {
+      "id": "swarm_finance_1",
+      "name": "Swarm_Finance_1",
+      "industry": "finance",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1",
+        "swarm_healthcare_2",
+        "swarm_legal_0",
+        "swarm_legal_1",
+        "swarm_legal_2",
+        "swarm_engineering_0",
+        "swarm_engineering_1",
+        "swarm_engineering_2",
+        "swarm_marketing_0",
+        "swarm_marketing_1",
+        "swarm_marketing_2",
+        "swarm_sales_0",
+        "swarm_sales_1",
+        "swarm_sales_2",
+        "swarm_customer_service_0",
+        "swarm_customer_service_1",
+        "swarm_customer_service_2",
+        "swarm_human_resources_0",
+        "swarm_human_resources_1",
+        "swarm_human_resources_2",
+        "swarm_education_0",
+        "swarm_education_1",
+        "swarm_education_2",
+        "swarm_research_0",
+        "swarm_research_1",
+        "swarm_research_2",
+        "swarm_manufacturing_0",
+        "swarm_manufacturing_1",
+        "swarm_manufacturing_2",
+        "swarm_logistics_0",
+        "swarm_logistics_1",
+        "swarm_logistics_2",
+        "swarm_real_estate_0",
+        "swarm_real_estate_1",
+        "swarm_real_estate_2",
+        "swarm_insurance_0",
+        "swarm_insurance_1",
+        "swarm_insurance_2",
+        "swarm_consulting_0",
+        "swarm_consulting_1",
+        "swarm_consulting_2",
+        "swarm_media_0",
+        "swarm_media_1",
+        "swarm_media_2",
+        "swarm_agriculture_0",
+        "swarm_agriculture_1",
+        "swarm_agriculture_2",
+        "swarm_energy_0",
+        "swarm_energy_1",
+        "swarm_energy_2",
+        "swarm_government_0",
+        "swarm_government_1",
+        "swarm_government_2",
+        "swarm_cybersecurity_0",
+        "swarm_cybersecurity_1",
+        "swarm_cybersecurity_2",
+        "swarm_finance_0_child_60",
+        "swarm_finance_1_child_61",
+        "swarm_finance_2_child_62",
+        "swarm_healthcare_0_child_63",
+        "swarm_healthcare_1_child_64",
+        "swarm_healthcare_2_child_65",
+        "swarm_legal_0_child_66",
+        "swarm_legal_1_child_67",
+        "swarm_legal_2_child_68",
+        "swarm_engineering_0_child_69",
+        "swarm_engineering_1_child_70",
+        "swarm_engineering_2_child_71",
+        "swarm_marketing_0_child_72",
+        "swarm_marketing_1_child_73",
+        "swarm_marketing_2_child_74",
+        "swarm_sales_0_child_75",
+        "swarm_sales_1_child_76",
+        "swarm_sales_2_child_77",
+        "swarm_customer_service_0_child_78",
+        "swarm_customer_service_1_child_79",
+        "swarm_customer_service_2_child_80",
+        "swarm_human_resources_0_child_81",
+        "swarm_human_resources_1_child_82",
+        "swarm_human_resources_2_child_83",
+        "swarm_education_0_child_84",
+        "swarm_education_1_child_85",
+        "swarm_education_2_child_86",
+        "swarm_research_0_child_87",
+        "swarm_research_1_child_88",
+        "swarm_research_2_child_89",
+        "swarm_manufacturing_0_child_90",
+        "swarm_manufacturing_1_child_91",
+        "swarm_manufacturing_2_child_92",
+        "swarm_logistics_0_child_93",
+        "swarm_logistics_1_child_94",
+        "swarm_logistics_2_child_95",
+        "swarm_real_estate_0_child_96",
+        "swarm_real_estate_1_child_97",
+        "swarm_real_estate_2_child_98",
+        "swarm_insurance_0_child_99"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 5
+    },
+    "swarm_finance_2": {
+      "id": "swarm_finance_2",
+      "name": "Swarm_Finance_2",
+      "industry": "finance",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1",
+        "swarm_healthcare_2",
+        "swarm_legal_0",
+        "swarm_legal_1",
+        "swarm_legal_2",
+        "swarm_engineering_0",
+        "swarm_engineering_1",
+        "swarm_engineering_2",
+        "swarm_marketing_0",
+        "swarm_marketing_1",
+        "swarm_marketing_2",
+        "swarm_sales_0",
+        "swarm_sales_1",
+        "swarm_sales_2",
+        "swarm_customer_service_0",
+        "swarm_customer_service_1",
+        "swarm_customer_service_2",
+        "swarm_human_resources_0",
+        "swarm_human_resources_1",
+        "swarm_human_resources_2",
+        "swarm_education_0",
+        "swarm_education_1",
+        "swarm_education_2",
+        "swarm_research_0",
+        "swarm_research_1",
+        "swarm_research_2",
+        "swarm_manufacturing_0",
+        "swarm_manufacturing_1",
+        "swarm_manufacturing_2",
+        "swarm_logistics_0",
+        "swarm_logistics_1",
+        "swarm_logistics_2",
+        "swarm_real_estate_0",
+        "swarm_real_estate_1",
+        "swarm_real_estate_2",
+        "swarm_insurance_0",
+        "swarm_insurance_1",
+        "swarm_insurance_2",
+        "swarm_consulting_0",
+        "swarm_consulting_1",
+        "swarm_consulting_2",
+        "swarm_media_0",
+        "swarm_media_1",
+        "swarm_media_2",
+        "swarm_agriculture_0",
+        "swarm_agriculture_1",
+        "swarm_agriculture_2",
+        "swarm_energy_0",
+        "swarm_energy_1",
+        "swarm_energy_2",
+        "swarm_government_0",
+        "swarm_government_1",
+        "swarm_government_2",
+        "swarm_cybersecurity_0",
+        "swarm_cybersecurity_1",
+        "swarm_cybersecurity_2",
+        "swarm_finance_0_child_60",
+        "swarm_finance_1_child_61",
+        "swarm_finance_2_child_62",
+        "swarm_healthcare_0_child_63",
+        "swarm_healthcare_1_child_64",
+        "swarm_healthcare_2_child_65",
+        "swarm_legal_0_child_66",
+        "swarm_legal_1_child_67",
+        "swarm_legal_2_child_68",
+        "swarm_engineering_0_child_69",
+        "swarm_engineering_1_child_70",
+        "swarm_engineering_2_child_71",
+        "swarm_marketing_0_child_72",
+        "swarm_marketing_1_child_73",
+        "swarm_marketing_2_child_74",
+        "swarm_sales_0_child_75",
+        "swarm_sales_1_child_76",
+        "swarm_sales_2_child_77",
+        "swarm_customer_service_0_child_78",
+        "swarm_customer_service_1_child_79",
+        "swarm_customer_service_2_child_80",
+        "swarm_human_resources_0_child_81",
+        "swarm_human_resources_1_child_82",
+        "swarm_human_resources_2_child_83",
+        "swarm_education_0_child_84",
+        "swarm_education_1_child_85",
+        "swarm_education_2_child_86",
+        "swarm_research_0_child_87",
+        "swarm_research_1_child_88",
+        "swarm_research_2_child_89",
+        "swarm_manufacturing_0_child_90",
+        "swarm_manufacturing_1_child_91",
+        "swarm_manufacturing_2_child_92",
+        "swarm_logistics_0_child_93",
+        "swarm_logistics_1_child_94",
+        "swarm_logistics_2_child_95",
+        "swarm_real_estate_0_child_96",
+        "swarm_real_estate_1_child_97",
+        "swarm_real_estate_2_child_98",
+        "swarm_insurance_0_child_99"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 5
+    },
+    "swarm_healthcare_0": {
+      "id": "swarm_healthcare_0",
+      "name": "Swarm_Healthcare_0",
+      "industry": "healthcare",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_1",
+        "swarm_healthcare_2",
+        "swarm_legal_0",
+        "swarm_legal_1",
+        "swarm_legal_2",
+        "swarm_engineering_0",
+        "swarm_engineering_1",
+        "swarm_engineering_2",
+        "swarm_marketing_0",
+        "swarm_marketing_1",
+        "swarm_marketing_2",
+        "swarm_sales_0",
+        "swarm_sales_1",
+        "swarm_sales_2",
+        "swarm_customer_service_0",
+        "swarm_customer_service_1",
+        "swarm_customer_service_2",
+        "swarm_human_resources_0",
+        "swarm_human_resources_1",
+        "swarm_human_resources_2",
+        "swarm_education_0",
+        "swarm_education_1",
+        "swarm_education_2",
+        "swarm_research_0",
+        "swarm_research_1",
+        "swarm_research_2",
+        "swarm_manufacturing_0",
+        "swarm_manufacturing_1",
+        "swarm_manufacturing_2",
+        "swarm_logistics_0",
+        "swarm_logistics_1",
+        "swarm_logistics_2",
+        "swarm_real_estate_0",
+        "swarm_real_estate_1",
+        "swarm_real_estate_2",
+        "swarm_insurance_0",
+        "swarm_insurance_1",
+        "swarm_insurance_2",
+        "swarm_consulting_0",
+        "swarm_consulting_1",
+        "swarm_consulting_2",
+        "swarm_media_0",
+        "swarm_media_1",
+        "swarm_media_2",
+        "swarm_agriculture_0",
+        "swarm_agriculture_1",
+        "swarm_agriculture_2",
+        "swarm_energy_0",
+        "swarm_energy_1",
+        "swarm_energy_2",
+        "swarm_government_0",
+        "swarm_government_1",
+        "swarm_government_2",
+        "swarm_cybersecurity_0",
+        "swarm_cybersecurity_1",
+        "swarm_cybersecurity_2",
+        "swarm_finance_0_child_60",
+        "swarm_finance_1_child_61",
+        "swarm_finance_2_child_62",
+        "swarm_healthcare_0_child_63",
+        "swarm_healthcare_1_child_64",
+        "swarm_healthcare_2_child_65",
+        "swarm_legal_0_child_66",
+        "swarm_legal_1_child_67",
+        "swarm_legal_2_child_68",
+        "swarm_engineering_0_child_69",
+        "swarm_engineering_1_child_70",
+        "swarm_engineering_2_child_71",
+        "swarm_marketing_0_child_72",
+        "swarm_marketing_1_child_73",
+        "swarm_marketing_2_child_74",
+        "swarm_sales_0_child_75",
+        "swarm_sales_1_child_76",
+        "swarm_sales_2_child_77",
+        "swarm_customer_service_0_child_78",
+        "swarm_customer_service_1_child_79",
+        "swarm_customer_service_2_child_80",
+        "swarm_human_resources_0_child_81",
+        "swarm_human_resources_1_child_82",
+        "swarm_human_resources_2_child_83",
+        "swarm_education_0_child_84",
+        "swarm_education_1_child_85",
+        "swarm_education_2_child_86",
+        "swarm_research_0_child_87",
+        "swarm_research_1_child_88",
+        "swarm_research_2_child_89",
+        "swarm_manufacturing_0_child_90",
+        "swarm_manufacturing_1_child_91",
+        "swarm_manufacturing_2_child_92",
+        "swarm_logistics_0_child_93",
+        "swarm_logistics_1_child_94",
+        "swarm_logistics_2_child_95",
+        "swarm_real_estate_0_child_96",
+        "swarm_real_estate_1_child_97",
+        "swarm_real_estate_2_child_98",
+        "swarm_insurance_0_child_99"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 1
+    },
+    "swarm_healthcare_1": {
+      "id": "swarm_healthcare_1",
+      "name": "Swarm_Healthcare_1",
+      "industry": "healthcare",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_2",
+        "swarm_legal_0",
+        "swarm_legal_1",
+        "swarm_legal_2",
+        "swarm_engineering_0",
+        "swarm_engineering_1",
+        "swarm_engineering_2",
+        "swarm_marketing_0",
+        "swarm_marketing_1",
+        "swarm_marketing_2",
+        "swarm_sales_0",
+        "swarm_sales_1",
+        "swarm_sales_2",
+        "swarm_customer_service_0",
+        "swarm_customer_service_1",
+        "swarm_customer_service_2",
+        "swarm_human_resources_0",
+        "swarm_human_resources_1",
+        "swarm_human_resources_2",
+        "swarm_education_0",
+        "swarm_education_1",
+        "swarm_education_2",
+        "swarm_research_0",
+        "swarm_research_1",
+        "swarm_research_2",
+        "swarm_manufacturing_0",
+        "swarm_manufacturing_1",
+        "swarm_manufacturing_2",
+        "swarm_logistics_0",
+        "swarm_logistics_1",
+        "swarm_logistics_2",
+        "swarm_real_estate_0",
+        "swarm_real_estate_1",
+        "swarm_real_estate_2",
+        "swarm_insurance_0",
+        "swarm_insurance_1",
+        "swarm_insurance_2",
+        "swarm_consulting_0",
+        "swarm_consulting_1",
+        "swarm_consulting_2",
+        "swarm_media_0",
+        "swarm_media_1",
+        "swarm_media_2",
+        "swarm_agriculture_0",
+        "swarm_agriculture_1",
+        "swarm_agriculture_2",
+        "swarm_energy_0",
+        "swarm_energy_1",
+        "swarm_energy_2",
+        "swarm_government_0",
+        "swarm_government_1",
+        "swarm_government_2",
+        "swarm_cybersecurity_0",
+        "swarm_cybersecurity_1",
+        "swarm_cybersecurity_2",
+        "swarm_finance_0_child_60",
+        "swarm_finance_1_child_61",
+        "swarm_finance_2_child_62",
+        "swarm_healthcare_0_child_63",
+        "swarm_healthcare_1_child_64",
+        "swarm_healthcare_2_child_65",
+        "swarm_legal_0_child_66",
+        "swarm_legal_1_child_67",
+        "swarm_legal_2_child_68",
+        "swarm_engineering_0_child_69",
+        "swarm_engineering_1_child_70",
+        "swarm_engineering_2_child_71",
+        "swarm_marketing_0_child_72",
+        "swarm_marketing_1_child_73",
+        "swarm_marketing_2_child_74",
+        "swarm_sales_0_child_75",
+        "swarm_sales_1_child_76",
+        "swarm_sales_2_child_77",
+        "swarm_customer_service_0_child_78",
+        "swarm_customer_service_1_child_79",
+        "swarm_customer_service_2_child_80",
+        "swarm_human_resources_0_child_81",
+        "swarm_human_resources_1_child_82",
+        "swarm_human_resources_2_child_83",
+        "swarm_education_0_child_84",
+        "swarm_education_1_child_85",
+        "swarm_education_2_child_86",
+        "swarm_research_0_child_87",
+        "swarm_research_1_child_88",
+        "swarm_research_2_child_89",
+        "swarm_manufacturing_0_child_90",
+        "swarm_manufacturing_1_child_91",
+        "swarm_manufacturing_2_child_92",
+        "swarm_logistics_0_child_93",
+        "swarm_logistics_1_child_94",
+        "swarm_logistics_2_child_95",
+        "swarm_real_estate_0_child_96",
+        "swarm_real_estate_1_child_97",
+        "swarm_real_estate_2_child_98",
+        "swarm_insurance_0_child_99"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 1
+    },
+    "swarm_healthcare_2": {
+      "id": "swarm_healthcare_2",
+      "name": "Swarm_Healthcare_2",
+      "industry": "healthcare",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_legal_0": {
+      "id": "swarm_legal_0",
+      "name": "Swarm_Legal_0",
+      "industry": "legal",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_legal_1": {
+      "id": "swarm_legal_1",
+      "name": "Swarm_Legal_1",
+      "industry": "legal",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_legal_2": {
+      "id": "swarm_legal_2",
+      "name": "Swarm_Legal_2",
+      "industry": "legal",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_engineering_0": {
+      "id": "swarm_engineering_0",
+      "name": "Swarm_Engineering_0",
+      "industry": "engineering",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_engineering_1": {
+      "id": "swarm_engineering_1",
+      "name": "Swarm_Engineering_1",
+      "industry": "engineering",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_engineering_2": {
+      "id": "swarm_engineering_2",
+      "name": "Swarm_Engineering_2",
+      "industry": "engineering",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_marketing_0": {
+      "id": "swarm_marketing_0",
+      "name": "Swarm_Marketing_0",
+      "industry": "marketing",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_marketing_1": {
+      "id": "swarm_marketing_1",
+      "name": "Swarm_Marketing_1",
+      "industry": "marketing",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_marketing_2": {
+      "id": "swarm_marketing_2",
+      "name": "Swarm_Marketing_2",
+      "industry": "marketing",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_sales_0": {
+      "id": "swarm_sales_0",
+      "name": "Swarm_Sales_0",
+      "industry": "sales",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_sales_1": {
+      "id": "swarm_sales_1",
+      "name": "Swarm_Sales_1",
+      "industry": "sales",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_sales_2": {
+      "id": "swarm_sales_2",
+      "name": "Swarm_Sales_2",
+      "industry": "sales",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_customer_service_0": {
+      "id": "swarm_customer_service_0",
+      "name": "Swarm_Customer_Service_0",
+      "industry": "customer_service",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_customer_service_1": {
+      "id": "swarm_customer_service_1",
+      "name": "Swarm_Customer_Service_1",
+      "industry": "customer_service",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_customer_service_2": {
+      "id": "swarm_customer_service_2",
+      "name": "Swarm_Customer_Service_2",
+      "industry": "customer_service",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_human_resources_0": {
+      "id": "swarm_human_resources_0",
+      "name": "Swarm_Human_Resources_0",
+      "industry": "human_resources",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_human_resources_1": {
+      "id": "swarm_human_resources_1",
+      "name": "Swarm_Human_Resources_1",
+      "industry": "human_resources",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_human_resources_2": {
+      "id": "swarm_human_resources_2",
+      "name": "Swarm_Human_Resources_2",
+      "industry": "human_resources",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_education_0": {
+      "id": "swarm_education_0",
+      "name": "Swarm_Education_0",
+      "industry": "education",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_education_1": {
+      "id": "swarm_education_1",
+      "name": "Swarm_Education_1",
+      "industry": "education",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_education_2": {
+      "id": "swarm_education_2",
+      "name": "Swarm_Education_2",
+      "industry": "education",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_research_0": {
+      "id": "swarm_research_0",
+      "name": "Swarm_Research_0",
+      "industry": "research",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_research_1": {
+      "id": "swarm_research_1",
+      "name": "Swarm_Research_1",
+      "industry": "research",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_research_2": {
+      "id": "swarm_research_2",
+      "name": "Swarm_Research_2",
+      "industry": "research",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_manufacturing_0": {
+      "id": "swarm_manufacturing_0",
+      "name": "Swarm_Manufacturing_0",
+      "industry": "manufacturing",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_manufacturing_1": {
+      "id": "swarm_manufacturing_1",
+      "name": "Swarm_Manufacturing_1",
+      "industry": "manufacturing",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_manufacturing_2": {
+      "id": "swarm_manufacturing_2",
+      "name": "Swarm_Manufacturing_2",
+      "industry": "manufacturing",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_logistics_0": {
+      "id": "swarm_logistics_0",
+      "name": "Swarm_Logistics_0",
+      "industry": "logistics",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_logistics_1": {
+      "id": "swarm_logistics_1",
+      "name": "Swarm_Logistics_1",
+      "industry": "logistics",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_logistics_2": {
+      "id": "swarm_logistics_2",
+      "name": "Swarm_Logistics_2",
+      "industry": "logistics",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_real_estate_0": {
+      "id": "swarm_real_estate_0",
+      "name": "Swarm_Real_Estate_0",
+      "industry": "real_estate",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_real_estate_1": {
+      "id": "swarm_real_estate_1",
+      "name": "Swarm_Real_Estate_1",
+      "industry": "real_estate",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_real_estate_2": {
+      "id": "swarm_real_estate_2",
+      "name": "Swarm_Real_Estate_2",
+      "industry": "real_estate",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_insurance_0": {
+      "id": "swarm_insurance_0",
+      "name": "Swarm_Insurance_0",
+      "industry": "insurance",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_insurance_1": {
+      "id": "swarm_insurance_1",
+      "name": "Swarm_Insurance_1",
+      "industry": "insurance",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_insurance_2": {
+      "id": "swarm_insurance_2",
+      "name": "Swarm_Insurance_2",
+      "industry": "insurance",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_consulting_0": {
+      "id": "swarm_consulting_0",
+      "name": "Swarm_Consulting_0",
+      "industry": "consulting",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_consulting_1": {
+      "id": "swarm_consulting_1",
+      "name": "Swarm_Consulting_1",
+      "industry": "consulting",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_consulting_2": {
+      "id": "swarm_consulting_2",
+      "name": "Swarm_Consulting_2",
+      "industry": "consulting",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_media_0": {
+      "id": "swarm_media_0",
+      "name": "Swarm_Media_0",
+      "industry": "media",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_media_1": {
+      "id": "swarm_media_1",
+      "name": "Swarm_Media_1",
+      "industry": "media",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_media_2": {
+      "id": "swarm_media_2",
+      "name": "Swarm_Media_2",
+      "industry": "media",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_agriculture_0": {
+      "id": "swarm_agriculture_0",
+      "name": "Swarm_Agriculture_0",
+      "industry": "agriculture",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_agriculture_1": {
+      "id": "swarm_agriculture_1",
+      "name": "Swarm_Agriculture_1",
+      "industry": "agriculture",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_agriculture_2": {
+      "id": "swarm_agriculture_2",
+      "name": "Swarm_Agriculture_2",
+      "industry": "agriculture",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_energy_0": {
+      "id": "swarm_energy_0",
+      "name": "Swarm_Energy_0",
+      "industry": "energy",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_energy_1": {
+      "id": "swarm_energy_1",
+      "name": "Swarm_Energy_1",
+      "industry": "energy",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_energy_2": {
+      "id": "swarm_energy_2",
+      "name": "Swarm_Energy_2",
+      "industry": "energy",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_government_0": {
+      "id": "swarm_government_0",
+      "name": "Swarm_Government_0",
+      "industry": "government",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_government_1": {
+      "id": "swarm_government_1",
+      "name": "Swarm_Government_1",
+      "industry": "government",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_government_2": {
+      "id": "swarm_government_2",
+      "name": "Swarm_Government_2",
+      "industry": "government",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_cybersecurity_0": {
+      "id": "swarm_cybersecurity_0",
+      "name": "Swarm_Cybersecurity_0",
+      "industry": "cybersecurity",
+      "role": "leader",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_cybersecurity_1": {
+      "id": "swarm_cybersecurity_1",
+      "name": "Swarm_Cybersecurity_1",
+      "industry": "cybersecurity",
+      "role": "coordinator",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_cybersecurity_2": {
+      "id": "swarm_cybersecurity_2",
+      "name": "Swarm_Cybersecurity_2",
+      "industry": "cybersecurity",
+      "role": "scout",
+      "performance": 1.0,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_finance_0_child_60": {
+      "id": "swarm_finance_0_child_60",
+      "name": "Swarm_Finance_0_Child",
+      "industry": "finance",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_finance_1_child_61": {
+      "id": "swarm_finance_1_child_61",
+      "name": "Swarm_Finance_1_Child",
+      "industry": "finance",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_finance_2_child_62": {
+      "id": "swarm_finance_2_child_62",
+      "name": "Swarm_Finance_2_Child",
+      "industry": "finance",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_healthcare_0_child_63": {
+      "id": "swarm_healthcare_0_child_63",
+      "name": "Swarm_Healthcare_0_Child",
+      "industry": "healthcare",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_healthcare_1_child_64": {
+      "id": "swarm_healthcare_1_child_64",
+      "name": "Swarm_Healthcare_1_Child",
+      "industry": "healthcare",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_healthcare_2_child_65": {
+      "id": "swarm_healthcare_2_child_65",
+      "name": "Swarm_Healthcare_2_Child",
+      "industry": "healthcare",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_legal_0_child_66": {
+      "id": "swarm_legal_0_child_66",
+      "name": "Swarm_Legal_0_Child",
+      "industry": "legal",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_legal_1_child_67": {
+      "id": "swarm_legal_1_child_67",
+      "name": "Swarm_Legal_1_Child",
+      "industry": "legal",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_legal_2_child_68": {
+      "id": "swarm_legal_2_child_68",
+      "name": "Swarm_Legal_2_Child",
+      "industry": "legal",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_engineering_0_child_69": {
+      "id": "swarm_engineering_0_child_69",
+      "name": "Swarm_Engineering_0_Child",
+      "industry": "engineering",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_engineering_1_child_70": {
+      "id": "swarm_engineering_1_child_70",
+      "name": "Swarm_Engineering_1_Child",
+      "industry": "engineering",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_engineering_2_child_71": {
+      "id": "swarm_engineering_2_child_71",
+      "name": "Swarm_Engineering_2_Child",
+      "industry": "engineering",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_marketing_0_child_72": {
+      "id": "swarm_marketing_0_child_72",
+      "name": "Swarm_Marketing_0_Child",
+      "industry": "marketing",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_marketing_1_child_73": {
+      "id": "swarm_marketing_1_child_73",
+      "name": "Swarm_Marketing_1_Child",
+      "industry": "marketing",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_marketing_2_child_74": {
+      "id": "swarm_marketing_2_child_74",
+      "name": "Swarm_Marketing_2_Child",
+      "industry": "marketing",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_sales_0_child_75": {
+      "id": "swarm_sales_0_child_75",
+      "name": "Swarm_Sales_0_Child",
+      "industry": "sales",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_sales_1_child_76": {
+      "id": "swarm_sales_1_child_76",
+      "name": "Swarm_Sales_1_Child",
+      "industry": "sales",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_sales_2_child_77": {
+      "id": "swarm_sales_2_child_77",
+      "name": "Swarm_Sales_2_Child",
+      "industry": "sales",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_customer_service_0_child_78": {
+      "id": "swarm_customer_service_0_child_78",
+      "name": "Swarm_Customer_Service_0_Child",
+      "industry": "customer_service",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_customer_service_1_child_79": {
+      "id": "swarm_customer_service_1_child_79",
+      "name": "Swarm_Customer_Service_1_Child",
+      "industry": "customer_service",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_customer_service_2_child_80": {
+      "id": "swarm_customer_service_2_child_80",
+      "name": "Swarm_Customer_Service_2_Child",
+      "industry": "customer_service",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_human_resources_0_child_81": {
+      "id": "swarm_human_resources_0_child_81",
+      "name": "Swarm_Human_Resources_0_Child",
+      "industry": "human_resources",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_human_resources_1_child_82": {
+      "id": "swarm_human_resources_1_child_82",
+      "name": "Swarm_Human_Resources_1_Child",
+      "industry": "human_resources",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_human_resources_2_child_83": {
+      "id": "swarm_human_resources_2_child_83",
+      "name": "Swarm_Human_Resources_2_Child",
+      "industry": "human_resources",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_education_0_child_84": {
+      "id": "swarm_education_0_child_84",
+      "name": "Swarm_Education_0_Child",
+      "industry": "education",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_education_1_child_85": {
+      "id": "swarm_education_1_child_85",
+      "name": "Swarm_Education_1_Child",
+      "industry": "education",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_education_2_child_86": {
+      "id": "swarm_education_2_child_86",
+      "name": "Swarm_Education_2_Child",
+      "industry": "education",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_research_0_child_87": {
+      "id": "swarm_research_0_child_87",
+      "name": "Swarm_Research_0_Child",
+      "industry": "research",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_research_1_child_88": {
+      "id": "swarm_research_1_child_88",
+      "name": "Swarm_Research_1_Child",
+      "industry": "research",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_research_2_child_89": {
+      "id": "swarm_research_2_child_89",
+      "name": "Swarm_Research_2_Child",
+      "industry": "research",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_manufacturing_0_child_90": {
+      "id": "swarm_manufacturing_0_child_90",
+      "name": "Swarm_Manufacturing_0_Child",
+      "industry": "manufacturing",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_manufacturing_1_child_91": {
+      "id": "swarm_manufacturing_1_child_91",
+      "name": "Swarm_Manufacturing_1_Child",
+      "industry": "manufacturing",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_manufacturing_2_child_92": {
+      "id": "swarm_manufacturing_2_child_92",
+      "name": "Swarm_Manufacturing_2_Child",
+      "industry": "manufacturing",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_logistics_0_child_93": {
+      "id": "swarm_logistics_0_child_93",
+      "name": "Swarm_Logistics_0_Child",
+      "industry": "logistics",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_logistics_1_child_94": {
+      "id": "swarm_logistics_1_child_94",
+      "name": "Swarm_Logistics_1_Child",
+      "industry": "logistics",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_logistics_2_child_95": {
+      "id": "swarm_logistics_2_child_95",
+      "name": "Swarm_Logistics_2_Child",
+      "industry": "logistics",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_real_estate_0_child_96": {
+      "id": "swarm_real_estate_0_child_96",
+      "name": "Swarm_Real_Estate_0_Child",
+      "industry": "real_estate",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_real_estate_1_child_97": {
+      "id": "swarm_real_estate_1_child_97",
+      "name": "Swarm_Real_Estate_1_Child",
+      "industry": "real_estate",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_real_estate_2_child_98": {
+      "id": "swarm_real_estate_2_child_98",
+      "name": "Swarm_Real_Estate_2_Child",
+      "industry": "real_estate",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    },
+    "swarm_insurance_0_child_99": {
+      "id": "swarm_insurance_0_child_99",
+      "name": "Swarm_Insurance_0_Child",
+      "industry": "insurance",
+      "role": "worker",
+      "performance": 0.9,
+      "energy": 1.0,
+      "connections": [
+        "swarm_finance_0",
+        "swarm_finance_1",
+        "swarm_finance_2",
+        "swarm_healthcare_0",
+        "swarm_healthcare_1"
+      ],
+      "knowledge_topics": [],
+      "tasks_completed": 0
+    }
+  },
+  "collective_knowledge": {
+    "Design conversation flow": {
+      "topic": "Design conversation flow",
+      "insights": [
+        {
+          "total_agents": 3,
+          "successful_agents": 3,
+          "average_confidence": 0.8552624142833235,
+          "best_result": {
+            "agent_id": "swarm_finance_1",
+            "task": "Design conversation flow",
+            "result": "Processed by Swarm_Finance_1",
+            "confidence": 0.9681467608249323,
+            "timestamp": "2025-12-16T22:09:54.706028"
+          },
+          "all_results": [
+            {
+              "agent_id": "swarm_finance_0",
+              "task": "Design conversation flow",
+              "result": "Processed by Swarm_Finance_0",
+              "confidence": 0.7756739055414161,
+              "timestamp": "2025-12-16T22:09:54.706004"
+            },
+            {
+              "agent_id": "swarm_finance_1",
+              "task": "Design conversation flow",
+              "result": "Processed by Swarm_Finance_1",
+              "confidence": 0.9681467608249323,
+              "timestamp": "2025-12-16T22:09:54.706028"
+            },
+            {
+              "agent_id": "swarm_finance_2",
+              "task": "Design conversation flow",
+              "result": "Processed by Swarm_Finance_2",
+              "confidence": 0.8219665764836224,
+              "timestamp": "2025-12-16T22:09:54.706044"
+            }
+          ],
+          "timestamp": "2025-12-16T22:09:54.706095"
+        }
+      ],
+      "confidence": 0.55,
+      "contributors": [
+        "swarm"
+      ],
+      "last_updated": "2025-12-16T22:09:54.706114"
+    },
+    "Implement NLP processing": {
+      "topic": "Implement NLP processing",
+      "insights": [
+        {
+          "total_agents": 3,
+          "successful_agents": 3,
+          "average_confidence": 0.8509446425362288,
+          "best_result": {
+            "agent_id": "swarm_finance_2",
+            "task": "Implement NLP processing",
+            "result": "Processed by Swarm_Finance_2",
+            "confidence": 0.9019413658639153,
+            "timestamp": "2025-12-16T22:09:54.706354"
+          },
+          "all_results": [
+            {
+              "agent_id": "swarm_finance_0",
+              "task": "Implement NLP processing",
+              "result": "Processed by Swarm_Finance_0",
+              "confidence": 0.7752127151338081,
+              "timestamp": "2025-12-16T22:09:54.706254"
+            },
+            {
+              "agent_id": "swarm_finance_1",
+              "task": "Implement NLP processing",
+              "result": "Processed by Swarm_Finance_1",
+              "confidence": 0.8756798466109633,
+              "timestamp": "2025-12-16T22:09:54.706326"
+            },
+            {
+              "agent_id": "swarm_finance_2",
+              "task": "Implement NLP processing",
+              "result": "Processed by Swarm_Finance_2",
+              "confidence": 0.9019413658639153,
+              "timestamp": "2025-12-16T22:09:54.706354"
+            }
+          ],
+          "timestamp": "2025-12-16T22:09:54.706415"
+        }
+      ],
+      "confidence": 0.55,
+      "contributors": [
+        "swarm"
+      ],
+      "last_updated": "2025-12-16T22:09:54.706427"
+    },
+    "Create response generation": {
+      "topic": "Create response generation",
+      "insights": [
+        {
+          "total_agents": 3,
+          "successful_agents": 3,
+          "average_confidence": 0.743849468915295,
+          "best_result": {
+            "agent_id": "swarm_finance_0",
+            "task": "Create response generation",
+            "result": "Processed by Swarm_Finance_0",
+            "confidence": 0.7708763671462554,
+            "timestamp": "2025-12-16T22:09:54.706509"
+          },
+          "all_results": [
+            {
+              "agent_id": "swarm_finance_0",
+              "task": "Create response generation",
+              "result": "Processed by Swarm_Finance_0",
+              "confidence": 0.7708763671462554,
+              "timestamp": "2025-12-16T22:09:54.706509"
+            },
+            {
+              "agent_id": "swarm_finance_1",
+              "task": "Create response generation",
+              "result": "Processed by Swarm_Finance_1",
+              "confidence": 0.7583573712511216,
+              "timestamp": "2025-12-16T22:09:54.706542"
+            },
+            {
+              "agent_id": "swarm_finance_2",
+              "task": "Create response generation",
+              "result": "Processed by Swarm_Finance_2",
+              "confidence": 0.7023146683485078,
+              "timestamp": "2025-12-16T22:09:54.706554"
+            }
+          ],
+          "timestamp": "2025-12-16T22:09:54.706605"
+        }
+      ],
+      "confidence": 0.55,
+      "contributors": [
+        "swarm"
+      ],
+      "last_updated": "2025-12-16T22:09:54.706616"
+    },
+    "Build analytics dashboard": {
+      "topic": "Build analytics dashboard",
+      "insights": [
+        {
+          "total_agents": 3,
+          "successful_agents": 3,
+          "average_confidence": 0.8697189997278212,
+          "best_result": {
+            "agent_id": "swarm_finance_1",
+            "task": "Build analytics dashboard",
+            "result": "Processed by Swarm_Finance_1",
+            "confidence": 0.9452759884242035,
+            "timestamp": "2025-12-16T22:09:54.706713"
+          },
+          "all_results": [
+            {
+              "agent_id": "swarm_finance_0",
+              "task": "Build analytics dashboard",
+              "result": "Processed by Swarm_Finance_0",
+              "confidence": 0.9023071355069853,
+              "timestamp": "2025-12-16T22:09:54.706669"
+            },
+            {
+              "agent_id": "swarm_finance_1",
+              "task": "Build analytics dashboard",
+              "result": "Processed by Swarm_Finance_1",
+              "confidence": 0.9452759884242035,
+              "timestamp": "2025-12-16T22:09:54.706713"
+            },
+            {
+              "agent_id": "swarm_finance_2",
+              "task": "Build analytics dashboard",
+              "result": "Processed by Swarm_Finance_2",
+              "confidence": 0.761573875252275,
+              "timestamp": "2025-12-16T22:09:54.706725"
+            }
+          ],
+          "timestamp": "2025-12-16T22:09:54.706775"
+        }
+      ],
+      "confidence": 0.55,
+      "contributors": [
+        "swarm"
+      ],
+      "last_updated": "2025-12-16T22:09:54.706787"
+    }
+  },
+  "saved_at": "2025-12-16T22:09:54.707739"
+}

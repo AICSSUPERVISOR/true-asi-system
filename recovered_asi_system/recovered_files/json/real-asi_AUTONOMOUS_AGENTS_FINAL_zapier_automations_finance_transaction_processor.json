@@ -1,0 +1,29 @@
+{
+  "name": "Finance Transaction Processor",
+  "description": "Process financial transactions automatically",
+  "trigger": {
+    "type": "stripe",
+    "event": "payment.succeeded"
+  },
+  "actions": [
+    {
+      "app": "supabase",
+      "action": "insert",
+      "table": "transactions"
+    },
+    {
+      "app": "quickbooks",
+      "action": "create_invoice"
+    },
+    {
+      "app": "slack",
+      "action": "send_message",
+      "channel": "#finance"
+    },
+    {
+      "app": "gmail",
+      "action": "send_email",
+      "template": "payment_receipt"
+    }
+  ]
+}

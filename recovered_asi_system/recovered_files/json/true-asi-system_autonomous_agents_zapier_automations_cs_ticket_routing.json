@@ -1,0 +1,29 @@
+{
+  "name": "Customer Service Ticket Routing",
+  "description": "Auto-route support tickets",
+  "trigger": {
+    "type": "zendesk",
+    "event": "ticket_created"
+  },
+  "actions": [
+    {
+      "app": "webhook",
+      "action": "POST",
+      "url": "{{ASI_API}}/classify-ticket"
+    },
+    {
+      "app": "zendesk",
+      "action": "update_ticket",
+      "fields": [
+        "priority",
+        "assignee",
+        "tags"
+      ]
+    },
+    {
+      "app": "slack",
+      "action": "send_message",
+      "channel": "#support-queue"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Sales Deal Progression",
+  "description": "Track and notify on deal progress",
+  "trigger": {
+    "type": "salesforce",
+    "event": "opportunity_updated"
+  },
+  "actions": [
+    {
+      "app": "slack",
+      "action": "send_message",
+      "channel": "#sales-pipeline"
+    },
+    {
+      "app": "google_sheets",
+      "action": "update_row"
+    },
+    {
+      "app": "gmail",
+      "action": "send_email",
+      "condition": "stage == 'closed_won'"
+    }
+  ]
+}

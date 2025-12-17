@@ -1,0 +1,39 @@
+{
+  "id": "marketing_lead_nurture",
+  "name": "Marketing Lead Nurture Sequence",
+  "description": "Automatically nurture new leads",
+  "trigger": {
+    "app": "Typeform",
+    "event": "New Response",
+    "fields": [
+      "email",
+      "name",
+      "interest"
+    ]
+  },
+  "actions": [
+    {
+      "app": "Supabase",
+      "action": "Create Record",
+      "table": "leads",
+      "fields": [
+        "email",
+        "name",
+        "source=typeform",
+        "status=new"
+      ]
+    },
+    {
+      "app": "Mailchimp",
+      "action": "Add Subscriber",
+      "list": "Nurture Sequence"
+    },
+    {
+      "app": "Gmail",
+      "action": "Send Email",
+      "template": "welcome_sequence_1"
+    }
+  ],
+  "status": "ready_to_deploy",
+  "generated_at": "2025-12-16T22:06:22.635054"
+}

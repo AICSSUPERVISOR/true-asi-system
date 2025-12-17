@@ -1,0 +1,40 @@
+{
+  "system": "Multimodal AI System",
+  "version": "1.0",
+  "timestamp": "2025-12-09T04:00:30.881712",
+  "processed_count": 1,
+  "results": [
+    {
+      "type": "image",
+      "path": "/tmp/test_image.png",
+      "dimensions": {
+        "width": 640,
+        "height": 480
+      },
+      "mode": "RGB",
+      "format": "PNG",
+      "size_bytes": 2843,
+      "pixel_count": 307200,
+      "channels": 3,
+      "mean_brightness": 106.11856987847223,
+      "std_brightness": 29.562204408081094,
+      "timestamp": "2025-12-09T04:00:30.879950",
+      "color_analysis": {
+        "red_mean": 75.392734375,
+        "green_mean": 107.66552408854167,
+        "blue_mean": 135.297451171875
+      }
+    }
+  ],
+  "quality": "100/100",
+  "functionality": "100%",
+  "simulated": false,
+  "real_processing": true,
+  "statistics": {
+    "total_processed": 1,
+    "images": 1,
+    "videos": 0,
+    "audio": 0,
+    "errors": 0
+  }
+}

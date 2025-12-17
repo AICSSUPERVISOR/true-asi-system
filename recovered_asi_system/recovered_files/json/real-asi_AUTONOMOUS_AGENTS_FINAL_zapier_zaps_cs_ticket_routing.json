@@ -1,0 +1,40 @@
+{
+  "id": "cs_ticket_routing",
+  "name": "Customer Service Ticket Auto-Routing",
+  "description": "Automatically route support tickets",
+  "trigger": {
+    "app": "Gmail",
+    "event": "New Email",
+    "label": "Support"
+  },
+  "actions": [
+    {
+      "app": "Webhook",
+      "action": "POST",
+      "url": "{{ASI_API}}/classify-ticket",
+      "body": [
+        "subject",
+        "body",
+        "sender"
+      ]
+    },
+    {
+      "app": "Supabase",
+      "action": "Create Record",
+      "table": "tickets",
+      "fields": [
+        "subject",
+        "category",
+        "priority",
+        "assigned_agent"
+      ]
+    },
+    {
+      "app": "Slack",
+      "action": "Send Message",
+      "channel": "#support-queue"
+    }
+  ],
+  "status": "ready_to_deploy",
+  "generated_at": "2025-12-16T22:06:22.635435"
+}

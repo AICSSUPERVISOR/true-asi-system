@@ -1,0 +1,37 @@
+{
+  "name": "HR Employee Onboarding",
+  "description": "Complete onboarding workflow",
+  "trigger": {
+    "type": "bamboohr",
+    "event": "employee_hired"
+  },
+  "actions": [
+    {
+      "app": "gmail",
+      "action": "send_email",
+      "template": "welcome_email"
+    },
+    {
+      "app": "slack",
+      "action": "invite_to_channels",
+      "channels": [
+        "#general",
+        "#{{department}}"
+      ]
+    },
+    {
+      "app": "google_workspace",
+      "action": "create_account"
+    },
+    {
+      "app": "notion",
+      "action": "create_page",
+      "template": "employee_handbook"
+    },
+    {
+      "app": "calendly",
+      "action": "schedule_meeting",
+      "type": "onboarding"
+    }
+  ]
+}

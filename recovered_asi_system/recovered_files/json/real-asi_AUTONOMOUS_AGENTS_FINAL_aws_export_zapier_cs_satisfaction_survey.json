@@ -1,0 +1,23 @@
+{
+  "name": "Customer Service Satisfaction Survey",
+  "description": "Send satisfaction survey after ticket resolution",
+  "trigger": {
+    "app": "Supabase",
+    "event": "Record Updated",
+    "table": "tickets",
+    "condition": "status=resolved"
+  },
+  "actions": [
+    {
+      "app": "Delay",
+      "action": "Wait",
+      "duration": "24 hours"
+    },
+    {
+      "app": "Typeform",
+      "action": "Send Survey",
+      "template": "csat_survey"
+    }
+  ],
+  "industry": "customer_service"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Healthcare Lab Results Notification",
+  "description": "Notify patients when lab results are ready",
+  "trigger": {
+    "app": "Webhook",
+    "event": "Lab Results Ready",
+    "fields": [
+      "patient_id",
+      "test_type",
+      "result_status"
+    ]
+  },
+  "actions": [
+    {
+      "app": "Supabase",
+      "action": "Update Record",
+      "table": "lab_results",
+      "fields": [
+        "status=ready",
+        "notification_sent=true"
+      ]
+    },
+    {
+      "app": "Gmail",
+      "action": "Send Email",
+      "template": "lab_results_ready"
+    }
+  ],
+  "industry": "healthcare"
+}

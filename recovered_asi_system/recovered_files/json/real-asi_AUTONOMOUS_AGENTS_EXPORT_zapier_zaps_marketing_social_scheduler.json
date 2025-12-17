@@ -1,0 +1,32 @@
+{
+  "id": "marketing_social_scheduler",
+  "name": "Marketing Social Media Scheduler",
+  "description": "Schedule and post social content",
+  "trigger": {
+    "app": "Airtable",
+    "event": "Record Matches Conditions",
+    "condition": "status=approved AND scheduled_date=today"
+  },
+  "actions": [
+    {
+      "app": "Buffer",
+      "action": "Create Post",
+      "platforms": [
+        "twitter",
+        "linkedin",
+        "facebook"
+      ]
+    },
+    {
+      "app": "Supabase",
+      "action": "Update Record",
+      "table": "social_posts",
+      "fields": [
+        "status=published",
+        "published_at"
+      ]
+    }
+  ],
+  "status": "ready_to_deploy",
+  "generated_at": "2025-12-16T22:06:22.635164"
+}

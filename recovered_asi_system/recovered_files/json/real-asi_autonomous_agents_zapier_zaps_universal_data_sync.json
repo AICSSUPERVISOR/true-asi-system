@@ -1,0 +1,30 @@
+{
+  "id": "universal_data_sync",
+  "name": "Universal Data Synchronization",
+  "description": "Sync data across all systems",
+  "trigger": {
+    "app": "Schedule",
+    "event": "Every Hour"
+  },
+  "actions": [
+    {
+      "app": "Webhook",
+      "action": "POST",
+      "url": "{{ASI_API}}/sync-data",
+      "body": [
+        "sync_type=full"
+      ]
+    },
+    {
+      "app": "Supabase",
+      "action": "Update Record",
+      "table": "sync_log",
+      "fields": [
+        "last_sync",
+        "status"
+      ]
+    }
+  ],
+  "status": "ready_to_deploy",
+  "generated_at": "2025-12-16T22:06:22.635748"
+}
