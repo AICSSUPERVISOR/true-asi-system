@@ -1,0 +1,21 @@
+{
+  "id": "code_agent",
+  "created_at": "2025-12-18T10:18:41.542192",
+  "name": "Code Agent",
+  "description": "Expert code generation, debugging, and refactoring",
+  "models": [
+    "deepseek-ai/deepseek-coder-33b-instruct",
+    "Qwen/Qwen2.5-Coder-32B-Instruct"
+  ],
+  "capabilities": [
+    "code_generation",
+    "debugging",
+    "refactoring",
+    "code_review"
+  ],
+  "config": {
+    "temperature": 0.2,
+    "max_tokens": 16384,
+    "top_p": 0.95
+  }
+}

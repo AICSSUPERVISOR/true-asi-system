@@ -1,0 +1,8 @@
+{
+  "base_url": "http://localhost:8000",
+  "endpoints": {
+    "chat": "/v1/chat/completions",
+    "embeddings": "/v1/embeddings",
+    "completions": "/v1/completions"
+  }
+}

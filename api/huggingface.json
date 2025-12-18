@@ -1,0 +1,7 @@
+{
+  "base_url": "https://api-inference.huggingface.co",
+  "endpoints": {
+    "inference": "/models/{model_id}",
+    "embeddings": "/pipeline/feature-extraction/{model_id}"
+  }
+}

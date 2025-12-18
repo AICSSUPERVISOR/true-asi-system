@@ -1,0 +1,21 @@
+{
+  "id": "math_agent",
+  "created_at": "2025-12-18T10:18:41.542299",
+  "name": "Math Agent",
+  "description": "Mathematical problem solving and proof generation",
+  "models": [
+    "WizardLM/WizardMath-70B-V1.0",
+    "EleutherAI/llemma_34b"
+  ],
+  "capabilities": [
+    "algebra",
+    "calculus",
+    "proofs",
+    "statistics"
+  ],
+  "config": {
+    "temperature": 0.1,
+    "max_tokens": 4096,
+    "top_p": 0.9
+  }
+}

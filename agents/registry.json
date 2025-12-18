@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "agents": [
+    "reasoning_agent",
+    "code_agent",
+    "math_agent",
+    "research_agent",
+    "embedding_agent",
+    "multimodal_agent",
+    "audio_agent",
+    "finance_agent",
+    "science_agent"
+  ],
+  "total_count": 9,
+  "generated_at": "2025-12-18T10:18:41.542869"
+}

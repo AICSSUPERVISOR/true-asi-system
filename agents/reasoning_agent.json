@@ -1,0 +1,20 @@
+{
+  "id": "reasoning_agent",
+  "created_at": "2025-12-18T10:18:41.541886",
+  "name": "Reasoning Agent",
+  "description": "Advanced logical reasoning and problem decomposition",
+  "models": [
+    "deepseek-ai/DeepSeek-R1",
+    "Qwen/QwQ-32B-Preview"
+  ],
+  "capabilities": [
+    "chain_of_thought",
+    "multi_step_reasoning",
+    "logical_deduction"
+  ],
+  "config": {
+    "temperature": 0.1,
+    "max_tokens": 8192,
+    "top_p": 0.95
+  }
+}

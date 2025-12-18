@@ -1,0 +1,27 @@
+{
+  "routing": {
+    "strategy": "capability_based",
+    "fallback": "round_robin",
+    "load_balancing": true
+  },
+  "consensus": {
+    "min_models": 2,
+    "max_models": 5,
+    "voting_strategy": "weighted",
+    "confidence_threshold": 0.8
+  },
+  "caching": {
+    "enabled": true,
+    "ttl_seconds": 3600,
+    "max_size_mb": 1024
+  },
+  "monitoring": {
+    "metrics": [
+      "latency",
+      "throughput",
+      "error_rate",
+      "token_usage"
+    ],
+    "logging_level": "INFO"
+  }
+}

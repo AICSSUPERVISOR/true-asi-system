@@ -1,0 +1,23 @@
+{
+  "domain": "physics",
+  "indexes": {
+    "semantic": {
+      "model": "BAAI/bge-large-en-v1.5",
+      "dimension": 1024,
+      "metric": "cosine"
+    },
+    "keyword": {
+      "type": "bm25",
+      "k1": 1.2,
+      "b": 0.75
+    }
+  },
+  "sources": [
+    "arxiv",
+    "wikipedia",
+    "github",
+    "stackoverflow",
+    "pubmed",
+    "patents"
+  ]
+}
