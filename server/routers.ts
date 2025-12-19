@@ -15,6 +15,8 @@ import { brregRouter } from "./routers/brreg";
 import { businessOrchestratorRouter } from "./routers/business_orchestrator";
 import { executionTrackingRouter } from "./routers/execution_tracking";
 import { trueASIUltraRouter } from "./routers/true_asi_ultra";
+import { asiRouter } from "./asiRouter";
+import { asiMasterRouter } from "./asi_master/asi_master_router";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -33,6 +35,8 @@ export const appRouter = router({
   businessOrchestrator: businessOrchestratorRouter,
   executionTracking: executionTrackingRouter,
   trueASIUltra: trueASIUltraRouter,
+  asiSymbiosis: asiRouter,
+  asiMaster: asiMasterRouter,
   
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),

@@ -1,0 +1,30 @@
+{
+  "query": "SELECT 'users' as table_name, COUNT(*) as count FROM users UNION ALL SELECT 's7_submissions', COUNT(*) FROM s7_submissions UNION ALL SELECT 's7_rankings', COUNT(*) FROM s7_rankings UNION ALL SELECT 'analyses', COUNT(*) FROM analyses UNION ALL SELECT 'companies', COUNT(*) FROM companies;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3Kbp5zTLhkwYq6S.fc90773ccd92 --database UKEMaqQ27z6bQYJkt3g4ve --execute SELECT 'users' as table_name, COUNT(*) as count FROM users UNION ALL SELECT 's7_submissions', COUNT(*) FROM s7_submissions UNION ALL SELECT 's7_rankings', COUNT(*) FROM s7_rankings UNION ALL SELECT 'analyses', COUNT(*) FROM analyses UNION ALL SELECT 'companies', COUNT(*) FROM companies;",
+  "rows": [
+    {
+      "table_name": "companies",
+      "count": "2"
+    },
+    {
+      "table_name": "s7_rankings",
+      "count": "0"
+    },
+    {
+      "table_name": "s7_submissions",
+      "count": "0"
+    },
+    {
+      "table_name": "users",
+      "count": "2"
+    },
+    {
+      "table_name": "analyses",
+      "count": "0"
+    }
+  ],
+  "messages": [],
+  "stdout": "table_name\tcount\ncompanies\t2\ns7_rankings\t0\ns7_submissions\t0\nusers\t2\nanalyses\t0\n",
+  "stderr": "",
+  "execution_time_ms": 215
+}

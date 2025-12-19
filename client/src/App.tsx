@@ -36,6 +36,8 @@ const AnalysisHistory = lazy(() => import("./pages/AnalysisHistory"));
 const CompanyLookup = lazy(() => import("./pages/CompanyLookup"));
 const RecommendationsPage = lazy(() => import("./pages/RecommendationsPage"));
 const ExecutionROIDashboard = lazy(() => import("./pages/ExecutionROIDashboard"));
+const ASIDashboard = lazy(() => import("./pages/ASIDashboard"));
+const ASIStatus = lazy(() => import("./pages/ASIStatus"));
 
 function LoadingFallback() {
   return (
@@ -77,6 +79,8 @@ function Router() {
       <Route path={"/agent-analytics"} component={AgentAnalytics} />
       <Route path={"/s7-study-path"} component={S7StudyPath} />
         <Route path="/unified-analytics" component={UnifiedAnalytics} />
+        <Route path="/asi-dashboard" component={ASIDashboard} />
+        <Route path="/asi-status" component={ASIStatus} />
         <Route path="/terms" component={Terms} />
         <Route path="/privacy" component={Privacy} />
       <Route path={"/404"} component={NotFound} />
