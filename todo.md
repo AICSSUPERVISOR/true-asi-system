@@ -3317,3 +3317,47 @@ Every component engineered to deliver ABOVE HUMAN INTELLIGENCE
 - server/asi_core/true_asi.ts - Unified ASI system
 - server/asi_core/asi_router.ts - tRPC API endpoints
 - server/asi_core/index.ts - Module exports
+
+
+## Phase 18: Full-Weight LLMs & Manus Connectors Expansion
+
+### Full-Weight LLM Integration
+- [ ] Google Gemini (GEMINI_API_KEY) - gemini-2.5-flash, gemini-pro
+- [ ] Anthropic Claude (ANTHROPIC_API_KEY) - claude-3-opus, claude-3-sonnet
+- [ ] xAI Grok (XAI_API_KEY) - grok-4
+- [ ] Cohere (COHERE_API_KEY) - command-r-plus
+- [ ] OpenRouter (OPENROUTER_API_KEY) - multi-model routing
+- [ ] Perplexity Sonar (SONAR_API_KEY) - sonar-pro with web grounding
+- [ ] ASI1.AI (ASI1_AI_API_KEY) - existing integration
+- [ ] AIMLAPI (AIMLAPI_KEY) - model aggregator
+
+### Manus Connector System
+- [ ] Built-in Forge API integration (BUILT_IN_FORGE_API_URL)
+- [ ] LLM invocation via Manus helpers
+- [ ] Image generation via Manus helpers
+- [ ] Voice transcription via Manus helpers
+- [ ] Storage helpers (S3)
+- [ ] Notification system
+- [ ] OAuth integration
+
+### MCP Server Integrations
+- [ ] Stripe MCP - payments, subscriptions, customers
+- [ ] Zapier MCP - workflow automation
+- [ ] Supabase MCP - database management
+- [ ] Vercel MCP - deployment management
+- [ ] Firecrawl MCP - web scraping
+- [ ] HuggingFace MCP - AI models
+- [ ] Canva MCP - design generation
+- [ ] Gmail MCP - email automation
+
+### Business API Integrations
+- [ ] Apollo API - B2B sales data
+- [ ] Ahrefs API - SEO data
+- [ ] Mailchimp API - email marketing
+- [ ] Polygon.io API - financial data
+- [ ] n8n API - workflow automation
+- [ ] Typeform API - forms and surveys
+- [ ] Cloudflare API - CDN and security
+- [ ] JSONBin API - JSON storage
+- [ ] ElevenLabs API - voice synthesis
+- [ ] HeyGen API - video generation

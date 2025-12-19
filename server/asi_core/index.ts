@@ -51,3 +51,31 @@ export type { BenchmarkResult, ASIScorecard } from './benchmark_system';
 
 // Router
 export { asiRouter } from './asi_router';
+
+// Unified ASI Hub
+export { asiHub, UnifiedASIHub } from './unified_asi_hub';
+export type { ASICapabilities as HubCapabilities, ASIStatus, ASIRequest as HubRequest, ASIResponse as HubResponse } from './unified_asi_hub';
+
+// Full-Weight LLM Providers
+export { unifiedLLM, UnifiedLLMManager } from './llm_providers';
+
+// Manus Connectors
+export { manusConnector, UnifiedManusConnector } from './manus_connectors';
+
+// MCP Integrations
+export { mcpManager, UnifiedMCPManager } from './mcp_integrations';
+
+// Business APIs
+export { businessAPIs, UnifiedBusinessAPIManager } from './business_apis';
+
+// Knowledge Infrastructure (10+ TB)
+export { knowledgeInfrastructure, KnowledgeInfrastructure } from './knowledge_infrastructure';
+export type { KnowledgeItem, KnowledgeStats, KnowledgeSource } from './knowledge_infrastructure';
+
+// Repository Mining
+export { repositoryMiner, RepositoryMiner } from './repository_miner';
+export type { Repository, MiningResult, CodePattern } from './repository_miner';
+
+// Knowledge Synthesis
+export { knowledgeSynthesis, KnowledgeSynthesisEngine } from './knowledge_synthesis';
+export type { SynthesisRequest, SynthesisResult, Insight } from './knowledge_synthesis';
