@@ -17,6 +17,7 @@ import { executionTrackingRouter } from "./routers/execution_tracking";
 import { trueASIUltraRouter } from "./routers/true_asi_ultra";
 import { asiRouter } from "./asiRouter";
 import { asiMasterRouter } from "./asi_master/asi_master_router";
+import { asiRouter as asiCoreRouter } from "./asi_core/asi_router";
 
 // API Keys Configuration
 const API_KEYS = {
@@ -37,6 +38,7 @@ export const appRouter = router({
   trueASIUltra: trueASIUltraRouter,
   asiSymbiosis: asiRouter,
   asiMaster: asiMasterRouter,
+  asiCore: asiCoreRouter,
   
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
